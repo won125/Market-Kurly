@@ -1,0 +1,35 @@
+.top-ad {
+    background-color: rgb(95, 0, 128);
+    color: #fff;
+    width: 100%;
+    height: 42px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 42px;
+}
+.top-menu-form {
+
+}
+.main-logo {
+    width: 82px;
+    height: 42px;
+    display: inline-block;
+}
+.top-main{
+    position: relative;
+    display: inline-block;
+    width: 1050px;
+    height: 100px;
+    padding-top: 36px;
+    text-align: center;
+}
+.icon-menu {
+    display: inline-block;
+}
+.top-memberService {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+}
+
