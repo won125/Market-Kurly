@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="css/join.css">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+         <!--회원가입 영역 시작-->
+         <div class="allmemberjoinform">
+            <div class="memberjoin">회원가입</div>
+            <div class="middlememberjoinform">
+                <div class="requiredfield">
+                    <span class="essential">*</span>필수입력사항
+                </div>
+                <div class="whitespace">
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">아이디
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="memberId" name="memberId" placeholder="아이디를 입력해주세요" type="text" required="" class="inputhint" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck">
+                            <button class="insidedoublecheck" type="button">
+                                <span class="sentencedoublecheck">중복확인</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">비밀번호
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off" class="inputhint" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">비밀번호확인
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="passwordConfirm" name="passwordConfirm" placeholder="비밀번호를 한번 더 입력해주세요" type="password" autocomplete="off" class="inputhint" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">이름
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="name" name="name" placeholder="이름을 입력해 주세요" type="text" required="" class="inputhint" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">이메일
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="email" name="email" placeholder="예: marketkurly@kurly.com" type="text" required="" class="inputhint" value="">  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck">
+                            <!--<button class="insidedoublecheck" type="button">
+                                <span class="sentencedoublecheck">중복확인</span>
+                            </button>-->
+                        </div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">휴대폰
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="middleactualinput">
+                                <div class="smallactualinput">
+                                    <input data-testid="input-box" id="mobileNumber" name="mobileNumber" placeholder="숫자만 입력해주세요." type="tel" required="" class="inputhint" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck">
+                            <!--<button class="insidedoublecheck" type="button" disabled>
+                                <span class="sentencedoublecheck">인증번호 받기</span>
+                            </button>-->
+                        </div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">주소
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <button class="addresssearch" type="button" height="44" radius="4">
+                                <span class="sentencedoublecheck">
+                                    <img src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" alt="" class="addresssearchimg">주소검색
+                                </span>
+                            </button>
+                            <span class="addressinfo">배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">성별</label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="genderdivide">
+                                <label class="dividespace" for="gender-man">
+                                    <input  id="gender-man" name="gender" type="radio" class="divideinput" value="MALE">
+                                    <span class="bigcircle">
+                                        <div smallcircle></div>
+                                    </span>
+                                    <span aria-labelledby="gender-man" class="sentencedivide">남자</span>
+                                </label>
+                                <label class="dividespace" for="gender-woman">
+                                    <input data-testid="radio-FEMALE" id="gender-woman" name="gender" type="radio" class="divideinput" value="FEMALE">
+                                    <span class="bigcircle">
+                                        <div class="smallcircle"></div>
+                                    </span>
+                                    <span aria-labelledby="gender-woman" class="sentencedivide">여자</span>
+                                </label>
+                                <label class="dividespace" for="gender-none">
+                                    <input data-testid="radio-NONE" id="gender-none" name="gender" type="radio" class="divideinput" value="NONE" checked="">
+                                    <span class="changebigcircle"> <!--클릭 시 버튼 모양 이렇게 바뀌게-->
+                                        <div class="changesmallcircle"></div> <!--클릭 시 버튼 모양 이렇게 바뀌게-->
+                                    </span>
+                                    <span aria-labelledby="gender-none" class="sentencedivide">선택안함</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">생년월일</label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="datedivide">
+                                <div class="inputdate">
+                                    <div height="40" class="insidedate">
+                                        <input data-testid="input-box" name="birthYear" placeholder="YYYY" type="text" height="40" class="insertdate" value="">
+                                    </div>
+                                </div>
+                                <span class="sidedate">
+                                    /<!--::after-->
+                                </span>
+                                <div class="inputdate">
+                                    <div height="40" class="insidedate">
+                                        <input data-testid="input-box" name="birthMonth" placeholder="MM" type="text" height="40" class="insertdate" value="">
+                                    </div>
+                                </div>
+                                <span class="sidedate">
+                                    /<!--::after-->
+                                </span>
+                                <div class="inputdate">
+                                    <div height="40" class="insidedate">
+                                        <input data-testid="input-box" name="birthDay" placeholder="DD" type="text" height="40" class="insertdate" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                    <div class="wholecompartment">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">추가입력 사항</label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="genderdivide">
+                                <label class="dividespace" for="additional-recommender">
+                                    <input data-testid="radio-RECOMMEND" id="additional-recommender" name="joinExtraInputType" type="radio" class="divideinput" value="RECOMMEND">
+                                    <span class="bigcircle">
+                                        <div class="smallcircle"></div>
+                                    </span>
+                                    <span aria-labelledby="additional-recommender" class="sentencedivide">친구초대 추천인 아이디</span>
+                                </label>
+                                <label class="dividespace" for="additional-event">
+                                    <input data-testid="radio-EVENT" id="additional-event" name="joinExtraInputType" type="radio" class="divideinput" value="EVENT">
+                                    <span class="bigcircle">
+                                        <div class="smallcircle"></div>
+                                    </span>
+                                    <span aria-labelledby="additional-event" class="sentencedivide">참여 이벤트명</span>
+                                </label>
+                            </div>   
+                        </div>
+                        <div class="alldoublecheck"></div>
+                    </div>
+                </div>
+                <div class="division"></div>
+                <div class="whitespace">
+                    <div class="lowerspace">
+                        <div class="firstcompartment">
+                            <label class="requiredinput">이용약관동의
+                                <span class="essential">*</span>
+                            </label>
+                        </div>
+                        <div class="actualinput">
+                            <div class="paragraph">
+                                <label class="allagreeparagraph" for="TermsAgreeAll">
+                                    <input id="TermsAgreeAll" type="checkbox" class="oneagreeparagraph">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                    <span >전체 동의합니다.</span>
+                                </label>
+                                <p class="notagree">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
+                            </div>
+                            <div class="paragraph">
+                                <div class="agreeparagraph">
+                                    <label class="shortparagraph" for="RequiredTermsCondition">
+                                        <input id="RequiredTermsCondition" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>이용약관 동의</span>
+                                    </label>
+                                    <span class="sentenceessential">(필수)</span>
+                                </div>
+                                <a class="termsview">약관보기></a>
+                            </div>
+                            <div class="paragraph">
+                                <div class="agreeparagraph">
+                                    <label class="shortparagraph" for="RequiredTermsOfPrivacy">
+                                        <input id="RequiredTermsOfPrivacy" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>개인정보 수집∙이용 동의</span>
+                                    </label>
+                                    <span class="sentenceessential">(필수)</span>
+                                </div>
+                                <a class="termsview">약관보기></a>
+                            </div>
+                            <div class="paragraph">
+                                <div class="agreeparagraph">
+                                    <label class="shortparagraph" for="OptionalTermsOfPrivacy">
+                                        <input id="OptionalTermsOfPrivacy" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>개인정보 수집∙이용 동의</span>
+                                    </label>
+                                    <span class="sentenceessential">(선택)</span>
+                                </div>
+                                <a class="termsview">약관보기></a>
+                            </div>
+                            <div class="choiceagree">
+                                <div class="agreeparagraph">
+                                    <label class="shortparagraph" for="SignupEventAll">
+                                        <input id="SignupEventAll" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의</span>
+                                    </label>
+                                    <span class="sentenceessential">(선택)</span>
+                                </div>
+                                <div class="choiceinfo">
+                                    <label class="checkinfo" for="OptionalTermsOfSms">
+                                        <input id="OptionalTermsOfSms" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>SMS</span>
+                                    </label>
+                                    <label class="checkinfo" for="OptionalTermsOfMailing">
+                                        <input id="OptionalTermsOfMailing" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>이메일</span>
+                                    </label>
+                                </div>
+                                <div class="choiceinfo">
+                                    <p class="css-1lihusi e1sjmfnv1">동의 시 한 달간 [5%적립] + [2만원 이상 무료배송] 첫 주문 후 안내</p>
+                                </div>
+                            </div>
+                            <div class="paragraph">
+                                <div class="agreeparagraph">
+                                    <label class="shortparagraph" for="RequiredSignupAge">
+                                        <input id="RequiredSignupAge" type="checkbox" class="oneagreeparagraph">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K" alt="" class="changecheckbox">
+                                        <span>본인은 만 14세 이상입니다.</span>
+                                    </label>
+                                    <span class="sentenceessential">"필수"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="joinspace">
+                    <button class="joinbutton" type="submit" width="240" height="56" radius="3">
+                        <span class="sentencedoublecheck">가입하기</span>
+                    </button>
+                 </div>
+            </div>
+         </div>
+        
+
+        
