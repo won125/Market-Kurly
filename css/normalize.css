@@ -66,6 +66,9 @@ h1 {
 li {
     list-style: none;
 }
+a {
+    text-decoration: none;
+}
 
 /* Address styling not present in IE 8/9, Safari 5, and Chrome. */
 abbr[title] {
