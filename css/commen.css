@@ -89,7 +89,7 @@ margin-left: 3px;
     background-color: #fff;
     border: none;
 }
-/* 버튼 컬러 남음 */
+
 .first-market-button {
     color: rgb(95, 0, 128);
 }
@@ -174,6 +174,7 @@ margin-left: 3px;
 .icon-menu i:last-child {
     margin-left: 25px;
 }
+
 .top-all-menu-frame {
     min-width: 1050px;
     letter-spacing: -0.3px;
@@ -181,6 +182,17 @@ margin-left: 3px;
     position: relative;
     box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
     width: 100%;
+}
+.bannertop{
+    min-width: 1050px;
+    letter-spacing: -0.3px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
+    width: 100%;
+    position: fixed;
+    z-index: 101;
+    top: 0px;
+    left: 0px;
 }
 .top-all-menu {
     position: relative;
