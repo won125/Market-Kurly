@@ -118,3 +118,14 @@ $(document).ready(function(){
         $("#check3-2").hide();
     });
 });
+
+$(document).ready(function(){
+    var jbOffset = $('.payment-pay-frame-one').offset();
+    $(window).scroll(function(){
+        if($(document).scrollTop() >jbOffset.top-115.99){
+            $('.payment-pay-frame-one').addClass('payment-pay-frame-onetop');
+        }else{
+            $('.payment-pay-frame-one').removeClass('payment-pay-frame-onetop');
+        }
+    });
+}, 3000);
