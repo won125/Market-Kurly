@@ -37,7 +37,7 @@ public class MostQnaController extends HttpServlet {
 	  if(action == null || action.equals("/listMostQna.do")) {
 		  List<MostQnaVO> mostQnaList=mostQnaDAO.listMostQna();
 	         request.setAttribute("mostQnaList",mostQnaList);
-	         nextPage="/qnainfo/listMostQna.jsp";
+	         nextPage="/mkurly/servicecenterquestion.jsp";
 	         System.out.println(nextPage);
 	  }else if(action.equals("/qnaWriteForm.do")) {
 			nextPage="/qnainfo/qnaWriteForm.jsp";//글쓰기창을 나타내줌
@@ -52,13 +52,12 @@ public class MostQnaController extends HttpServlet {
 	         nextPage="/mostqna/listMostQna.do";
 	         System.out.println(nextPage);
 	  }else if(action.equals("/qnaWriteForm.do")) {
-	         nextPage="/qnainfo/qnaWriteForm.jsp";
+	         nextPage="/qnaWriteForm.jsp";
 	  }else if(action.equals("/modQnaWriteForm.do")){
 		  try {
 		  	 int mostnum=0;
 	    	 mostnum =Integer.parseInt(request.getParameter("mostnum"));
 	    	 System.out.println(mostnum);
-	    	 System.out.println("바보");
 	    	 MostQnaVO mosFindInfo = mostQnaDAO.findMostQna(mostnum);
 	    	 request.setAttribute("mosFindInfo",mosFindInfo);
 	    	 nextPage="/qnainfo/modQnaWriteForm.jsp";
@@ -74,17 +73,17 @@ public class MostQnaController extends HttpServlet {
     	  MostQnaVO mostQnaVO =new MostQnaVO(mostnum,category, mosttitle, mostcontents);
     	  mostQnaDAO.modMostQna(mostQnaVO);
     	  request.setAttribute("msg", "modified");
-    	  nextPage="/mostqna?listMostQna.do";
+    	  nextPage="/mostqna/listMostQna.do";
       }else if (action.equals("/delMostQna.do")){
      	  int mostnum = Integer.parseInt(request.getParameter("mostnum"));
      	  System.out.println(mostnum);
     	  mostQnaDAO.delMostQna(mostnum);
      	  request.setAttribute("msg", "deleted");
-     	  nextPage="/mostqna?listMostQna.do";
-     	  }else{
+     	  nextPage="/mostqna/listMostQna.do";
+      }else{
 		  	List<MostQnaVO> mostQnaList=mostQnaDAO.listMostQna();
 	         request.setAttribute("mostQnaList",mostQnaList);
-	         nextPage="/qnainfo/listMostQna.jsp";
+	         nextPage="/servicecenterquestion.jsp";
 	       
 	  }
       RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);

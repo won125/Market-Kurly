@@ -9,4 +9,13 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>MostQnaController.java</servlet-name>
+    <servlet-class>kurly.ex01</servlet-class>			
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>MostQnaController.java</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
 </web-app>
