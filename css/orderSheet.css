@@ -13,7 +13,7 @@ button {
     background-color: transparent;
     border: none;
 }
-main>div {
+.main>div {
     padding-top: 50px;
 }
 .order-sheet-frame {
