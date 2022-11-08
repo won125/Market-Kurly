@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/productDetailPage.js"></script>
 </head>
 <body>
     <header>
@@ -407,7 +408,9 @@
                     <div class="exchange-and-refund-information">
                         <strong class="exchange-and-refund-information-title">교환 및 환불 안내</strong>
                         <p class="exchange-and-refund-information-text">교환 및 환불이 필요하신 경우 고객행복센터로 문의해주세요.</p>
-                        <button type="button">닫기<i class="fa-solid fa-chevron-up"></i></button>
+                        <button type="button" class="change-list-btn">
+                            <i id="change-icon" class="fa-solid fa-chevron-up"></i>
+                        </button>
                     </div>
 
                     <div class="exchange-refund-frame">
@@ -446,14 +449,16 @@
 
                     <div class="withdraw-order">
                         <strong class="withdraw-order-title">주문 취소 안내</strong>
-                        <p class="withdraw-order-title">
-                            <strong>- [주문완료] 상태일 경우에만 주문 취소 가능합니다.
+                        <p class="withdraw-order-list">
+                            <strong>- [주문완료] 상태일 경우에만 주문 취소 가능합니다.<br>
                             - [마이컬리 &gt; 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.</strong>
                         </p>
-                        <button type="button" class="withdraw-order-btn">닫기<i class="fa-solid fa-chevron-up"></i></button>
+                        <button type="button" class="withdraw-order-btn">
+                            <i id="icon-change" class="fa-solid fa-chevron-up"></i>
+                        </button>
                     </div>
 
-                    <div class="Order-cancellation">
+                    <div class="order-cancellation">
                         <strong>주문 취소 관련</strong>
                         <p>- [배송준비중] 부터는 취소가 불가하니, 반품으로 진행해주세요. (상품에 따라 반품이 불가할 수 있습니다.)</p>
                     </div>
@@ -487,6 +492,7 @@
                             <button class="review-img5 review-img"></button>
                             <button class="review-img6 review-img"></button>
                             <button class="review-img7 review-img"></button>
+                            <button class="review-img8 review-img"></button>
                             <a class="review-img-plus"><span>+더보기</span></a>
                         </div>
 
@@ -519,7 +525,7 @@
                                 </div>
                                 
                                 <article class="review-content-frame">
-                                    <div class="review-content--area">
+                                    <div class="review-content-area">
                                         <div class="review-item-name">
                                             <h3>[KF365] 가지 2입</h3>
                                         </div>
@@ -530,8 +536,8 @@
                                             가지가 치즈를 만나니 맛도 좋고 영양도 풍부해서 간식으로 준비해줘도 좋고 빵도우 위에 올린 치즈보다 밀가루가 아니니까 속도 한결 편하네요~
                                             다음에는 응용해서 가지 피자를 만들어줘야겠어요^^</p>
                                         <div class="review-item-image">
-                                            <button></button>
-                                            <button></button>
+                                            <button class="review-item-img1 review-img"></button>
+                                            <button class="review-item-img2 review-img"></button>
                                         </div>
                                         <div class="review-day-or-like">
                                             <div class="review-day">
@@ -583,8 +589,8 @@
                             </div>
                                           
                             <div  class="review-text-page-4div">
-                                <button class="review-left"><!--back img--></button>
-                                <button class="review-right"><!--back img--></button>
+                                <button class="review-left"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button class="review-right"><i class="fa-solid fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </section>
@@ -600,7 +606,7 @@
                             <strong class="user-inquiry-title">상품 문의</strong>
                             <ul class="user-inquiry-guide">
                                 <li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
-                                <li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내</li>
+                                <li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내<a href="#" class="oneVSone">1:1 문의</a>에 남겨주세요</li>
                             </ul>
                         </div>
 
@@ -634,7 +640,7 @@
                                         </td>
                                         <td class="user-inquiry-post-auther">이*희</td>
                                         <td class="user-inquiry-post-created-date">2022.10.26</td>
-                                        <td class="user-inquiry-post-status">답변완료</td>
+                                        <td class="user-inquiry-post-status-clear">답변완료</td>
                                     </tr>
 
                                     <tr class="user-inquiry-post">
@@ -646,24 +652,29 @@
                                         </td>
                                         <td class="user-inquiry-post-auther">서*범</td>
                                         <td class="user-inquiry-post-created-date">2022.10.25</td>
-                                        <td class="user-inquiry-post-status">답변완료</td>
+                                        <td class="user-inquiry-post-status-clear">답변완료</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div  class="inquiry-text-page-4div">
-                            <button class="inquiry-left"><!--back img--></button>
-                            <button class="inquiry-right"><!--back img--></button>
+                        <div  class="review-text-page-4div">
+                            <button class="review-left"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="review-right"><i class="fa-solid fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
     <div class="sub-order-frame">
         <div class="sub-order-area">
-            <button class="item-choice"><span>상품선택</span><i class="product-quantity-down"></i></button>
+            <button class="item-choice">
+                <span>상품선택</span>
+                <i id="icon" class="fa-solid fa-chevron-up"></i>
+            </button>
+            
             <div class="item-quantity-information-one-frame">
                 <div class="item-quantity-information-one-area">
                     <span class="item-quantity-information-name">
@@ -682,6 +693,7 @@
                     </span>
                 </div>
             </div>
+
             <div class="item-quantity-information-two-frame">
                 <div class="item-price-area">
                     <div class="item-price">
@@ -695,15 +707,16 @@
                     </div>
                 </div>
             </div>
+
             <div class="item-quantity-information-three-frame">
                 <div class="item-input-shoppingback-frame">
                     <div class="item-input-shoppingback-area">
-                        <button type="button" class="heart-img">
+                        <button type="button" class="heart-img iconImg">
                             <span>
                                 <img src="컬리이미지/기타/heart.svg" alt="하트">
                             </span>
                         </button>
-                        <button type="button" class="bell-img">
+                        <button type="button" class="bell-img iconImg">
                             <span>
                                 <img src="컬리이미지/기타/bell.svg" alt="종">
                             </span>

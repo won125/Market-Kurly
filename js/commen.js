@@ -71,14 +71,14 @@ $(".category-low-menu li").eq(4).mouseout(function(){
 
 // 메뉴 탑 고정
 $(document).ready(function(){
-    var jbOffset = $('.top-all-menu-frame').offset();
+    var jbOffset = $(".top-all-menu-frame").offset();
     $(window).scroll(function(){
         if($(document).scrollTop() >jbOffset.top){
-            $('.top-all-menu-frame').addClass('bannertop');
-            // $('.top-all-menu-frame').removeClass('top-all-menu-frame');
+            $(".top-all-menu-frame").addClass("bannertop");
+            // $(".top-all-menu-frame").removeClass("top-all-menu-frame");
         }else{
-            $('.top-all-menu-frame').removeClass('bannertop');
-            // $('.top-all-menu-frame').addClass('top-all-menu-frame');
+            $(".top-all-menu-frame").removeClass("bannertop");
+            // $(".top-all-menu-frame").addClass("top-all-menu-frame");
         }
     });
 }, 3000);
