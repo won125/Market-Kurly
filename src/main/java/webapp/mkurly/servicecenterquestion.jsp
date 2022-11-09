@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html;charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
+    <script src="${contextPath}/mkurly/js/servicecenterquestion.js"></script>
 </head>
 <body>
     <header>
@@ -59,7 +60,7 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="#"><i class="fa-regular fa-heart"></i></a>
@@ -67,7 +68,7 @@
                             </div>
                         </div>                        
                     </div>
-                    
+
                 </div>
                 <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
@@ -168,8 +169,42 @@
                 </c:forEach>
 			</c:when>
 		</c:choose>
+		<div align="center">
+		<c:if test="${totArticles != null }">
+			<c:choose>
+				<c:when test="${totArticles > 100}">
+					<c:forEach var="page" begin="1" end="10" step="1">
+						<c:if test="${section > 1 && page == 1}">
+							<a href="${contextPath}/mostqna/listMostQna.do?section=${section-1}&pageNum=${(section-1)*10+1}">prev</a>
+						</c:if>
+						<a href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
+						<c:if test="${page ==10}">
+							<a href="${contextPath}/mostqna/listMostQna.do?section=${section+1}&pageNum=${section*10+1}">next</a>
+						</c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totArticles == 100}">
+					<c:forEach var="page" begin="1" end="10" step="1">
+						<a href="#">${page}</a>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totArticles < 100}">
+					<c:forEach var="page" begin="1"  end="${totArticles/10+1}" step="1">
+						<c:choose>
+							<c:when test="${page==pageNum}">
+								<a class="selPage" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="noLine" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
+							</c:otherwise>	
+						</c:choose>					
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</c:if>
+	</div>
 			<p align="center"><a href="${contextPath}/mostqna/qnaWriteForm.do">글 작성하러 가기</a></p>
-		
+
                 <div class="pagespace">
                     <div class="pagearea">
                         <button disabled type="button" class="backbutton">
@@ -178,11 +213,13 @@
                         <button type="button" class="nextbutton">
                             <div class="pagetext">다음</div>
                         </button>
+                        
                     </div>
                 </div>                   
             </div>
         </div>
     </div>
+    
     <!--자주하는 질문 영역 종료-->
     <!-- 프로젝트 작성 영역 end -->
     <footer>
@@ -290,6 +327,6 @@
             <p>© KURLY CORP. ALL RIGHTS RESERVED</p>
         </div>
     </footer>
-    <script src="js/commen.js"></script>
+    <script src="${contextPath}/mkurly/js/commen.js"></script>
 </body>
 </html>         

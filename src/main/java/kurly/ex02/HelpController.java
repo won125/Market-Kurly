@@ -4,6 +4,8 @@ import java.awt.datatransfer.DataFlavor;
 
 
 
+
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,7 +63,7 @@ public class HelpController extends HttpServlet {
 		try {
 			List<HelpVO> helpList = new ArrayList<HelpVO>();
 			if(action == null || action.equals("/listHelp.do")) {//action 값이 listArticles.do면 전체 값을 조회
-				String _section =request.getParameter("section"); 
+				 String _section =request.getParameter("section"); 
 				 String _pageNum=request.getParameter("pageNum"); 
 				 int section = Integer.parseInt((_section ==null)? "1" : _section); 
 				 int pageNum = Integer.parseInt((_pageNum == null)? "1" :_pageNum);

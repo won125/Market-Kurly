@@ -1,8 +1,9 @@
 package kurly.ex01;
 
 import java.io.IOException;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/mostqna/*")
 public class MostQnaController extends HttpServlet {
    MostQnaDAO mostQnaDAO;
-   
+
    @Override
    public void init() throws ServletException {
       mostQnaDAO=new MostQnaDAO();
@@ -27,7 +28,7 @@ public class MostQnaController extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       doHandle(request, response);
    }
-   
+
    protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  String nextPage=null;
 	  request.setCharacterEncoding("utf-8");
@@ -35,10 +36,17 @@ public class MostQnaController extends HttpServlet {
 	  String action=request.getPathInfo();
 	  System.out.println("요청 이름"+action);//요청명을 가져옴.
 	  if(action == null || action.equals("/listMostQna.do")) {
-		  List<MostQnaVO> mostQnaList=mostQnaDAO.listMostQna();
-	         request.setAttribute("mostQnaList",mostQnaList);
-	         nextPage="/mkurly/servicecenterquestion.jsp";
-	         System.out.println(nextPage);
+		  String _section =request.getParameter("section"); 
+			 String _pageNum=request.getParameter("pageNum"); 
+			 int section = Integer.parseInt((_section ==null)? "1" : _section); 
+			 int pageNum = Integer.parseInt((_pageNum == null)? "1" :_pageNum);
+			 Map<String, Integer> pagingMap =new HashMap<String, Integer>(); 
+			 pagingMap.put("section", section);
+			 pagingMap.put("pageNum", pageNum); 
+			 mostQnaMap.put("section",section);
+			 mostQnaMap.put("pageNum", pageNum);
+			 request.setAttribute("helpMap", helpMap);//조회된 글 목록을 articleList로 바인딩한 후 
+			 nextPage="/notice/listHelp.jsp";// listArticles.jsp로 포워딩 합니다.
 	  }else if(action.equals("/qnaWriteForm.do")) {
 			nextPage="/qnainfo/qnaWriteForm.jsp";//글쓰기창을 나타내줌
 			System.out.println(nextPage);
@@ -84,7 +92,7 @@ public class MostQnaController extends HttpServlet {
 		  	List<MostQnaVO> mostQnaList=mostQnaDAO.listMostQna();
 	         request.setAttribute("mostQnaList",mostQnaList);
 	         nextPage="/servicecenterquestion.jsp";
-	       
+
 	  }
       RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
       dispatcher.forward(request, response);
