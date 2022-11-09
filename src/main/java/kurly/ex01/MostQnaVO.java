@@ -6,28 +6,11 @@ public class MostQnaVO {
 	private String mosttitle;
 	private String mostcontents;
 	private String category;
-	private int nowpage;
-	
-	public int getNowpage() {
-		return nowpage;
-	}
-
-	public void setNowpage(int nowpage) {
-		this.nowpage = nowpage;
-	}
 
 	public MostQnaVO() {
-		// TODO Auto-generated constructor stub
+		System.out.println("MostQnaVO 생성");
 	}
-
 	public MostQnaVO(int mostnum,String category, String mosttitle, String mostcontents) {
-		this.mostnum=mostnum;
-		this.category=category;
-		this.mosttitle=mosttitle;
-		this.mostcontents=mostcontents;
-	}
-	public MostQnaVO(int nowpage, int mostnum,String category, String mosttitle, String mostcontents) {
-		this.nowpage=nowpage;
 		this.mostnum=mostnum;
 		this.category=category;
 		this.mosttitle=mosttitle;

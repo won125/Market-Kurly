@@ -3,6 +3,10 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+	<c:set var="mostQnaList" value="${mostQnaMap.mostQnaList}"/>
+	<c:set var="totMostQna" value="${mostQNaMap.totMostQna}"/>
+	<c:set var="section" value="${mostQnaMap.section}"/>
+	<c:set var="pageNum" value="${mostQnaMap.pageNum}"/>
 	<%
 		request.setCharacterEncoding("utf-8");
 	%>

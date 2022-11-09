@@ -74,7 +74,7 @@ public class HelpController extends HttpServlet {
 				 helpMap.put("section",section);
 				 helpMap.put("pageNum", pageNum);
 				 request.setAttribute("helpMap", helpMap);//조회된 글 목록을 articleList로 바인딩한 후 
-				 nextPage="/notice/listHelp.jsp";// listArticles.jsp로 포워딩 합니다.
+				 nextPage="/mkurly/servicecenter.jsp";// listArticles.jsp로 포워딩 합니다.
 			}else if(action.equals("/helpWriteForm.do")) {
 				nextPage="/notice/helpWriteForm.jsp"; //글쓰기창을 나타내줌
 			}else if(action.equals("/addHelp.do")) { //실제 디비에 새 글 쓰기 작업을 수행
@@ -106,7 +106,7 @@ public class HelpController extends HttpServlet {
 		            System.out.println("helpnum=" + helpnum);
 		            helpVO=helpService.viewHelp(Integer.parseInt(helpnum));
 		            request.setAttribute("help", helpVO);
-		            nextPage="/notice/viewNotice.jsp";
+		            nextPage="/mkurly/servicecenterinfo.jsp";
 
 	         }else if (action.equals("/modHelp.do")){
 	        	 Map<String, String> helpMap = upload(request,response);

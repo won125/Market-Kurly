@@ -33,33 +33,32 @@ public class MostQnaDAO {
 		}
 	}
 	//글목록 페이징 메서드
-	public List selectAllArticles(Map<String, Integer> pagingMap){
+	public List selectAllMostQna(Map<String, Integer> pagingMap){
 		List<MostQnaVO> mostQnaList = new ArrayList<MostQnaVO>();
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
 		try {
 			conn=dataFactory.getConnection();
-			String query="SELECT * FROM (SELECT ROWNUM AS recNum, mostnum, mosttitle, mostcontents from kurly_mostqna) kurly_qna WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+			String query="select rownum, mostnum, mosttitle, mostcontents from kurly_mostqna WHERE rownum BETWEEN 1 And 10";
 			//페이징 처리 section이 3 pagingNum이 4면 (3-1)*100 +(4-1)*10+1 해서 231번재글 즉 3섹션의 31번쨰글
 			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
-			pstmt.setInt(1, section);
+			/*pstmt.setInt(1, section);
 			pstmt.setInt(2, pageNum);
 			pstmt.setInt(3, section);
-			pstmt.setInt(4, pageNum);
+			pstmt.setInt(4, pageNum);*/
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {;
+			while(rs.next()) {
 				int mostnum =rs.getInt("mostnum");
 				String mosttitle=rs.getString("mosttitle");
-				String mostcontents = rs.getString("mostcontents");
-				String category = rs.getString("category");
-				MostQnaVO mostQna = new MostQnaVO();
-				mostQna.setCategory(category);
-				mostQna.setMostnum(mostnum);
-				mostQna.setMostcontents(mostcontents);
-				mostQna.setMosttitle(mosttitle);
-				mostQnaList.add(mostQna);
-				
+				String mostcontents=rs.getString("mostcontents");
+				String category=rs.getString("category");
+				MostQnaVO most=new MostQnaVO();
+				most.setMostnum(mostnum);
+				most.setCategory(category);
+				most.setMosttitle(mosttitle);
+				most.setMostcontents(mostcontents);
+				mostQnaList.add(most);
 			}
 			rs.close();
 			pstmt.close();
@@ -69,32 +68,38 @@ public class MostQnaDAO {
 		}
 		return mostQnaList;
 	}
-	//글 목록
-	   public List<MostQnaVO> listMostQna() {
-	      List<MostQnaVO> mostQnaList=new ArrayList();
-	      try {
-	         conn=dataFactory.getConnection();
-	         String query="select * from kurly_mostqna order by mostnum desc";
-	         System.out.println(query);
-	         pstmt=conn.prepareStatement(query);
-	         ResultSet rs=pstmt.executeQuery();
-	         while(rs.next()) {
-	            int mostnum = rs.getInt("mostnum");
-	            String category = rs.getString("category");
-	            String mosttitle = rs.getString("mosttitle");
-	            String mostcontents =rs.getString("mostcontents");
-				MostQnaVO mostQnaVO=new MostQnaVO(mostnum,category,mosttitle,mostcontents);
-				mostQnaList.add(mostQnaVO);
-	         }
-	         rs.close();
-	         pstmt.close();
-	         conn.close();
-	      }catch (Exception e) {
-	         System.out.println("DB 처리중 에러");
-	         System.out.println(e.getMessage());
-	      }
-	      return mostQnaList;
-	   }
+	//전체글 목록
+	public List<MostQnaVO> selectAllMostQna(){
+		List<MostQnaVO> mostQnaList = new ArrayList<MostQnaVO>();
+		try {
+			String query="SELECT * FROM (SELECT ROWNUM AS recNum,mostnum, mosttitle, mostcontents, category from kurly_mostqna) kurly_mostqna";
+			System.out.println(query);
+			conn=dataFactory.getConnection();
+			//오라클 계층형 SQL문을 실행
+			pstmt = conn.prepareStatement(query);
+			ResultSet rs =pstmt.executeQuery();
+			while(rs.next()) {
+				int mostnum =rs.getInt("mostnum");
+				String mosttitle=rs.getString("mosttitle");
+				String mostcontents = rs.getString("mostcontents");
+				String category = rs.getString("category");
+				MostQnaVO most = new MostQnaVO();
+				most.setCategory(category);
+				most.setMostcontents(mostcontents);
+				most.setMostnum(mostnum);
+				most.setMosttitle(mosttitle);
+				mostQnaList.add(most);
+				}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		}catch (Exception e) {
+			System.out.println("글목록 조회중 에러");
+			System.out.println(e.getMessage());
+		}
+		return mostQnaList;
+		
+	}
 	 //글 추가
 		public void addMostQna(MostQnaVO mos) {
 			try {
@@ -206,7 +211,26 @@ public class MostQnaDAO {
 				System.out.println("삭제중 오류발생!!");
 			}
 		}
-
+		//전체 글 목록 수
+		public int selectToMostQna() {
+			try {
+				conn=dataFactory.getConnection();
+				String query="select count(mostnum) from kurly_mostqna";
+				System.out.println(query);
+				pstmt=conn.prepareStatement(query);
+				ResultSet rs = pstmt.executeQuery();
+				if(rs.next()) {
+					return (rs.getInt(1));
+				}
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+				System.out.println("글 목록 수 처리 중 에러");
+			}
+			return 0;
+		}
+		
 
 
 }

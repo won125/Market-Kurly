@@ -36,7 +36,7 @@ public class HelpDAO {
 			int pageNum = (Integer)pagingMap.get("pageNum");
 			try {
 				conn=dataFactory.getConnection();
-				String query="SELECT * FROM (SELECT ROWNUM AS recNum,helpnum, helptitle, helpcontents, admin, helpwritedate from kurly_help) kurly_help WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+				String query="SELECT * FROM (select rownum AS recNum, helpnum, helptitle, admin, helpcontents, helpwritedate from kurly_help) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
 				//페이징 처리 section이 3 pagingNum이 4면 (3-1)*100 +(4-1)*10+1 해서 231번재글 즉 3섹션의 31번쨰글
 				System.out.println(query);
 				pstmt=conn.prepareStatement(query);
@@ -45,7 +45,7 @@ public class HelpDAO {
 				pstmt.setInt(3, section);
 				pstmt.setInt(4, pageNum);
 				ResultSet rs = pstmt.executeQuery();
-				while(rs.next()) {;
+				while(rs.next()) {
 					int helpnum =rs.getInt("helpnum");
 					String helptitle=rs.getString("helptitle");
 					String helpcontents = rs.getString("helpcontents");
@@ -73,13 +73,14 @@ public class HelpDAO {
 		public List<HelpVO> selectAllArticles(){
 			List<HelpVO> helpList = new ArrayList<HelpVO>();
 			try {
-				String query="SELECT * FROM (SELECT ROWNUM AS recNum,helpnum, helptitle, helpcontents, admin, helpwritedate from kurly_help";
+				String query="SELECT * FROM (SELECT rownum,helpnum, helptitle, helpcontents, admin, helpwritedate from kurly_help";
 				System.out.println(query);
 				conn=dataFactory.getConnection();
 				//오라클 계층형 SQL문을 실행
 				pstmt = conn.prepareStatement(query);
 				ResultSet rs =pstmt.executeQuery();
 				while(rs.next()) {
+					int rownum=rs.getInt("rownum");
 					int helpnum =rs.getInt("helpnum");
 					String helptitle=rs.getString("helptitle");
 					String helpcontents = rs.getString("helpcontents");

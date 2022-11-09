@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<c:set var="mostQnaList" value="${mostQnaMap.mostQnaList}"/>
-	<c:set var="totMostQna" value="${mostQNaMap.totMostQna}"/>
-	<c:set var="section" value="${mostQnaMap.section}"/>
-	<c:set var="pageNum" value="${mostQnaMap.pageNum}"/>
+	<c:set var="helpList" value="${helpMap.helpList}"/>
+	<c:set var="totHelp" value="${helpMap.totHelp}"/>
+	<c:set var="section" value="${helpMap.section}"/>
+	<c:set var="pageNum" value="${helpMap.pageNum}"/>
 	<%
 		request.setCharacterEncoding("utf-8");
 	%>
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자주하는 질문</title>
+    <title>고객센터</title>
     <link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
-    <link rel="stylesheet" href="${contextPath}/mkurly/css/servicecenterquestion.css">
+    <link rel="stylesheet" href="${contextPath}/mkurly/css/servicecenter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
-    <script src="${contextPath}/mkurly/js/servicecenterquestion.js"></script>
 </head>
 <body>
     <header>
@@ -64,7 +63,7 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-
+                            
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="#"><i class="fa-regular fa-heart"></i></a>
@@ -72,7 +71,7 @@
                             </div>
                         </div>                        
                     </div>
-
+                    
                 </div>
                 <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
@@ -92,11 +91,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -104,19 +103,19 @@
         </div>
     </header>
     <!-- 프로젝트 작성 영역 start -->
-    <!--자주하는 질문 영역 시작-->
+    <!--고객센터 영역 시작-->
     <div class="allserviceform">
         <div class="marginserviceform">
             <div class="servicespace">
                 <div class="servicearea">고객센터</div>
                 <ul class="servicetextarea">
                     <li>
-                        <a class="notice" href="servicecenter.html">공지사항
+                        <a class="active notice" href="servicecenter.html">공지사항
                             <span class="bracket"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="active notice" href="servicecenterquestion.html">자주하는 질문
+                        <a class="notice" href="servicecenterquestion.html">자주하는 질문
                             <span class="bracket"></span>
                         </a>
                     </li>
@@ -142,73 +141,34 @@
             <div class="noticespace">
                 <div class="noticearea">
                     <div class="noticetextarea">
-                        <h2 class="noticetext">자주하는 질문</h2>
-                        <span class="noticeinfo">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>
+                        <h2 class="noticetext">공지사항</h2>
+                        <span class="noticeinfo">컬리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
                     </div>
                 </div>
                 <div class="infospace">
-                    <div width="70" class="infonumber">번호</div>
-                    <div width="135" class="infotitle">카테고리</div>
-                    <div class="write">제목</div>
+                    <div width="50" class="infonumber">번호</div>
+                    <div class="infotitle">제목</div>
+                    <div width="100" class="write">작성자</div>
+                    <div width="100" class="write">작성일</div>
                 </div>
-              <c:choose>
-			<c:when test="${!empty mostQnaList}">
-				<c:forEach var="mqn" items="${mostQnaList}" varStatus="start">
                 <ul class="writespace">
-                    <li class="qnaarea">
-                        <div class="writearea">
-                            <div class="realnotice">${start.count}</div>
-                            <div class="realinfo">${mqn.category}</div>
-                            <div class="questionarea">
-                                <div>${mqn.mosttitle}</div>
-                            </div>
-                        </div>
-                    </li>
+              <c:choose>
+              	 <c:when test="${!empty helpList}">
+					<c:forEach var="hel" items="${helpList}" varStatus="start">
                     <li>
-                        <div class="answerarea">
-                            <div>${mqn.mostcontents}</div>
-                        </div>
+                        <a href="${contextPath}/help/viewHelp.do?helpnum=${hel.helpnum}">	
+                            <div class="writearea">
+                                <div class="realnotice">${(pageNum-1)*10+start.count}</div>
+                                <div class="realinfo">${hel.helptitle}</div>
+                                <div class="realwriter">${hel.admin}</div>
+                                <div class="realdate">${hel.helpwritedate}</div>
+                            </div>
+                        </a>
                     </li>
                 </ul>
-                </c:forEach>
-			</c:when>
-		</c:choose>
-		<div align="center">
-		<c:if test="${totArticles != null }">
-			<c:choose>
-				<c:when test="${totArticles > 100}">
-					<c:forEach var="page" begin="1" end="10" step="1">
-						<c:if test="${section > 1 && page == 1}">
-							<a href="${contextPath}/mostqna/listMostQna.do?section=${section-1}&pageNum=${(section-1)*10+1}">prev</a>
-						</c:if>
-						<a href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
-						<c:if test="${page ==10}">
-							<a href="${contextPath}/mostqna/listMostQna.do?section=${section+1}&pageNum=${section*10+1}">next</a>
-						</c:if>
-					</c:forEach>
-				</c:when>
-				<c:when test="${totArticles == 100}">
-					<c:forEach var="page" begin="1" end="10" step="1">
-						<a href="#">${page}</a>
-					</c:forEach>
-				</c:when>
-				<c:when test="${totArticles < 100}">
-					<c:forEach var="page" begin="1"  end="${totArticles/10+1}" step="1">
-						<c:choose>
-							<c:when test="${page==pageNum}">
-								<a class="selPage" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
-							</c:when>
-							<c:otherwise>
-								<a class="noLine" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
-							</c:otherwise>	
-						</c:choose>					
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</c:if>
-	</div>
-			<p align="center"><a href="${contextPath}/mostqna/qnaWriteForm.do">글 작성하러 가기</a></p>
-
+               </c:forEach>
+               </c:when>
+               </c:choose>
                 <div class="pagespace">
                     <div class="pagearea">
                         <button disabled type="button" class="backbutton">
@@ -217,14 +177,45 @@
                         <button type="button" class="nextbutton">
                             <div class="pagetext">다음</div>
                         </button>
-                        
                     </div>
+            <c:if test="${totHelp != null }">
+			<c:choose>
+				<c:when test="${totHelp > 100}">
+					<c:forEach var="page" begin="1" end="10" step="1">
+						<c:if test="${section > 1 && page == 1}">
+							<a href="${contextPath}/help/listHelp.do?section=${section-1}&pageNum=${(section-1)*10+1}">prev</a>
+						</c:if>
+						<a href="${contextPath}/help/listHelp.do?section=${section}&pageNum=${page}">${(section-1)*10+pageNum}</a>
+						<c:if test="${page ==10}">
+							<a href="${contextPath}/help/listHelp.do?section=${section+1}&pageNum=${section*10+1}">next</a>
+						</c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totHelp == 100}">
+					<c:forEach var="page" begin="1" end="10" step="1">
+						<a href="#">${page}</a>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totHelp < 100}">
+					<c:forEach var="page" begin="1"  end="${totHelp/10+1}" step="1">
+						<c:choose>
+							<c:when test="${page==pageNum}">
+								<a class="selPage" href="${contextPath}/help/listHelp.do?section=${section}&pageNum=${page}">${page}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="noLine" href="${contextPath}/help/listHelp.do?section=${section}&pageNum=${page}">${page}</a>
+							</c:otherwise>	
+						</c:choose>					
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</c:if>
+		<p align="center"><a href="${contextPath}/help/helpWriteForm.do">글 작성하러 가기</a></p>
                 </div>                   
             </div>
         </div>
     </div>
-    
-    <!--자주하는 질문 영역 종료-->
+    <!--고객센터 영역 종료-->
     <!-- 프로젝트 작성 영역 end -->
     <footer>
         <div class="footer-top-frame">
@@ -314,7 +305,7 @@
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/mkurly/컬리이미지/ 	footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>

@@ -1,12 +1,8 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<c:set var="mostQnaList" value="${mostQnaMap.mostQnaList}"/>
-	<c:set var="totMostQna" value="${mostQNaMap.totMostQna}"/>
-	<c:set var="section" value="${mostQnaMap.section}"/>
-	<c:set var="pageNum" value="${mostQnaMap.pageNum}"/>
 	<%
 		request.setCharacterEncoding("utf-8");
 	%>
@@ -16,18 +12,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자주하는 질문</title>
+    <title>고객센터공지사항</title>
     <link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
-    <link rel="stylesheet" href="${contextPath}/mkurly/css/servicecenterquestion.css">
+    <link rel="stylesheet" href="${contextPath}/mkurly/css/servicecenterinfo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
-    <script src="${contextPath}/mkurly/js/servicecenterquestion.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -64,7 +59,7 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-
+                            
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="#"><i class="fa-regular fa-heart"></i></a>
@@ -72,7 +67,7 @@
                             </div>
                         </div>                        
                     </div>
-
+                    
                 </div>
                 <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
@@ -92,11 +87,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -104,129 +99,88 @@
         </div>
     </header>
     <!-- 프로젝트 작성 영역 start -->
-    <!--자주하는 질문 영역 시작-->
-    <div class="allserviceform">
-        <div class="marginserviceform">
-            <div class="servicespace">
-                <div class="servicearea">고객센터</div>
-                <ul class="servicetextarea">
-                    <li>
-                        <a class="notice" href="servicecenter.html">공지사항
-                            <span class="bracket"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="active notice" href="servicecenterquestion.html">자주하는 질문
-                            <span class="bracket"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="notice">1:1문의
-                            <span class="bracket"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="notice">대량주문 문의
-                            <span class="bracket"></span>
-                        </a>
-                    </li>
-                </ul>
-                <a href="#" class="helpspace">
-                    <div class="helptext">
-                        <span class="question">도움이 필요하신가요 ?</span>
-                        <span class="inquiry">1:1 문의하기</span>
-                    </div>
-                    <span class="changebracket"></span>
-                </a>
+    <!--고객센터공지사항 영역 시작-->
+    <div class="allserviceinfo"> 
+        <div class="marginserviceinfo">
+            <div class="serviceinfotext">공지사항</div>
+            <div class="serviceinfotexts">컬리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</div>
+        </div>    
+        <div class="serviceinfospace">
+            <div class="serviceinfoarea">
+                <div class="serviceinfotextarea">제목</div>
+                <div class="serviceinfotextareas">${help.helptitle}</div>
             </div>
-            <div class="noticespace">
-                <div class="noticearea">
-                    <div class="noticetextarea">
-                        <h2 class="noticetext">자주하는 질문</h2>
-                        <span class="noticeinfo">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>
+            <div class="serviceinfoarea">
+                <div class="serviceinfotextarea">작성자</div>
+                <div class="serviceinfotextareas">${help.admin}</div>
+            </div>
+            <div class="serviceinfoarea">
+                <div class="serviceinfotextarea">작성일</div>
+                <div class="serviceinfotextareas">${help.helpwritedate}</div>
+            </div>
+            <div class="serviceimagearea">
+                <div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        ${help.helpcontents}
+                        <c:if test="${not empty help.imageFileName && help.imageFileName !='null'}">
+							<input type="hidden" name="originalFileName" value="${help.imageFileName}">
+							<img src="${contextPath}/download.do?helpnum=${help.helpnum}&imageFileName=${help.imageFileName}" id="preview"><br>
+							<input type="file" name="imageFileName" id="help_imageFileName" onchange="readImage(this)" disabled></td>
+						</c:if>
+                        <br>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <p>● 고객행복센터 : <a href="https://www.kurly.com/m2/introduce/customerSystem/customer_satisfaction.php">바로가기</a></p>
+                    </div>
+                    <div>
+                        <p>
+                            <br>
+                        </p>
+                    </div>
+                    <div>
+                        <p>●&nbsp;컬리 이용약관 : <a href="https://www.kurly.com/shop/service/agreement.php">바로가기</a></p>
+                    </div>
+                    <div>
+                        <p>
+                            <br>
+                        </p>
+                    </div>
+                    <div>
+                        <span style="line-height: 107%;">
+                            <p>●&nbsp;소비자보호에 관한 법률 : <a href="https://www.law.go.kr/lsSc.do?section=&amp;menuId=1&amp;subMenuId=15&amp;tabMenuId=81&amp;eventGubun=060101&amp;query=%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98#liBgcolor0">바로가기</a></p>
+                        </span>
+                    </div>
+                    <div>
+                        <p>
+                            <br>
+                        </p>
+                    </div>
+                    <div>
+                        <span style="line-height: 107%;">
+                            <p>●&nbsp;소비자 분쟁해결 기준 : <a href="https://www.ccn.go.kr/board2/board.ccn?mode=list&amp;boardCode=372&amp;gSiteCode=2&amp;gMenuCode=5&amp;nMenuCode=63&amp;gSiteCode=2&amp;nMenuCode=63&amp;gMenuCode=5">바로가기</a></p>
+                        </span>
                     </div>
                 </div>
-                <div class="infospace">
-                    <div width="70" class="infonumber">번호</div>
-                    <div width="135" class="infotitle">카테고리</div>
-                    <div class="write">제목</div>
-                </div>
-              <c:choose>
-			<c:when test="${!empty mostQnaList}">
-				<c:forEach var="mqn" items="${mostQnaList}" varStatus="start">
-                <ul class="writespace">
-                    <li class="qnaarea">
-                        <div class="writearea">
-                            <div class="realnotice">${start.count}</div>
-                            <div class="realinfo">${mqn.category}</div>
-                            <div class="questionarea">
-                                <div>${mqn.mosttitle}</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="answerarea">
-                            <div>${mqn.mostcontents}</div>
-                        </div>
-                    </li>
-                </ul>
-                </c:forEach>
-			</c:when>
-		</c:choose>
-		<div align="center">
-		<c:if test="${totArticles != null }">
-			<c:choose>
-				<c:when test="${totArticles > 100}">
-					<c:forEach var="page" begin="1" end="10" step="1">
-						<c:if test="${section > 1 && page == 1}">
-							<a href="${contextPath}/mostqna/listMostQna.do?section=${section-1}&pageNum=${(section-1)*10+1}">prev</a>
-						</c:if>
-						<a href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
-						<c:if test="${page ==10}">
-							<a href="${contextPath}/mostqna/listMostQna.do?section=${section+1}&pageNum=${section*10+1}">next</a>
-						</c:if>
-					</c:forEach>
-				</c:when>
-				<c:when test="${totArticles == 100}">
-					<c:forEach var="page" begin="1" end="10" step="1">
-						<a href="#">${page}</a>
-					</c:forEach>
-				</c:when>
-				<c:when test="${totArticles < 100}">
-					<c:forEach var="page" begin="1"  end="${totArticles/10+1}" step="1">
-						<c:choose>
-							<c:when test="${page==pageNum}">
-								<a class="selPage" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
-							</c:when>
-							<c:otherwise>
-								<a class="noLine" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>
-							</c:otherwise>	
-						</c:choose>					
-					</c:forEach>
-				</c:when>
-			</c:choose>
-		</c:if>
-	</div>
-			<p align="center"><a href="${contextPath}/mostqna/qnaWriteForm.do">글 작성하러 가기</a></p>
-
-                <div class="pagespace">
-                    <div class="pagearea">
-                        <button disabled type="button" class="backbutton">
-                            <div class="pagetext">이전</div>
-                        </button>
-                        <button type="button" class="nextbutton">
-                            <div class="pagetext">다음</div>
-                        </button>
-                        
-                    </div>
-                </div>                   
+            </div>
+            <div class="listarea">
+                <button class="listbutton">
+                    <span class="listtext">목록</span>
+                </button>
             </div>
         </div>
     </div>
-    
-    <!--자주하는 질문 영역 종료-->
-    <!-- 프로젝트 작성 영역 end -->
-    <footer>
+    <!--고객센터공지사항 영역 종료-->
+     <!-- 프로젝트 작성 영역 end -->
+     <footer>
         <div class="footer-top-frame">
             <div class="footer-serviceCenter-inquiry">
                 <div class="top-left-footer">
@@ -314,7 +268,7 @@
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/mkurly/컬리이미지/ 	footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>
