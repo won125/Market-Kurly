@@ -7,7 +7,7 @@
     <title>해더/푸터</title>
     <link rel="stylesheet" href="css/commen.css">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/wishList.css">
+    <link rel="stylesheet" href="css/orderHistory.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -180,21 +180,31 @@
             
             <div class="wish-list-frame">
                 <div class="wish-list-title">
-                    <h2>찜한 상품(1)</h2>
-                    <span>찜한 상품은 최대 200개까지 저장됩니다.</span>
+                    <div class="wish-list-box">
+                        <h2>주문 내역</h2>
+                        <span>찜한 상품은 최대 200개까지 저장됩니다.</span>
+                    </div>
+                    <div class="period-frame">
+                        <div class="period-area">
+                            <div>
+                                <div class="period">
+                                    <div class="period-box">
+                                        <div class="period-title-text"> 3개월</div>
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="wish-list-area">
-                    <div class="wish-list">
-                        <a href="productDetailPage.html"><span><!--back img--></span></a>
-                        <div class="wish-list-item-information">
-                            <div class="item-name-area">
-                                <div class="item-name">[KF365] 가지 2입</div>
-                                <div class="item-value">2,480원</div>
-                            </div>
-                            <div class="etc-btn">
-                                <button class="item-delete"><span>삭제</span></button>
-                                <button class="item-input"><span><i class="fa-solid fa-cart-shopping"></i>담기</span></button>
-                            </div>
+                
+                <div class="order-list-area">
+                    <div class="order-list">
+                        <div class="order-list-item-information">
+                            <p>3개월간의 주문내역이 없습니다.</p>
+                            <button type="button">
+                                <span class="go-best-page">베스트 상품 보기</span>
+                            </button>
                         </div>
                     </div>
                 </div>

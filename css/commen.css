@@ -34,6 +34,7 @@ body {
 .top-memberService a:first-child{
     color:rgb(95, 0, 128);
 }
+
 .top-memberService div{
 margin: 0 10px;
 color: #ccc;
@@ -350,6 +351,9 @@ footer {
     display: flex;
     width: 450px;
     flex-direction: column;
+}
+.top-right-footer a {
+    color:rgb(95, 0, 128);
 }
 .Information {
     display: flex;
