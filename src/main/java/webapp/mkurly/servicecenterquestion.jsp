@@ -4,7 +4,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	<c:set var="mostQnaList" value="${mostQnaMap.mostQnaList}"/>
-	<c:set var="totMostQna" value="${mostQNaMap.totMostQna}"/>
+	<c:set var="totMostQna" value="${mostQnaMap.totMostQna}"/>
 	<c:set var="section" value="${mostQnaMap.section}"/>
 	<c:set var="pageNum" value="${mostQnaMap.pageNum}"/>
 	<%
@@ -157,7 +157,7 @@
                 <ul class="writespace">
                     <li class="qnaarea">
                         <div class="writearea">
-                            <div class="realnotice">${start.count}</div>
+                            <div class="realnotice">${(pageNum-1)*10+start.count}</div>
                             <div class="realinfo">${mqn.category}</div>
                             <div class="questionarea">
                                 <div>${mqn.mosttitle}</div>
@@ -174,26 +174,26 @@
 			</c:when>
 		</c:choose>
 		<div align="center">
-		<c:if test="${totArticles != null }">
+		<c:if test="${totMostQna != null }">
 			<c:choose>
-				<c:when test="${totArticles > 100}">
+				<c:when test="${totMostQna > 100}">
 					<c:forEach var="page" begin="1" end="10" step="1">
 						<c:if test="${section > 1 && page == 1}">
 							<a href="${contextPath}/mostqna/listMostQna.do?section=${section-1}&pageNum=${(section-1)*10+1}">prev</a>
 						</c:if>
-						<a href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${(section-1)*10+page}</a>
+						<a href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${(section-1)*10+pageNum}</a>
 						<c:if test="${page ==10}">
 							<a href="${contextPath}/mostqna/listMostQna.do?section=${section+1}&pageNum=${section*10+1}">next</a>
 						</c:if>
 					</c:forEach>
 				</c:when>
-				<c:when test="${totArticles == 100}">
+				<c:when test="${totMostQna == 100}">
 					<c:forEach var="page" begin="1" end="10" step="1">
 						<a href="#">${page}</a>
 					</c:forEach>
 				</c:when>
-				<c:when test="${totArticles < 100}">
-					<c:forEach var="page" begin="1"  end="${totArticles/10+1}" step="1">
+				<c:when test="${totMostQna < 100}">
+					<c:forEach var="page" begin="1"  end="${totMostQna/10+1}" step="1">
 						<c:choose>
 							<c:when test="${page==pageNum}">
 								<a class="selPage" href="${contextPath}/mostqna/listMostQna.do?section=${section}&pageNum=${page}">${page}</a>

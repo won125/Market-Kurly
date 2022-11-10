@@ -1,6 +1,7 @@
 package kurly.ex01;
 
 import java.io.Console;
+import java.net.URLEncoder;
 import java.sql.Connection;
 
 
@@ -39,26 +40,26 @@ public class MostQnaDAO {
 		int pageNum = (Integer)pagingMap.get("pageNum");
 		try {
 			conn=dataFactory.getConnection();
-			String query="select rownum, mostnum, mosttitle, mostcontents from kurly_mostqna WHERE rownum BETWEEN 1 And 10";
+			String query="SELECT * FROM (select rownum as recnum, mostnum, mosttitle, mostcontents, category from kurly_mostqna order by mostnum) WHERE recnum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
 			//페이징 처리 section이 3 pagingNum이 4면 (3-1)*100 +(4-1)*10+1 해서 231번재글 즉 3섹션의 31번쨰글
 			System.out.println(query);
 			pstmt=conn.prepareStatement(query);
-			/*pstmt.setInt(1, section);
+			pstmt.setInt(1, section);
 			pstmt.setInt(2, pageNum);
 			pstmt.setInt(3, section);
-			pstmt.setInt(4, pageNum);*/
+			pstmt.setInt(4, pageNum);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int mostnum =rs.getInt("mostnum");
 				String mosttitle=rs.getString("mosttitle");
 				String mostcontents=rs.getString("mostcontents");
 				String category=rs.getString("category");
-				MostQnaVO most=new MostQnaVO();
-				most.setMostnum(mostnum);
-				most.setCategory(category);
-				most.setMosttitle(mosttitle);
-				most.setMostcontents(mostcontents);
-				mostQnaList.add(most);
+				MostQnaVO mostQna=new MostQnaVO();
+				mostQna.setMostnum(mostnum);
+				mostQna.setCategory(category);
+				mostQna.setMosttitle(mosttitle);
+				mostQna.setMostcontents(mostcontents);
+				mostQnaList.add(mostQna);
 			}
 			rs.close();
 			pstmt.close();
@@ -72,7 +73,7 @@ public class MostQnaDAO {
 	public List<MostQnaVO> selectAllMostQna(){
 		List<MostQnaVO> mostQnaList = new ArrayList<MostQnaVO>();
 		try {
-			String query="SELECT * FROM (SELECT ROWNUM AS recNum,mostnum, mosttitle, mostcontents, category from kurly_mostqna) kurly_mostqna";
+			String query="SELECT * FROM (SELECT rownum, mostnum, mosttitle, mostcontents, category from kurly_mostqna) kurly_mostqna";
 			System.out.println(query);
 			conn=dataFactory.getConnection();
 			//오라클 계층형 SQL문을 실행
@@ -101,28 +102,28 @@ public class MostQnaDAO {
 		
 	}
 	 //글 추가
-		public void addMostQna(MostQnaVO mos) {
-			try {
-				conn = dataFactory.getConnection();
-				int mostnum =getNewMostNum();
-				String category=mos.getCategory();
-				String mosttitle=mos.getMosttitle();
-				String mostcontents=mos.getMostcontents();
-				String query = "insert into kurly_mostqna (mostnum,category, mosttitle, mostcontents) values(?,?,?,?)";
-				System.out.println(query);
-				pstmt=conn.prepareStatement(query);
-				pstmt.setInt(1,mostnum);
-				pstmt.setString(2,category);
-				pstmt.setString(3,mosttitle);
-				pstmt.setString(4,mostcontents);
-				pstmt.executeUpdate();
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-				System.out.println("등록중 오류 발생" +e.getMessage());
-				System.out.println(e.getMessage());
-			}
+	public void addWrite(MostQnaVO mostQna) {
+		try {
+			conn = dataFactory.getConnection();
+			int mostnum=mostQna.getMostnum();
+			String mosttitle=mostQna.getMosttitle();
+			String mostcontents=mostQna.getMostcontents();
+			String category=mostQna.getCategory();
+			String query = "insert into kurly_mostqna (mostnum, mosttitle, mostcontents, category) values(?,?,?,?)";
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1,mostnum);
+			pstmt.setString(2, mosttitle);
+			pstmt.setString(3, mostcontents);
+			pstmt.setString(4, category);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("등록중 오류 발생");
+			System.out.println(e.getMessage());
 		}
+	}
 
 		//글 번호 생성 메서드
 		private int getNewMostNum() {
@@ -149,36 +150,40 @@ public class MostQnaDAO {
 
 
 
-		//수정할 회원정보 찾기
-		public MostQnaVO findMostQna(int _mostnum) {
-			MostQnaVO mosFindInfo=null;
+		public MostQnaVO selectMostQna(int mostnum) {
+			MostQnaVO mostQna = new MostQnaVO();
 			try {
-				conn = dataFactory.getConnection();
-				String query ="select * from kurly_mostqna where mostnum=?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, _mostnum);
+				conn =dataFactory.getConnection();
+				String query ="select mostnum, mosttitle, mostcontents, category from kurly_mostqna where mostnum=?";
+				//NVL은 해당 값이 있으면 그 값을 전달하고 없으면 null을 전달해줌
 				System.out.println(query);
-				ResultSet rs =pstmt.executeQuery();
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, mostnum);
+				ResultSet rs = pstmt.executeQuery();
 				rs.next();
-				int mostnum=rs.getInt("mostnum");
-				String category=rs.getString("category");
+				int _mostnum = rs.getInt("mostnum");
 				String mosttitle=rs.getString("mosttitle");
-				String mostcontents =rs.getString("mostcontents");
-				mosFindInfo = new MostQnaVO(mostnum,category, mosttitle, mostcontents);
-				pstmt.close();
-				conn.close();
-				rs.close();
+				String mostcontents = rs.getString("mostcontents");
+				String categoty=rs.getString("category");
+				
+				//ArticleVo에 저장
+				mostQna.setCategory(categoty);
+				mostQna.setMostcontents(mostcontents);
+				mostQna.setMosttitle(mosttitle);
+				mostQna.setMostnum(_mostnum);
+				
 			} catch (Exception e) {
-				System.out.println("수정할 자료 찾는 중 에러발생"+e.getMessage());
+				System.out.println("글 상세 구현 중 에러" + e.getMessage());
 			}
-			return mosFindInfo;
+			return mostQna;
 		}
 		//회원정보 수정
 		public void modMostQna(MostQnaVO mostQnaVO) {
 			int mostnum = mostQnaVO.getMostnum();
-			String category = mostQnaVO.getCategory();
 			String mosttitle = mostQnaVO.getMosttitle();
+			String category = mostQnaVO.getCategory();
 			String mostcontents = mostQnaVO.getMostcontents();
+			
 			try {
 				conn=dataFactory.getConnection();
 				String query="update kurly_mostqna set category=?, mosttitle=?, mostcontents=? where mostnum=?";
@@ -188,7 +193,6 @@ public class MostQnaDAO {
 				pstmt.setString(2, mosttitle);
 				pstmt.setString(3, mostcontents);
 				pstmt.setInt(4, mostnum);
-				System.out.println(mostnum+category+mosttitle+mostcontents);
 				pstmt.executeUpdate();
 				pstmt.close();
 				conn.close();
@@ -197,7 +201,7 @@ public class MostQnaDAO {
 			}
 		}
 
-		public void delMostQna(int mostnum) {
+		public void delMember(int mostnum) {
 			try {
 				conn=dataFactory.getConnection();
 				String query="delete from kurly_mostqna where mostnum=?";
@@ -230,7 +234,5 @@ public class MostQnaDAO {
 			}
 			return 0;
 		}
-		
-
 
 }

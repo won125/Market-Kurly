@@ -19,7 +19,7 @@ function toList(obj){
 </head>
 <body>
 	 <h2 align="center">글쓰기</h2>
-	   <form action="${contextPath}/mostqna/addWrite.do" method="post">
+	   <form action="${contextPath}/mostqna/addWrite.do" method="post"  enctype="multipart/form-data">
 	      <table align="center">
 	      	 <tr>
 	            <td align="right">카테고리: </td>

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kurly.ex02.HelpVO;
+
 public class MostQnaService {
 	MostQnaDAO mostQnaDAO;
 	public MostQnaService() {
@@ -25,5 +27,6 @@ public class MostQnaService {
 		List<MostQnaVO> mostQnaList = mostQnaDAO.selectAllMostQna();
 		return mostQnaList;
 	}
+	
 	
 }
