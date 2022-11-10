@@ -127,16 +127,18 @@
                         <br>
                     </div>
                     <div>
-                        ${help.helpcontents}
+                        <pre>${help.helpcontents}
+                        <div class="helplist">
+                        <div class="helplist1">
                         <c:if test="${not empty help.imageFileName && help.imageFileName !='null'}">
 							<input type="hidden" name="originalFileName" value="${help.imageFileName}">
-							<img src="${contextPath}/download.do?helpnum=${help.helpnum}&imageFileName=${help.imageFileName}" id="preview"><br>
-							<input type="file" name="imageFileName" id="help_imageFileName" onchange="readImage(this)" disabled></td>
+							<img src="${contextPath}/download.do?helpnum=${help.helpnum}&imageFileName=${help.imageFileName}" id="preview">
 						</c:if>
-                        <br>
+						</div>
+                       </div>
+                        </pre>
                     </div>
                     <div>
-                        <br>
                     </div>
                     <div>
                         <p>● 고객행복센터 : <a href="https://www.kurly.com/m2/introduce/customerSystem/customer_satisfaction.php">바로가기</a></p>

@@ -44,6 +44,15 @@
     padding-left: 25px;
     align-self: center;
 }
+.helplist{
+	width:100%;
+}
+.helplist .helplist1{
+	width:80%;
+}
+.helplist1 #preview{
+	width:100%;
+}
 .serviceimagearea{
     padding: 30px 10px 100px;
     border-bottom: 1px solid rgb(128, 128, 128);

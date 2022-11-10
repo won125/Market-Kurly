@@ -36,7 +36,7 @@ public class HelpDAO {
 			int pageNum = (Integer)pagingMap.get("pageNum");
 			try {
 				conn=dataFactory.getConnection();
-				String query="SELECT * FROM (select rownum AS recNum, helpnum, helptitle, admin, helpcontents, helpwritedate from kurly_help) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+				String query="SELECT * FROM (select rownum AS recNum, helpnum, helptitle, admin, helpcontents, helpwritedate from kurly_help order by helpnum) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
 				//페이징 처리 section이 3 pagingNum이 4면 (3-1)*100 +(4-1)*10+1 해서 231번재글 즉 3섹션의 31번쨰글
 				System.out.println(query);
 				pstmt=conn.prepareStatement(query);
