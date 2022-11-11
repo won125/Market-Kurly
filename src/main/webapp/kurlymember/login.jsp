@@ -29,7 +29,7 @@
             }
         }
     }
-    function toJoin(obj) { //게시글 목록으로 돌가가는 함수
+    function toJoin(obj) { //회원가입 페이지로 이동
     	obj.action = "${contextPath}/member/join.do";
     	obj.submit();
     }
@@ -68,10 +68,10 @@
                         </div>
                     </div>
                     <div class="findinfospace">
-                        <a class="find">아이디 찾기</a>
-                        <span class="sideinfo"></span>
-                        <a class="findinfospace">비밀번호 찾기</a>
-                    </div>
+		                <a class="find">아이디 찾기</a>
+		                <span class="sideinfo"></span>
+		                <a class="find">비밀번호 찾기</a>
+		            </div>
                     <div class="loginspace">
                         <button class="loginbutton" type="submit" height="54" radius="3">
                             <span class="buttontext">로그인</span>

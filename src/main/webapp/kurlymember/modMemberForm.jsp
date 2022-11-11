@@ -19,12 +19,7 @@ function toMain(obj) { //게시글 목록으로 돌가가는 함수
 window.onload = function() {
     document.frmJoinForm.onsubmit = function() {
 		let pw = document.frmJoinForm.pw;
-		
-		if(pw.value ==""){
-			alert("비밀번호를 반드시 입력하세요.");
-			pw.focus();
-			return false;
-		}
+		let pwCheck = document.frmJoinForm.pwCheck;
 		
 		if(pw.value.length < 7){
 			alert("비밀번호는 7글자 이상으로 만들어주세요.");
@@ -53,8 +48,12 @@ window.onload = function() {
 			<input id="id" name="id" type="text">
 		</div>
 		<div>
-			<label for="pwd">비밀번호</label>
+			<label for="pw">비밀번호</label>
 			<input id="pw" name="pw" type="password">
+		</div>
+		<div>
+			<label for="pwCheck">비밀번호확인</label>
+			<input id="pwCheck" name="pwCheck" type="password">
 		</div>
 		<div>
 			<label for="name">이름</label>

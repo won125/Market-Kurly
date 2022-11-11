@@ -13,10 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-홈 화면 출력됨<br />
-<c:if test="${sessionID != null }">
-	${sessionID } 로그인 중
-</c:if>
 <%
 	response.sendRedirect("${contextPath}/member/index.do");
 %>

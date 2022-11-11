@@ -3,7 +3,7 @@
 /* =================================================================
    HTML5 display definitions
    ============================================================== */
-
+/* 참고: reset.css */
 /* Correct `block` display not defined in IE 8/9. */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	display: block;
@@ -62,6 +62,12 @@ a:active, a:hover {
 h1 {
     font-size: 2em;
     margin: 0.67em 0;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
 }
 
 /* Address styling not present in IE 8/9, Safari 5, and Chrome. */

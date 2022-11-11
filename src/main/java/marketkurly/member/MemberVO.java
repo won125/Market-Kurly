@@ -9,6 +9,7 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private String address;
+	private String detailAddress;
 	private String gender;
 	private String birth;
 	
@@ -26,12 +27,13 @@ public class MemberVO {
 	}
 	//생성자 초기화
 		public MemberVO(String id, String pw, String name, String email,
-				String phone, String address, String gender, String birth) {
+				String phone, String address, String detailAddress, String gender, String birth) {
 			this.id = id;
 			this.pw = pw;
 			this.name = name;
 			this.email = email;
 			this.address = address;
+			this.detailAddress = detailAddress;
 			this.phone = phone;
 			this.gender = gender;
 			this.birth = birth;
@@ -83,6 +85,15 @@ public class MemberVO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 
 	public String getGender() {

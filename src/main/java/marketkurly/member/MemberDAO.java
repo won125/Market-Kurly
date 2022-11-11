@@ -9,8 +9,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import memberMVC.ex01.MemberVO;
-
 public class MemberDAO {
 	private DataSource dataFactory;
 	private Connection conn;
@@ -43,19 +41,21 @@ public class MemberDAO {
 			String name = memberVO.getName();
 			String email = memberVO.getEmail();
 			String address = memberVO.getAddress();
+			String detailAddress = memberVO.getDetailAddress();
 			String phone = memberVO.getPhone();
 			String gender = memberVO.getGender();
 			String birth = memberVO.getBirth();
-			String query = "insert into kurly_member(id,pw,name,email,address,phone,gender,birth) values(?,?,?,?,?,?,?,?)";
+			String query = "insert into kurly_member(id,pw,name,email,address,detailAddress,phone,gender,birth) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
 			pstmt.setString(3, name);
 			pstmt.setString(4, email);
 			pstmt.setString(5, address);
-			pstmt.setString(6, phone);
-			pstmt.setString(7, gender);
-			pstmt.setString(8, birth);
+			pstmt.setString(6, detailAddress);
+			pstmt.setString(7, phone);
+			pstmt.setString(8, gender);
+			pstmt.setString(9, birth);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -65,14 +65,18 @@ public class MemberDAO {
 	}
 	
 	public int idCheck(String id) {
-		int value = 0;	
+		int value = -1;	
 		try {
 		    conn = dataFactory.getConnection();
 		    String query = "select id from kurly_member where id = ?";
 		    pstmt = conn.prepareStatement(query);
 		    pstmt.setString(1, id);
 		    ResultSet rs = pstmt.executeQuery();
-		    if(rs.next()) value = 1;
+		    if(rs.next()) {
+		    	value = 0;
+		    }else {
+		    	value = 1;
+		    }
 		    rs.close();
 		    pstmt.close();
 		    conn.close();
@@ -108,7 +112,7 @@ public class MemberDAO {
 			MemberVO memfindInfo = null;
 			try {
 				conn = dataFactory.getConnection();
-				String query = "select * from membertbl where id=?";
+				String query = "select * from kurly_member where id=?";
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, _id);
 				System.out.println(query);
@@ -118,8 +122,12 @@ public class MemberDAO {
 				String pwd = rs.getString("pwd");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
-				Date joinDate = rs.getDate("joinDate");
-				memfindInfo = new MemberVO(id, pwd, name, email, joinDate);
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String detailAddress = rs.getString("detailAddress");
+				String gender = rs.getString("gender");
+				String birth = rs.getString("birth");
+				memfindInfo = new MemberVO(id, pwd, name, email, phone, address, detailAddress, gender, birth);
 				rs.close();
 				pstmt.close();
 				conn.close();
@@ -134,7 +142,7 @@ public class MemberDAO {
 		MemberVO memberVO = null;
 		try {
 			conn = dataFactory.getConnection();
-			String query = "select *from";
+			String query = "update kurly_member set pw=?, address=?";
 			
 		} catch (Exception e) {
 			System.out.println("회원 정보 수정 에러!!" + e.getMessage());

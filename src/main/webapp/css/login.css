@@ -23,7 +23,7 @@
     margin-bottom: 5px;
 }
 .bigidinput{
-    margin-bottom: 5px;
+    padding-bottom: 12px;
 }
 .smallactualinput{
     position: relative;
@@ -48,12 +48,11 @@
 }
 .findinfospace{
     display: flex;
-    -webkit-box-pack: end;
     justify-content: flex-end;
     margin-top: 10px;
     font-size: 13px;
 }
-.findinfo{
+.find{
     color: rgb(51, 51, 51);
     cursor: pointer;
 }
@@ -97,3 +96,4 @@
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(95, 0, 128);
 }
+
