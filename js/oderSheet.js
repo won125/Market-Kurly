@@ -14,9 +14,8 @@ $(document).ready(function(){
         $("#img3").show();
         $("#img4").hide();
     });
-});
 
-$(document).ready(function(){
+
     /*웹페이지 열었을 때*/
     $("#img1").show();
     $("#img2").hide();
@@ -32,9 +31,8 @@ $(document).ready(function(){
         $("#img1").show();
         $("#img2").hide();
     });
-});
 
-$(document).ready(function(){
+
     /*웹페이지 열었을 때*/
     $("#check1-1").show();
     $("#check1-2").hide();
@@ -50,9 +48,8 @@ $(document).ready(function(){
         $("#check1-1").show();
         $("#check1-2").hide();
     });
-});
 
-$(document).ready(function(){
+
     /*웹페이지 열었을 때*/
     $("#check2-1").show();
     $("#check2-2").hide();
@@ -68,9 +65,8 @@ $(document).ready(function(){
         $("#check2-1").show();
         $("#check2-2").hide();
     });
-});
 
-$(document).ready(function(){
+
     /*웹페이지 열었을 때*/
     $("#check3-1").show();
     $("#check3-2").hide();
@@ -86,10 +82,9 @@ $(document).ready(function(){
         $("#check3-1").show();
         $("#check3-2").hide();
     });
-});
 
 
-$(document).ready(function(){
+
     /*웹페이지 열었을 때*/
     $("#img1").show();
     $("#img2").hide();
@@ -116,6 +111,15 @@ $(document).ready(function(){
         $("#check2-2").hide();
         $("#check3-1").show();
         $("#check3-2").hide();
+    });
+    $(".ccheck").click(function(){
+        if ($("#check1-2").css("display") == "none" && $("#check2-2").css("display") == "none" && $("#check3-2").css("display") == "none") {
+            $("#img1").show();
+            $("#img2").hide();
+        }else {
+            $("#img1").hide();
+            $("#img2").show();
+        }
     });
 });
 
