@@ -27,12 +27,11 @@ button {
     display: flex;
     justify-content: space-between;
 }
-.left-img-area {
+.left-img-area img {
     width: 430px;
     height: 552px;
     width: 430px;
     height: 552px;
-    background: url(../컬리이미지/채소/vegetable6.jpg) 0% 0% / cover;
 }
 .right-information-area {
     width: 560px;
