@@ -90,4 +90,3 @@ function div_show(selectList) {
         obj2.style.display = "block";
     }
 }
-

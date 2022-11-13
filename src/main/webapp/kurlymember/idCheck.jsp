@@ -12,20 +12,40 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 중복체크</title>
-<script type="text/javascript">
-	alret("${msg}");
-</script>
 </head>
 <body>
-<h2>아이디중복체크</h2>
-<!-- 4.팝업창구현  -->
-<fieldset>
-	<!-- <form action="" method="post">
-	action속성에 값이 없으면 기본적으로 자기자신을 불러오지만 중복확인 버튼을 클릭했을때 변경되지않는다.-->	
-	<form action="idCheck.do" method="post" name="wfr">
-		ID : <input type="text" name="id" value="${id}">
-		<input type="submit" value="중복 확인">
+<%	
+		// result 값이 null 이거나 true/false
+		Object result = request.getAttribute("idCheck");
+		String id =(String)request.getAttribute("id");
+	%>
+
+
+
+<%if(result==null){ %>
+	<form action="${contextPath}/member/idCheck.do" method="get">
+		<input type="text" name="id" placeholder="중복 체크할 ID를 입력하세요">
+		<input type="submit" value="중복 체크">
 	</form>
-</fieldset>
+<%}else{ %>
+	<form action="${contextPath}/member/idCheck.do" method="get">
+		<input type="text" name="id" value="<%=id %>" placeholder="중복 체크할 ID를 입력하세요">
+		<input type="submit" value="중복 체크">
+	</form>
+	<%if((boolean)result){ %>
+		<span style="color:red">해당 ID는 이미 사용 중합니다.</span>
+	<%}else{ %>
+		<span style="color:blue">해당 ID는 사용이 가능합니다.</span>
+		<button onclick="userId();">사용하기</button>
+		
+		<script>
+		function userId(){
+			window.opener.document.getElementById('id').value='<%=id%>';
+			window.opener.document.getElementById('idCheckResult').value='true';
+			window.close();
+		}
+	</script>
+	<%} %>
+<%} %>	
 </body>
 </html>

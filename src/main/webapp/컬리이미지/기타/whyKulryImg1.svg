@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>ic/01_check</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-" transform="translate(-32.000000, -175.000000)">
+            <g id="ic/01_check" transform="translate(32.000000, 175.000000)">
+                <circle id="Oval" fill="#5F0080" fill-rule="nonzero" cx="20" cy="20" r="20"></circle>
+                <rect id="Rectangle" stroke="#FFFFFF" x="11.2" y="9.6" width="17.6" height="20.8" rx="1"></rect>
+                <g id="Group-2" stroke-linecap="round" transform="translate(14.400000, 13.600000)" stroke="#FFFFFF">
+                    <polyline id="Path-2" stroke-linejoin="round" points="0 0.930676112 1.23010478 2.4 3.2 0"></polyline>
+                    <path d="M5.6,1.2 L11.2,1.2" id="Line"></path>
+                </g>
+                <g id="Group" stroke-linecap="round" transform="translate(14.400000, 18.800000)" stroke="#FFFFFF">
+                    <polyline id="Path-2" stroke-linejoin="round" points="0 0.930676112 1.23010478 2.4 3.2 0"></polyline>
+                    <path d="M5.6,1.2 L11.2,1.2" id="Line"></path>
+                </g>
+                <g id="Group-4" stroke-linecap="round" transform="translate(14.400000, 24.000000)" stroke="#FFFFFF">
+                    <polyline id="Path-2" stroke-linejoin="round" points="0 0.930676112 1.23010478 2.4 3.2 0"></polyline>
+                    <path d="M5.6,1.2 L11.2,1.2" id="Line"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

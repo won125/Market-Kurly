@@ -64,26 +64,22 @@ public class MemberDAO {
 		}
 	}
 	
-	public int idCheck(String id) {
-		int value = -1;	
+	public boolean idCheck(String id) {
+		boolean result = false;	
 		try {
 		    conn = dataFactory.getConnection();
 		    String query = "select id from kurly_member where id = ?";
 		    pstmt = conn.prepareStatement(query);
 		    pstmt.setString(1, id);
 		    ResultSet rs = pstmt.executeQuery();
-		    if(rs.next()) {
-		    	value = 0;
-		    }else {
-		    	value = 1;
-		    }
+		    if(rs.next()) result = true;
 		    rs.close();
 		    pstmt.close();
 		    conn.close();
 		}catch (Exception e) {
 		    e.printStackTrace();
 		}
-		return value;
+		return result;
 	    }
 
 	public int login(String id, String pw) {
