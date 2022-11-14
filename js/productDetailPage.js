@@ -71,4 +71,38 @@ $(document).ready(function(){
             $(".cancel-payment-authorization").hide();  //display :block 일떄
         }
     });
+
+    $(".heart-ch").show();
+    $(".heart-ch2").hide();
+
+    $(".heart-ch").click(function(){
+        $(".heart-ch").hide();
+        $(".heart-ch2").show();
+    });
+
+    $(".heart-ch2").click(function(){
+        $(".heart-ch2").hide();
+        $(".heart-ch").show();
+    });
 });
+
+// $(document).ready(function(){
+//     let countNum=Number(document.querySelector(".product-quantity-count text"));
+//     let itemValue=Number(document.querySelector(".product-pay>span text"));
+//     let total = 2480*countNum;
+//     $(".product-quantity-up").click(function(){
+//         if (countNum<99) {
+//             countNum+=1;
+//         }
+//         $(".product-quantity-count").text(countNum);
+//         $(".product-pay>span").text(total);
+//     });
+
+//     $(".product-quantity-down").click(function(){
+//         if (countNum>1) {
+//             countNum-=1;
+//         }
+//         $(".product-quantity-count").text(countNum);
+//         $(".product-pay>span").text(total);
+//     });
+// });

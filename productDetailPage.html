@@ -192,9 +192,9 @@
                                     <span>적립제외상품</span>
                                     <div class="product-quantity-value">
                                         <div class="product-quantity">
-                                            <button type="button" disabled aria-label="수량내리기" class="product-quantity-down"></button>
-                                            <div>1</div>
-                                            <button type="button" disabled aria-label="수량올리기" class="product-quantity-up"></button>
+                                            <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                                            <div class="product-quantity-count">1</div>
+                                            <button type="button" aria-label="수량올리기" class="product-quantity-up"></button>
                                         </div>
                                         <div class="product-pay">
                                             <span>2,480원</span>
@@ -221,7 +221,8 @@
                         <div class="put-in-shopping-cart">
                             <button type="button" class="heart-img">
                                 <span>
-                                    <img src="컬리이미지/기타/heart.svg" alt="하트">
+                                    <img class="heart-ch" src="컬리이미지/기타/heart.svg" alt="하트">
+                                    <img class="heart-ch2" src="컬리이미지/기타/heartCol.svg" alt="컬러하트">
                                 </span>
                             </button>
                             <button type="button" class="bell-img">
@@ -683,12 +684,12 @@
                     </span>
                     <span class="item-count-btn-frame">
                         <div class="item-count-btn-area">
-                            <button type="button" class="item-count-btn-down"><!--back img--></button>
-                            <div class="item-count-btn-number">1</div>
-                            <button type="button" class="item-count-btn-up"><!--back img--></button>
+                            <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                            <div class="product-quantity-count">1</div>
+                            <button type="button" aria-label="수량올리기" class="product-quantity-up"></button>
                         </div>
                         <span class="item-value-area">
-                            <span>2,480원</span>
+                            <span>2,480</span>원
                         </span>
                     </span>
                 </div>
@@ -713,7 +714,8 @@
                     <div class="item-input-shoppingback-area">
                         <button type="button" class="heart-img iconImg">
                             <span>
-                                <img src="컬리이미지/기타/heart.svg" alt="하트">
+                                <img class="heart-ch" src="컬리이미지/기타/heart.svg" alt="하트">
+                                <img class="heart-ch2" src="컬리이미지/기타/heartCol.svg" alt="컬러하트">
                             </span>
                         </button>
                         <button type="button" class="bell-img iconImg">

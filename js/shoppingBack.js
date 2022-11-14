@@ -67,4 +67,18 @@ $(document).ready(function(){
         $("#check").show();
         $("#check2").hide();
     });
+
+    $(".ccheck").click(function(){
+        if ($("#check").css("display") == "none") {
+            $("#img1").hide();
+            $("#img2").show();
+            $("#img3").hide();
+            $("#img4").show();
+        }else {
+            $("#img1").show();
+            $("#img2").hide();
+            $("#img3").show();
+            $("#img4").hide();
+        }
+    });
 });
