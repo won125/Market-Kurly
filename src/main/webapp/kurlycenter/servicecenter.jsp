@@ -10,6 +10,7 @@
 <title>마켓컬리</title>
 <link rel="stylesheet" href="${contextPath}/css/commen.css">
 <link rel="stylesheet" href="${contextPath}/css/normalize.css">
+<link rel="stylesheet" href="${contextPath}/css/servicecenter.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,28 +20,6 @@
 <script src="${contextPath}/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-<c:choose>
-	<c:when test="${msg == 'updateMember'}">
-		<script type="text/javascript">
-			alert("회원정보수정 완료");
-		</script>
-	</c:when>
-	<c:when test="${msg == 'addMember'}">
-		<script type="text/javascript">
-			alert("회원가입 완료");
-		</script>
-	</c:when>
-	<c:when test="${result == 1}">
-		<script type="text/javascript">
-			alert("그동안 마켓컬리를 이용해주셔서 감사합니다.");
-		</script>
-	</c:when>
-	<c:when test="${result == 0}">
-		<script type="text/javascript">
-			alert("회원 탈퇴 에러!!");
-		</script>
-	</c:when>
-</c:choose>
 
 	<header>
         <div class="top-ad">
@@ -57,21 +36,21 @@
 	                        <div> | </div>
 	                        <a href="${contextPath}/member/login.do">로그인</a>
 	                        <div> | </div>
-	                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 	<c:when test="${sessionID != null }">
                 		<div class="top-memberService">
 	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
 	                        <div> | </div>
-	                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 	<c:when test="${sessionID == 'admin'}">
                 		<div class="top-memberService">
 	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
 	                        <div> | </div>
-	                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 </c:choose>
@@ -134,40 +113,80 @@
             </div>
         </div>
     </header>
-    <!-- 프로젝트 작성 영역 start -->
-	
-	<div>
-		<c:if test="${sessionID != null }">
-			${sessionID } 로그인 중
-			<a href="${contextPath}/member/logout.do"><button>로그아웃</button></a>
-			<a href="${contextPath}/member/modMember.do?id=${sessionID}"><button>회원정보수정</button></a>
-			<a href="${contextPath}/member/wishList.do"><button>찜목록</button></a>	
-		</c:if>	
-	</div>
-	<c:if test="${sessionID == 'admin'}">
-		<table>
-			<tr>
-				<th>아이디</th>
-				<th>비밀번호</th>
-				<th>이름</th>
-				<th>이메일</th>
-				<th>가입일</th>
-				<th>삭제</th>
-			</tr>
-			<c:forEach var="member" items="${memberList}">
-			<tr>
-				<td>${memberList.id}</td>
-				<td>${memberList.pw}</td>
-				<td>${memberList.name}</td>
-				<td>${memberList.email}</td>
-				<td><a href="${contextPath}/member/removeMember.do?id=${memberList.id}">삭제</a></td>
-			</tr>
-			</c:forEach>
-		</table>
-	</c:if>
-	
-	
-    <!-- 프로젝트 작성 영역 end -->
+    <!--고객센터 영역 시작-->
+    <div class="allserviceform">
+        <div class="marginserviceform">
+            <div class="servicespace">
+                <div class="servicearea">고객센터</div>
+                <ul class="servicetextarea">
+                    <li>
+                        <a class="active notice" href="servicecenter.html">공지사항
+                            <span class="bracket"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="notice" href="servicecenterquestion.html">자주하는 질문
+                            <span class="bracket"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="notice">1:1문의
+                            <span class="bracket"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="notice">대량주문 문의
+                            <span class="bracket"></span>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" class="helpspace">
+                    <div class="helptext">
+                        <span class="question">도움이 필요하신가요 ?</span>
+                        <span class="inquiry">1:1 문의하기</span>
+                    </div>
+                    <span class="changebracket"></span>
+                </a>
+            </div>
+            <div class="noticespace">
+                <div class="noticearea">
+                    <div class="noticetextarea">
+                        <h2 class="noticetext">공지사항</h2>
+                        <span class="noticeinfo">컬리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
+                    </div>
+                </div>
+                <div class="infospace">
+                    <div width="50" class="infonumber">번호</div>
+                    <div class="infotitle">제목</div>
+                    <div width="100" class="write">작성자</div>
+                    <div width="100" class="write">작성일</div>
+                </div>
+                <ul class="writespace">
+                    <li>
+                        <a href="servicecenterinfo.html">
+                            <div class="writearea">
+                                <div class="realnotice">공지</div>
+                                <div class="realinfo">[안내] 컬리 소비자 분쟁해결 기준 안내</div>
+                                <div class="realwriter">MarketKurly</div>
+                                <div class="realdate">2022.11.03</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="pagespace">
+                    <div class="pagearea">
+                        <button disabled type="button" class="backbutton">
+                            <div class="pagetext">이전</div>
+                        </button>
+                        <button type="button" class="nextbutton">
+                            <div class="pagetext">다음</div>
+                        </button>
+                    </div>
+                </div>                   
+            </div>
+        </div>
+    </div>
+    <!--고객센터 영역 종료-->
     <footer>
         <div class="footer-top-frame">
             <div class="footer-serviceCenter-inquiry">

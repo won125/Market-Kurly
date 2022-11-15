@@ -1,24 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> <%-- 상대경로 현제 문서 위치를 기준으로 경로를 인식하는 방법--%>  
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>해더/푸터</title>
-    <link rel="stylesheet" href="css/commen.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/ShippingAddressManagement.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/ShippingAddressManagement.js"></script>
+<meta charset="UTF-8">
+<title>마켓컬리</title>
+<link rel="stylesheet" href="${contextPath}/css/commen.css">
+<link rel="stylesheet" href="${contextPath}/css/normalize.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<script src="${contextPath}/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-    <header>
+
+	<header>
         <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
@@ -26,13 +28,32 @@
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
-                    <div class="top-memberService">
-                        <a href="member.html">회원가입</a>
-                        <div> | </div>
-                        <a href="login.html">로그인</a>
-                        <div> | </div>
-                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
-                    </div>
+                <c:choose>
+                	<c:when test="${sessionID == null }">
+                		<div class="top-memberService">
+	                        <a href="${contextPath}/member/join.do">회원가입</a>
+	                        <div> | </div>
+	                        <a href="${contextPath}/member/login.do">로그인</a>
+	                        <div> | </div>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                    </div>
+                	</c:when>
+                	<c:when test="${sessionID != null }">
+                		<div class="top-memberService">
+	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
+	                        <div> | </div>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                    </div>
+                	</c:when>
+                	<c:when test="${sessionID == 'admin'}">
+                		<div class="top-memberService">
+	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
+	                        <div> | </div>
+	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                    </div>
+                	</c:when>
+                </c:choose>
+                    
 
                     <div class="top-serviceCenter-child">
                         <li>공지사항</li>
@@ -43,9 +64,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="index.html"><img src="컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="index.html"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="index.html"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/"><img src="${contextPath}/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -80,11 +101,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="컬리이미지/커뮤니티/vegetable.png" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="컬리이미지/커뮤니티/beef.png" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="컬리이미지/커뮤니티/sideDish.png" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="컬리이미지/커뮤니티/milk.png" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="컬리이미지/커뮤니티/alcohol.png" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -132,7 +153,7 @@
 
                     <div class="my-kurly-style">
                         <button class="my-information-btn">
-                            <div class="my-kurly-style-title">나의 컬리 스타일 <img src="컬리이미지/kulry-logo/new.png" alt="새로운 소식"> <i class="fa-solid fa-caret-right"></i></div>
+                            <div class="my-kurly-style-title">나의 컬리 스타일 <img src="${contextPath}/컬리이미지/kulry-logo/new.png" alt="새로운 소식"> <i class="fa-solid fa-caret-right"></i></div>
                             <div class="registration">등록하기</div>
                         </button>
                     </div>
@@ -152,7 +173,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="my-information-list-ad"><img src="컬리이미지/wishlist_img/ad.jpg" alt="광고"></a>
+            <a href="#" class="my-information-list-ad"><img src="${contextPath}/컬리이미지/wishlist_img/ad.jpg" alt="광고"></a>
         </div>
 
         <div class="wished-item-list-frame">
@@ -189,7 +210,7 @@
                         <div>
                             <div class="new-shipping-adress-plus-frame">
                                 <button class="new-shipping-adress-plus-btn" type="button" height="60">
-                                    <span class="new-shipping-adress-title"><img src="컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
+                                    <span class="new-shipping-adress-title"><img src="${contextPath}/컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
                                 </button>
                             </div>
                         </div>
@@ -211,8 +232,8 @@
                             <div class="shipping-address-list-check-area">
                                 <label class="shipping-address-list-check" for="user-shipping-address">
                                     <input id="user-shipping-address" type="checkbox" class="user-shipping-address-c">
-                                    <img id="checkview" src="컬리이미지/주문서페이지/다운로드.svg" alt="" class="shipping-address-check-img">
-                                    <img id="checkviewno" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="shipping-address-check-img">
+                                    <img id="checkview" src="${contextPath}/컬리이미지/주문서페이지/다운로드.svg" alt="" class="shipping-address-check-img">
+                                    <img id="checkviewno" src="${contextPath}/컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="shipping-address-check-img">
                                 </label>
                             </div>
                             <div class="user-shipping-address-text">
@@ -237,6 +258,7 @@
         </div>
     </main>
 
+    <!-- 프로젝트 작성 영역 end -->
     <!-- 프로젝트 작성 영역 end -->
     <footer>
         <div class="footer-top-frame">
@@ -276,7 +298,7 @@
                         </div>
                     </a>               
                 </div>
-                <div class="top-right-footer">
+                <div class="top-light-footer">
                     <ul class="Information">
                         <li>컬리소개</li>
                         <li>컬리소개영상</li>
@@ -294,17 +316,17 @@
                         팩스 : 123 - 4567 - 8910
                     </div>
                     <div class="footer-sns-icon">
-                        <a href="https://www.instagram.com/"><img src="컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
-                        <a href="https://ko-kr.facebook.com/"><img src="컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
-                        <a href="https://www.naver.com/"><img src="컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
-                        <a href="https://post.naver.com/"><img src="컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
-                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
+                        <a href="https://www.instagram.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
+                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
+                        <a href="https://www.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
+                        <a href="https://post.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
+                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
                     </div>
                 </div>
             </div>
             <div class="footer-license">
                 <div class="license-list">
-                    <img src="컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
+                    <img src="${contextPath}/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
                     <p>
                         [인증범위] 마켓컬리 쇼핑몰 서비스 개발ㆍ운영<br>
                         (심사받지 않은 물리적 인프라 제외)<br>
@@ -312,21 +334,21 @@
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
+                    <img src="${contextPath}/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
                     <p>
                         개인정보보호 우수 웹사이트ㆍ<br>
                         개인정보처리시스템 인증 (ePRIVACY PLUS)
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
+                    <img src="${contextPath}/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
                     <p>
                         토스페이먼츠 구매안전(에스크로)<br>
                         서비스를 이용하실 수 있습니다.
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>
@@ -344,6 +366,6 @@
             <p>© KURLY CORP. ALL RIGHTS RESERVED</p>
         </div>
     </footer>
-    <script src="js/commen.js"></script>
+    <script src="${contextPath}/js/commen.js"></script>
 </body>
 </html>

@@ -1,22 +1,21 @@
-package marketkurly.member;
+package marketkurly.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class MemberDAO {
+public class ServiceDAO {
 	private DataSource dataFactory;
 	private Connection conn;
 	private PreparedStatement pstmt;
-	private static MemberDAO dao;
+	private static ServiceDAO dao;
 	
-	public MemberDAO() {
+	public ServiceDAO() {
 		try {
 			Context ctx = new InitialContext();
 			Context envContext = (Context)ctx.lookup("java:/comp/env");
@@ -26,46 +25,15 @@ public class MemberDAO {
 		}
 	}
 	
-	public static synchronized MemberDAO getInstance() {
+	public static synchronized ServiceDAO getInstance() {
 		if (dao == null) {
-			dao = new MemberDAO();
+			dao = new ServiceDAO();
 		}
 		return dao;
 	}
 	
-	//회원 목록 조회
-		public List<MemberVO> memberList() {
-			List<MemberVO> memberList = new ArrayList();
-			try {
-				conn = dataFactory.getConnection();//조회할때마다 데이터베이스 연결
-				String query = "select * from membertbl order by joinDate desc";//회원 테이블 조회 쿼리문
-				System.out.println("쿼리문 출력 : " + query);
-				pstmt = conn.prepareStatement(query);
-				ResultSet rs = pstmt.executeQuery();
-				while (rs.next()) {
-					String id = rs.getString("id");
-					String pw = rs.getString("pw");
-					String name = rs.getString("name");
-					String email = rs.getString("email");
-					String address = rs.getString("email");
-					String detailAddress = rs.getString("email");
-					String phone = rs.getString("email");
-					String gender = rs.getString("email");
-					String birth = rs.getString("email");
-					MemberVO memberVO = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birth);
-					memberList.add(memberVO);
-				}
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-				System.out.println("DB 처리 중 에러");
-			}
-			return memberList;
-		}
-	
 	//회원 등록
-	public void addMember(MemberVO memberVO) {
+	public void addMember(ServiceVO memberVO) {
 		try {
 			conn = dataFactory.getConnection();
 			String id = memberVO.getId();
@@ -136,8 +104,8 @@ public class MemberDAO {
 	}
 	
 	//수정할 회원 정보 찾기
-		public MemberVO findMember(String _id) {
-			MemberVO memfindInfo = null;
+		public ServiceVO findMember(String _id) {
+			ServiceVO memfindInfo = null;
 			try {
 				conn = dataFactory.getConnection();
 				String query = "select * from kurly_member where id=?";
@@ -155,7 +123,7 @@ public class MemberDAO {
 				String detailAddress = rs.getString("detailAddress");
 				String gender = rs.getString("gender");
 				String birth = rs.getString("birth");
-				memfindInfo = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birth);
+				memfindInfo = new ServiceVO(id, pw, name, email, phone, address, detailAddress, gender, birth);
 				rs.close();
 				pstmt.close();
 				conn.close();
@@ -166,7 +134,7 @@ public class MemberDAO {
 		}
 	
 	
-	public void updateMember(MemberVO memberVO) {
+	public void updateMember(ServiceVO memberVO) {
 		try {
 			conn = dataFactory.getConnection();
 			String id = memberVO.getId();

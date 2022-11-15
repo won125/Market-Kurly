@@ -1,8 +1,8 @@
-package marketkurly.member;
+package marketkurly.service;
 
 import java.sql.Date;
 
-public class MemberVO {
+public class ServiceVO {
 	private String id;
 	private String pw;
 	private String name;
@@ -14,19 +14,19 @@ public class MemberVO {
 	private String birth;
 	
 	//생성자 호출
-	public MemberVO() {
+	public ServiceVO() {
 		System.out.println("MemberVO 생성자 호출");
 	}
 
 	//생성자 초기화
-	public MemberVO(String id, String pw, String name, String email) {
+	public ServiceVO(String id, String pw, String name, String email) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.email = email;
 	}
 	//생성자 초기화
-		public MemberVO(String id, String pw, String name, String email,
+		public ServiceVO(String id, String pw, String name, String email,
 				String phone, String address, String detailAddress, String gender, String birth) {
 			this.id = id;
 			this.pw = pw;
@@ -39,7 +39,7 @@ public class MemberVO {
 			this.birth = birth;
 		}
 		//생성자 초기화
-		public MemberVO(String id, String pw, String name, String email,
+		public ServiceVO(String id, String pw, String name, String email,
 				String phone, String gender, String birth) {
 			this.id = id;
 			this.pw = pw;

@@ -34,6 +34,7 @@ body {
 .top-memberService a:first-child{
     color:rgb(95, 0, 128);
 }
+
 .top-memberService div{
 margin: 0 10px;
 color: #ccc;
@@ -264,8 +265,8 @@ margin-left: 3px;
 }
 .category-low-menu li img {
     position: relative;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 22px;
     top: 5px;
     padding-right: 10px;
     filter: opacity(0.2) drop-shadow(0 0 0 rgb(1, 1, 1));
@@ -346,10 +347,13 @@ footer {
     line-height: 18px;
     color: rgb(153, 153, 153);
 }
-.top-light-footer {
+.top-right-footer {
     display: flex;
     width: 450px;
     flex-direction: column;
+}
+.top-right-footer a {
+    color:rgb(95, 0, 128);
 }
 .Information {
     display: flex;

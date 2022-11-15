@@ -1,7 +1,7 @@
 package marketkurly.member;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -73,10 +73,15 @@ public class MemberController extends HttpServlet {
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			int loginResult = memberDAO.login(id, pw);
 			
+			
 			if (loginResult == 1) {
 				request.setAttribute("loginResult", loginResult);
 				HttpSession session = request.getSession();
 				session.setAttribute("sessionID", id);
+				if(id.equals("admin")) {
+					List<MemberVO> memberList = memberDAO.memberList();
+					session.setAttribute("memberList", memberList);
+				}
 				nextPage = "/kurlymember/loginOK.jsp";
 			} else {
 				request.setAttribute("loginResult", loginResult);
@@ -86,7 +91,46 @@ public class MemberController extends HttpServlet {
 		}else if(action.equals("/logout.do")) {
 			request.getSession().invalidate();
 			nextPage = "/member/index.do";
-		}else {
+		}else if(action.equals("/removeMember.do")) {
+			String id = request.getParameter("id");
+			int result = memberDAO.deleteMember(id);
+			if(result == 1) {
+				request.getSession().invalidate();
+				request.setAttribute("result", result);
+				nextPage = "/member/index.do";
+			}else {
+				request.setAttribute("result", result);
+				nextPage = "/member/index.do";
+			}
+			
+		}else if(action.equals("/modMember.do")) {
+			String id = request.getParameter("id");
+			System.out.println(id);
+			MemberVO memberVO;
+			memberVO = memberDAO.findMember(id);
+			request.setAttribute("memberInfo", memberVO);
+			nextPage = "/kurlymember/modMemberForm.jsp";
+		}else if(action.equals("/updateMember.do")) {
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String phone = request.getParameter("phone");
+			String gender = request.getParameter("gender");
+			String birthYear = request.getParameter("birthYear");
+			String birthMonth = request.getParameter("birthMonth");
+			String birthDay = request.getParameter("birthDay");
+			String birth = "";
+			birth = birthYear + "/" + birthMonth + "/" + birthDay;
+			MemberVO memberVO = new MemberVO(id,pw,name,email,phone,gender,birth);
+			memberDAO.updateMember(memberVO);
+			request.setAttribute("msg", "updateMember");
+			nextPage = "/member/updateOK.do";
+		}else if(action.equals("/wishList.do")) {
+			nextPage = "/kurlymember/wishList.jsp";
+		}else if(action.equals("/addwish.do")) {
+			String goodscode = request.getParameter("goodscode");
+		} else {
 			nextPage = "/index.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
