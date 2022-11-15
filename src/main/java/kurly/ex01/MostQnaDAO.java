@@ -1,11 +1,6 @@
 package kurly.ex01;
 
-import java.io.Console;
-import java.net.URLEncoder;
 import java.sql.Connection;
-
-
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import kurly.ex02.HelpVO;
+
 
 public class MostQnaDAO {
 	private DataSource dataFactory;
@@ -102,27 +98,28 @@ public class MostQnaDAO {
 		
 	}
 	 //글 추가
-	public void addWrite(MostQnaVO mostQna) {
+	public int insertNewArticle(MostQnaVO mostQna) {
+		int mostnum=getNewMostNum();
+		System.out.println(mostnum);
 		try {
-			conn = dataFactory.getConnection();
-			int mostnum=mostQna.getMostnum();
+			conn=dataFactory.getConnection();
 			String mosttitle=mostQna.getMosttitle();
 			String mostcontents=mostQna.getMostcontents();
 			String category=mostQna.getCategory();
-			String query = "insert into kurly_mostqna (mostnum, mosttitle, mostcontents, category) values(?,?,?,?)";
+			String query="insert into kurly_mostqna(mostnum,category,mosttitle,mostcontents) values (?,?,?,?)";
 			System.out.println(query);
-			pstmt=conn.prepareStatement(query);
-			pstmt.setInt(1,mostnum);
-			pstmt.setString(2, mosttitle);
-			pstmt.setString(3, mostcontents);
-			pstmt.setString(4, category);
-			pstmt.executeUpdate();
+			pstmt =conn.prepareStatement(query);
+			pstmt.setInt(1, mostnum);
+			pstmt.setString(2,category);
+			pstmt.setString(3, mosttitle);
+			pstmt.setString(4, mostcontents);
+			pstmt.execute();
 			pstmt.close();
 			conn.close();
-		} catch (Exception e) {
-			System.out.println("등록중 오류 발생");
-			System.out.println(e.getMessage());
+		}catch (Exception e) {
+			System.out.println("새 글 추가중 에러" +e.getMessage());
 		}
+			return mostnum;
 	}
 
 		//글 번호 생성 메서드
@@ -145,7 +142,7 @@ public class MostQnaDAO {
 			} catch (Exception e) {
 				System.out.println("글번호 생성중 에러");
 			}
-			return 1;
+			return 0;
 		}
 
 

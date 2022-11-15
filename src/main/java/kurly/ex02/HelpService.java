@@ -1,7 +1,6 @@
 package kurly.ex02;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -15,15 +14,11 @@ public class HelpService {
 		Map helpMap=new HashMap();
 		List<HelpVO> helpList = helpDAO.selectAllArticles(pagingMap);
 		int totHelp = helpDAO.selectToHelp();
+		System.out.println(totHelp);
 		helpMap.put("helpList", helpList);
 		helpMap.put("totHelp", totHelp);
 		//articleMap.put("totArticles", 150);
 		return helpMap;
-	}
-	
-	public List<HelpVO> listHelp(){
-		List<HelpVO> helpList = helpDAO.selectAllArticles();
-		return helpList;
 	}
 	
 	public int addHelp(HelpVO help) {

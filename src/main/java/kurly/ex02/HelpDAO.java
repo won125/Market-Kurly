@@ -1,6 +1,7 @@
 package kurly.ex02;
 
 import java.net.URLEncoder;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -36,11 +37,13 @@ public class HelpDAO {
 			int pageNum = (Integer)pagingMap.get("pageNum");
 			try {
 				conn=dataFactory.getConnection();
-				String query="SELECT * FROM (select rownum AS recNum, helpnum, helptitle, admin, helpcontents, helpwritedate from kurly_help order by helpnum) WHERE recNum BETWEEN (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
+				String query="select * from (select rownum as recnum,kurly_help.* from(select * from kurly_help order by helpnum) kurly_help) where recnum between (?-1)*100+(?-1)*10+1 AND (?-1)*100+?*10";
 				//페이징 처리 section이 3 pagingNum이 4면 (3-1)*100 +(4-1)*10+1 해서 231번재글 즉 3섹션의 31번쨰글
 				System.out.println(query);
 				pstmt=conn.prepareStatement(query);
 				pstmt.setInt(1, section);
+				System.out.println(section);
+				System.out.println(pageNum);
 				pstmt.setInt(2, pageNum);
 				pstmt.setInt(3, section);
 				pstmt.setInt(4, pageNum);
@@ -67,43 +70,6 @@ public class HelpDAO {
 				System.out.println("글목록 페이징 조회중 에러" + e.getMessage());
 			}
 			return helpList;
-		}
-		
-		//글 전체목록 메서드
-		public List<HelpVO> selectAllArticles(){
-			List<HelpVO> helpList = new ArrayList<HelpVO>();
-			try {
-				String query="SELECT * FROM (SELECT rownum,helpnum, helptitle, helpcontents, admin, helpwritedate from kurly_help";
-				System.out.println(query);
-				conn=dataFactory.getConnection();
-				//오라클 계층형 SQL문을 실행
-				pstmt = conn.prepareStatement(query);
-				ResultSet rs =pstmt.executeQuery();
-				while(rs.next()) {
-					int rownum=rs.getInt("rownum");
-					int helpnum =rs.getInt("helpnum");
-					String helptitle=rs.getString("helptitle");
-					String helpcontents = rs.getString("helpcontents");
-					String admin=rs.getString("admin");
-					Date helpwrtiedate=rs.getDate("helpwritedate");
-					HelpVO help = new HelpVO();
-					help.setHelpnum(helpnum);
-					help.setHelptitle(helptitle);
-					help.setHelpcontents(helpcontents);
-					help.setAdmin(admin);
-					help.setHelpwritedate(helpwrtiedate);
-					helpList.add(help);
-					
-					}
-				rs.close();
-				pstmt.close();
-				conn.close();
-			}catch (Exception e) {
-				System.out.println("글목록 조회중 에러");
-				System.out.println(e.getMessage());
-			}
-			return helpList;
-			
 		}
 		
 		//글 번호 생성 메서드
@@ -271,6 +237,7 @@ public class HelpDAO {
 						rs.close();
 						pstmt.close();
 						conn.close();
+			
 					} catch (Exception e) {
 						System.out.println("글 목록 수 처리 중 에러");
 					}

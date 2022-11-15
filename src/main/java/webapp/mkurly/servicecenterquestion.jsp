@@ -41,7 +41,7 @@
                     <div class="top-memberService">
                         <a href="join.html">회원가입</a>
                         <div> | </div>
-                        <a href="login.html">로그인</a>
+                        <a href="${contextPath}/member/login.do">로그인</a>
                         <div> | </div>
                         <a href="servicecenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
                     </div>

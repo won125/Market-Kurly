@@ -1,8 +1,5 @@
 package kurly.ex02;
 
-import java.awt.font.ImageGraphicAttribute;
-
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;

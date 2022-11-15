@@ -1,7 +1,9 @@
 package kurly.ex01;
 
-import java.io.File;
 import java.io.IOException;
+
+
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,18 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionIdListener;
 
-import org.apache.commons.io.FileUtils;
-
-import kurly.ex02.HelpService;
-import kurly.ex02.HelpVO;
 
 @WebServlet("/mostqna/*")
 public class MostQnaController extends HttpServlet {
 	MostQnaService mostQnaService;
 	MostQnaVO mostQnaVO;
-	MostQnaDAO mostQnaDAO;
+	MostQnaDAO mostQnaDAO = new MostQnaDAO();
 	public void init(ServletConfig config) throws ServletException {
 		mostQnaService = new MostQnaService();
 		mostQnaVO = new MostQnaVO();
@@ -57,28 +54,31 @@ public class MostQnaController extends HttpServlet {
 					 String _pageNum=request.getParameter("pageNum"); 
 					 int section = Integer.parseInt((_section ==null)? "1" : _section); 
 					 int pageNum = Integer.parseInt((_pageNum == null)? "1" :_pageNum);
-					 System.out.println(pageNum);
 					 Map<String, Integer> pagingMap =new HashMap<String, Integer>(); 
 					 pagingMap.put("section", section);
 					 pagingMap.put("pageNum", pageNum); 
 					 Map mostQnaMap=mostQnaService.listMostQna(pagingMap); 
 					 mostQnaMap.put("section",section);
 					 mostQnaMap.put("pageNum", pageNum);
-					 System.out.println(pageNum);
 					 request.setAttribute("mostQnaMap", mostQnaMap);//조회된 글 목록을 articleList로 바인딩한 후 
 					 nextPage="/mkurly/servicecenterquestion.jsp";// listArticles.jsp로 포워딩 합니다.
 				}else if(action.equals("/qnaWriteForm.do")) {
 				nextPage="/qnainfo/qnaWriteForm.jsp";//글쓰기창을 나타내줌
 				System.out.println(nextPage);
 				}else if(action.equals("/addWrite.do")) {
-			         int mostnum=Integer.parseInt(request.getParameter("mostnum"));
+					 int mostnum;
 					 String mosttitle=request.getParameter("mosttitle");
 			         String mostcontents=request.getParameter("mostcontents");
 			         String category=request.getParameter("category");
-			         MostQnaVO mostQnaVO=new MostQnaVO(mostnum,category, mosttitle, mostcontents);
-			         mostQnaDAO.addWrite(mostQnaVO);
-			         request.setAttribute("msg", "addMember");
-			         nextPage="/mostqna/listMostQna.do";
+			         mostQnaVO.setCategory(category);
+			         mostQnaVO.setMosttitle(mosttitle);
+			         mostQnaVO.setMostcontents(mostcontents);
+			         mostnum=mostQnaService.addMostQna(mostQnaVO);
+			         pw=response.getWriter();
+			            pw.print("<script>" + "alert('새 글을 추가했습니다');" +
+			            "location.href='" + request.getContextPath() +
+			            "/mostqna/listMostQna.do';" + "</script>"); //location.href: 브라우저 창 주소
+			            return;
 			  }else if(action.equals("/modQnaWriteForm.do")){
 				  	 int mostnum= Integer.parseInt(request.getParameter("mostum"));
 			         String mosttitle=request.getParameter("mosttitle");
@@ -97,7 +97,8 @@ public class MostQnaController extends HttpServlet {
 		      RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		      dispatcher.forward(request, response);
 		      }catch (Exception e) {
-				System.out.println("여기 에러");
+		    	 e.printStackTrace();
+				System.out.println("여기 에러"+e.getMessage());
 			}
 		  }
    	}

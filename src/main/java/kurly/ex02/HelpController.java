@@ -1,11 +1,5 @@
 package kurly.ex02;
 
-import java.awt.datatransfer.DataFlavor;
-
-
-
-
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,14 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.datatype.DatatypeFactory;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
-
-import oracle.jdbc.internal.ObjectDataFactory;
 
 
 @WebServlet("/help/*")
@@ -73,6 +64,8 @@ public class HelpController extends HttpServlet {
 				 Map helpMap=helpService.listHelp(pagingMap); 
 				 helpMap.put("section",section);
 				 helpMap.put("pageNum", pageNum);
+				 System.out.println(section);
+				 System.out.println(pageNum);
 				 request.setAttribute("helpMap", helpMap);//조회된 글 목록을 articleList로 바인딩한 후 
 				 nextPage="/mkurly/servicecenter.jsp";// listArticles.jsp로 포워딩 합니다.
 			}else if(action.equals("/helpWriteForm.do")) {
