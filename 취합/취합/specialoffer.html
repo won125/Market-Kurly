@@ -1,42 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>해더/푸터</title>
-    <link rel="stylesheet" href="css/commen.css">
+    <title>특가/혜택</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/shoppingBack.css">
+    <link rel="stylesheet" href="css/commen.css">
+    <link rel="stylesheet" href="css/specialoffer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/shoppingBack.js"></script>
 </head>
 <body>
     <header>
-        <div class="top-ad">
+        <!--<div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
-        </div>
-        <!--  -->
+        </div>-->
+        <!-- 헤더영역시작 -->
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
                     <div class="top-memberService">
-                        <a href="member.html">회원가입</a>
+                        <a href="join.html">회원가입</a>
                         <div> | </div>
                         <a href="login.html">로그인</a>
                         <div> | </div>
-                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                        <a href="servicecenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
                     </div>
 
                     <div class="top-serviceCenter-child">
-                        <li>공지사항</li>
-                        <li>자주하는 질문</li>
+                        <li><a href="servicecenter.html">공지사항</a></li>
+                        <li><a href="servicecenterquestion.html">자주하는 질문</a></li>
                         <li>1:1 문의</li>
                         <li>대량주문 문의</li>
                     </div>
@@ -55,24 +55,24 @@
                             
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="wishList.html"><i class="fa-regular fa-heart"></i></a>
+                                <a href="shoppingBack.html"><i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
                         </div>                        
                     </div>
                     
                 </div>
-                              <!-- top 고정중 -->
+                <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
                     <div class="top-all-menu">
                         <div class="category">
                             <i class="fa-solid fa-bars"></i>카테고리
                         </div>                        
                         <ul class="menu-list">
-                            <li>신상품</li>
+                            <li><a href="newproduct.html">신상품</a></li>
                             <li>베스트</li>
                             <li>알뜰쇼핑</li>
-                            <li>특가/혜택</li>                        
+                            <li><a href="specialoffer.html">특가/혜택</a></li>                       
                         </ul>
                         <div class="shipping">
                             <a href="#"><strong>샛별ㆍ낮</strong> 배송안내</a>                            
@@ -92,124 +92,50 @@
         </div>
     </header>
     <!-- 프로젝트 작성 영역 start -->
-
-
-    <main class="shopping-back-main">
-        <h2 class="shopping-back-title">장바구니</h2>
-        <div class="shopping-back-frame">
-            <div class="item-list-frame">
-                <div class="item-all-choice-delete-frame">
-                    <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img1" src="컬리이미지/주문서페이지/다운로드.svg" alt="전체체크">
-                            <img id="img2" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="전체체크">
-                            <span>전체선택 (1/1)</span>
-                        </label>
-                        <span class="division"></span>
-                        <button class="delete-btn" disabled>선택삭제</button>
-                    </div>                    
-                </div>
-
-                <div class="shopping-back-list-area">
-                    <div>
-                        <ul>
-                            <li class="item">
-                                <label class="item-btn-area">
-                                    <input type="checkbox" class="item-btn-input">
-                                    <img id="check" class="ccheck" src="컬리이미지/주문서페이지/다운로드.svg" alt="상품체크">
-                                    <img id="check2" class="ccheck" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="상품체크">
-                                </label>
-                                <a href="productDetailPage.html">
-                                    <span class="list-img"><!--back img--></span>
-                                </a>
-                                <div class="item-code">
-                                    <p class="item-code-name">[KF365] 가지 2입</p>
-                                </div>
-
-                                <div class="count-btn">
-                                    <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
-                                    <div class="product-quantity-count">1</div>
-                                    <button type="button" aria-label="수량올리기" class="product-quantity-up"></button>
-                                </div>
-
-                                <div class="item-pay">
-                                    <span>2,480원</span>
-                                </div>
-                                <button class="easy-delete-btn" type="button"><span><!--back img--></span></button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="item-all-choice-delete-frame">
-                    <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img3" src="컬리이미지/주문서페이지/다운로드.svg" alt="체크">
-                            <img id="img4" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="체크">
-                            <span>전체선택 (0/1)</span>
-                        </label>
-                        <span class="division"></span>
-                        <button class="delete-btn" disabled>선택삭제</button>
-                    </div>                    
-                </div>
+    <ul class="allspecialofferform">
+        <li class="specialofferform">
+            <div class="banner">
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/brand/221020"><img src="컬리이미지/특가혜택/sale (1).jpg" alt="광고배너" class="
+                advertising banner"></a>
             </div>
-            
-            <div class="shipping-address-and-price-frame">
-                <div class="shipping-address-and-price-area">
-                    <div class="user-address-area">
-                        <h3 class="user-address-title"><i class="fa-solid fa-location-dot"></i>배송지</h3>
-                        <div class="user-address">
-                            <p class="address">경기 이천시 아리역로 1</p>
-                            <div class="shipping-time-area">
-                                <span>낮배송</span>
-                            </div>
-                            <button class="shipping-address-change-btn" type="button">
-                                <span>배송지 변경</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="amount-of-payment-area">
-                        <div class="item-price">
-                            <span class="price-title">상품금액</span>
-                            <span class="price">2,480<span>원</span></span>
-                        </div>
-                        <div class="other-price">
-                            <span class="price-title">상품할인금액</span>
-                            <span class="price">0<span>원</span></span>
-                        </div>
-                        <div class="other-price">
-                            <span class="price-title">배송비</span>
-                            <span class="price">0<span>원</span></span>
-                        </div>
-                        <div class="all-price">
-                            <span class="price-title">결제예정금액</span>
-                            <span class="total-price"><strong class="price">2,480</strong><span>원</span></span>
-                        </div>
-                        <div class="point-accumulate">
-                            <span class="accumulate-mark">적립</span>최대
-                            <strong>0원 적립</strong>
-                        </div>
-                    </div>
-
-                    <div class="user-order-area">
-                        <button class="user-order-btn" type="button"><span>주문하기</span></button>
-                        <ul class="user-order-precautions">
-                            <li class="order-precautions">쿠폰/적립금은 주문서에서 사용 가능합니다</li>
-                            <li class="order-precautions">[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
-                            <li class="order-precautions">[마이컬리 &gt; 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.</li>
-                            <li class="order-precautions">쿠폰, 적립금 사용 금액을 제외한 실 결제 금액 기준으로 최종 산정됩니다.</li>
-                            <li class="order-precautions">상품별로 적립금 지급 기준이 다를 수 있습니다. (상품 상세 페이지에서 확인 가능합니다)</li>
-                        </ul>
-                    </div>
-                </div>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/value_item/221110"><img src="컬리이미지/특가혜택/sale (6).jpg" alt="광고배너" class="
+                advertising banner"></a>
             </div>
-        </div>
-    </main>
-
-
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/2021/0903/fresh"><img src="컬리이미지/특가혜택/sale (3).jpg" alt="광고배너" class="advertisingbanner">
+            </div></a>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <img src="컬리이미지/특가혜택/sale (7).jpg" alt="광고배너" class="advertisingbanner">
+            </div>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <img src="컬리이미지/특가혜택/sale (8).jpg" alt="광고배너" class="advertisingbanner">
+            </div>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <img src="컬리이미지/특가혜택/sale (2).jpg" alt="광고배너" class="advertisingbanner">
+            </div>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <img src="컬리이미지/특가혜택/sale (4).jpg" alt="광고배너" class="advertisingbanner">
+            </div>
+        </li>
+        <li class="specialofferform">
+            <div class="banner">
+                <img src="컬리이미지/특가혜택/sale (5).jpg" alt="광고배너" class="advertisingbanner">
+            </div>
+        </li>
+    </ul>
     <!-- 프로젝트 작성 영역 end -->
     <footer>
         <div class="footer-top-frame">
@@ -249,7 +175,7 @@
                         </div>
                     </a>               
                 </div>
-                <div class="top-right-footer">
+                <div class="top-light-footer">
                     <ul class="Information">
                         <li>컬리소개</li>
                         <li>컬리소개영상</li>
@@ -308,7 +234,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="kurly-precautions">
             <p>
                 마켓컬리에서 판매되는 상품 중에는 마켓컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.<br>
@@ -319,4 +244,4 @@
     </footer>
     <script src="js/commen.js"></script>
 </body>
-</html>
+</html>       
