@@ -61,6 +61,9 @@ margin-left: 3px;
     line-height: 24px;
     cursor: pointer;
 }
+.top-serviceCenter-child a {
+    color: #000;
+}
 /* --------------------------- */
 
 .top-logo-search-icon-frame {
@@ -220,6 +223,9 @@ margin-left: 3px;
     padding: 0;
     margin-left: 30px;
 }
+.menu-list li a {
+    color: #000;
+}
 .menu-list li {
     display: flex;
     justify-content: center;
@@ -233,7 +239,7 @@ margin-left: 3px;
     align-items: center;
 }
 .shipping a {
-    height: 20px;
+    height: 30px;
     padding: 6px 16px;
     border-radius: 18px;
     border: 1px solid rgb(238, 238, 238);
@@ -379,6 +385,9 @@ footer {
     line-height: 18px;
     color: rgb(153, 153, 153);
     margin-bottom: 40px;
+}
+.Information-text a {
+    color: rgb(95, 0, 128);
 }
 .footer-sns-icon {
     display: flex;

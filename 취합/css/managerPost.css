@@ -268,165 +268,201 @@ p {
 }
 
 
-.wish-list-frame {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.noticespace{
     width: 820px;
 }
-.wish-list-box {
+.noticearea{
     display: flex;
-    align-items: center;
-    padding-bottom: 27px;
-    border-bottom: 2px solid rgb(51, 51, 51);
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 }
-.wish-list-box h2 {
+.noticetextarea{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.noticetext{
     font-weight: 500;
     font-size: 24px;
-    line-height: 48px;
-    letter-spacing: -0.5px;
     color: rgb(51, 51, 51);
+    letter-spacing: -0.5px;
+    line-height: 48px;
 }
-.wish-list-box span {
+.noticeinfo{
     padding-left: 11px;
     font-size: 14px;
     letter-spacing: -0.3px;
     color: rgb(153, 153, 153);
     line-height: 20px;
 }
-.wish-list-title {
+.infospace{
     display: flex;
-    flex-direction: row;
     width: 100%;
-    padding-bottom: 27px;
-    justify-content: space-between;
+    padding: 20px 0px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    border-top: 2px solid rgb(51, 51, 51);
 }
-
-.period-frame {
+.infonumber{
+    flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.infotitle{
+    flex-grow: 1;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.write{
+    flex-basis: 100px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.correctionBtn{
+    flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.deleteBtn{
+    flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.writespace{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.writearea{
     display: flex;
     flex-direction: row;
-    -webkit-box-align: center;
-    align-items: center;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    font-size: 14px;
 }
-.period-area {
-    width: 157px;
+.realnotice{
+    text-align: center;
+    padding: 20px 0px;
+    color: rgb(76, 76, 76);
+    flex-basis: 50px;
 }
-.period {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    min-width: 0px;
+.realinfo{
+    padding: 20px 0px 20px 20px;
+    color: rgb(76, 76, 76);
+    flex: 1 1 0%;
+    text-align: left;
+}
+.realwriter{
+    text-align: center;
+    padding: 20px 0px;
+    color: rgb(76, 76, 76);
+    flex-basis: 100px;
+}
+.realdate{
+    text-align: center;
+    padding: 20px 0px;
+    flex-basis: 100px;
+    color: rgb(153, 153, 153);
+}
+.realcorrection{
+    text-align: center;
+    padding: 20px 0px;
+    flex-basis: 50px;
+    color: rgb(153, 153, 153);
+}
+.correction {
+    border: 1px solid rgb(95, 0, 128);
+    background-color: rgb(95, 0, 128);
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.delete {
+    border: 1px solid rgb(255, 50, 50);
+    color: rgb(255, 50, 50);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.realdelete{
+    text-align: center;
+    padding: 20px 0px;
+    flex-basis: 50px;
+    color: rgb(153, 153, 153);
+}
+.pagespace{
+    display: flex;
+    justify-content: center;
+    padding: 60px 0px 30px;
+}
+.backbutton:disabled{
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-disabled.svg);
+    cursor: default;
+}
+button[disabled], input[disabled] {
+    cursor: default;
+}
+.backbutton{
+    width: 44px;
+    height: 44px;
     padding: 0px;
     margin: 0px;
     border: 0px;
-    vertical-align: top;
-    width: 100%;
-}
-.period-title-text {
-    padding-right: 32px;
-    height: auto;
-    min-height: 1.4375em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;    
-    appearance: none;
-    user-select: none;
-    border-radius: 4px;
     cursor: pointer;
-    font: inherit;
-    letter-spacing: inherit;
-    color: currentcolor;
-    border: 0px;
-    box-sizing: content-box;
-    background: none;
-    height: 1.4375em;
-    margin: 0px;
-    display: block;
-    min-width: 0px;
-    width: 100%;
-    animation-duration: 10ms;
-    padding: 16.5px 14px;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover;  
 }
-.period-box {
-    font-weight: 400;
-    line-height: 1.4375em;
-    letter-spacing: 0.00938em;
-    color: rgba(0, 0, 0, 0.87);
-    box-sizing: border-box;
-    cursor: text;
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    font-size: 14px;
-    height: 44px;
-    border-color: rgb(221, 221, 221);
-    border-radius: 0px;
-    outline: 1px solid #ccc;
-}
-.period-box i {
-    right: 10px;
-    user-select: none;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    fill: currentcolor;
-    flex-shrink: 0;
-    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    font-size: 1.5rem;
-    position: absolute;
-    right: 7px;
-    top: calc(50% - 0.5em);
-    pointer-events: none;
-    color: rgba(0, 0, 0, 0.54);
-}
-
-.order-list-area {
-    padding-top: 20px;
-    position: relative;
-    height: 100%;
-}
-.order-list {
-    height: 540px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-}
-.order-list-item-information {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    align-items: center;
-}
-.order-list-item-information p {
-    margin: 8px 0px 24px;
-    font-size: 16px;
-    color: rgb(181, 181, 181);
-    text-align: center;
-}
-.order-list-item-information p::before {
-    display: block;
-    margin: 0px auto 8px;
-    width: 68px;
-    height: 68px;
-    background: url(../컬리이미지/기타/oderhistpry.svg) 0px 0px no-repeat;
-    content: "";
-}
-.order-list-item-information button {
-    display: block;
-    padding: 0px 10px;
-    text-align: center;
+.pagetext{
     overflow: hidden;
-    width: 150px;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+}
+.pagearea button + button{
+    margin-left: 12px;
+}
+.nextbutton{
+    width: 44px;
     height: 44px;
-    border-radius: 3px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(95, 0, 128);
-    border: 0px none;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
-.go-best-page {
-    font-size: 14px;
-    display: inline-block;
-    font-weight: 500;
-}
-
 
 
