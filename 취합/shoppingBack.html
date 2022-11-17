@@ -98,12 +98,13 @@
         <h2 class="shopping-back-title">장바구니</h2>
         <div class="shopping-back-frame">
             <div class="item-list-frame">
+                
                 <div class="item-all-choice-delete-frame">
                     <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img1" src="컬리이미지/주문서페이지/다운로드.svg" alt="전체체크">
-                            <img id="img2" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="전체체크">
+                        <label class="check-btn" for="checkTotal">
+                            <input type="checkbox" id="checkTotal" class="check-btn-input allCheck" name="allCheck" checked>
+                            <img class="img1" src="컬리이미지/주문서페이지/다운로드.svg" alt="전체체크">
+                            <img class="img2" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="전체체크">
                             <span>전체선택 (1/1)</span>
                         </label>
                         <span class="division"></span>
@@ -115,10 +116,35 @@
                     <div>
                         <ul>
                             <li class="item">
-                                <label class="item-btn-area">
-                                    <input type="checkbox" class="item-btn-input">
-                                    <img id="check" class="ccheck" src="컬리이미지/주문서페이지/다운로드.svg" alt="상품체크">
-                                    <img id="check2" class="ccheck" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="상품체크">
+                                <label class="item-btn-area" for="checkItem">
+                                    <input type="checkbox" id="checkItem" class="item-btn-input listInputCheck1" name="listCheck" checked>
+                                    <img class="check"  src="컬리이미지/주문서페이지/다운로드.svg" alt="상품체크">
+                                    <img class="check2"  src="컬리이미지/주문서페이지/다운로드 2.svg" alt="상품체크">
+                                </label>
+                                <a href="productDetailPage.html">
+                                    <span class="list-img"><!--back img--></span>
+                                </a>
+                                <div class="item-code">
+                                    <p class="item-code-name">[KF365] 가지 2입</p>
+                                </div>
+
+                                <div class="count-btn">
+                                    <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                                    <div class="product-quantity-count">1</div>
+                                    <button type="button" aria-label="수량올리기" class="product-quantity-up"></button>
+                                </div>
+
+                                <div class="item-pay">
+                                    <span>2,480원</span>
+                                </div>
+                                <button class="easy-delete-btn" type="button"><span><!--back img--></span></button>
+                            </li>
+                            
+                            <li class="item">
+                                <label class="item-btn-area" for="checkItem">
+                                    <input type="checkbox" id="checkItem" class="item-btn-input listInputCheck2" name="listCheck" checked>
+                                    <img class="check"  src="컬리이미지/주문서페이지/다운로드.svg" alt="상품체크">
+                                    <img class="check2"  src="컬리이미지/주문서페이지/다운로드 2.svg" alt="상품체크">
                                 </label>
                                 <a href="productDetailPage.html">
                                     <span class="list-img"><!--back img--></span>
@@ -144,10 +170,10 @@
 
                 <div class="item-all-choice-delete-frame">
                     <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img3" src="컬리이미지/주문서페이지/다운로드.svg" alt="체크">
-                            <img id="img4" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="체크">
+                        <label class="check-btn" for="checkTotal">
+                            <input type="checkbox" id="checkTotal" class="check-btn-input" name="allCheck" checked>
+                            <img class="img1" src="컬리이미지/주문서페이지/다운로드.svg" alt="체크">
+                            <img class="img2" src="컬리이미지/주문서페이지/다운로드 2.svg" alt="체크">
                             <span>전체선택 (0/1)</span>
                         </label>
                         <span class="division"></span>

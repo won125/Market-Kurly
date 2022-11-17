@@ -113,7 +113,6 @@ button, input, optgroup, select, textarea {
     overflow: hidden;
 }
 body, button, input, select, textarea {
-    font-size: 14px;
     color: #333;
 }
 .categorytext{
