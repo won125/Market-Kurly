@@ -15,6 +15,25 @@ $(".top-serviceCenter-child").mouseout(function(){
     $(".top-serviceCenter-child").css("display", "none");
 });
 
+
+
+// 회원이름 호버 이벤트
+$("#userNameHover").mouseover(function(){
+    $(".login-user-menu").css({"display":"block","zIndex":100});
+  });
+
+$("#userNameHover").mouseout(function(){
+    $(".login-user-menu").css("display", "none");
+});
+
+$(".login-user-menu").mouseover(function(){
+    $(".login-user-menu").css({"display":"block","zIndex":100});
+});
+
+$(".login-user-menu").mouseout(function(){
+    $(".login-user-menu").css("display", "none");
+});
+
 // 카테고리 호버 이벤트
 
 $(".category").mouseover(function(){

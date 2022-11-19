@@ -19,6 +19,60 @@ body {
     letter-spacing: -0.3px;
 }
 /* --------------------------- */
+.top-memberService2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    display: flex;
+    margin: 9.5px 0;
+    display: none;
+}
+.top-memberService2 a{
+    padding: 5px;
+    color:rgb(40,40,40);
+}
+.login-user-tier {
+    display: inline-block;
+    min-width: 38px;
+    height: 16px;
+    margin-right: 4px;
+    padding: 0px 4px;
+    border-radius: 30px;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: -0.3px;
+    vertical-align: 0px;
+    color: rgb(95, 0, 128);
+    border: 1px solid rgb(95, 0, 128);
+    background-color: white;
+}
+.login-user-menu {
+    position: absolute;
+    right: 75px;
+    top: 26px;
+    width: 100px;
+    padding: 3px 9px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+    display: none;
+}
+.top-memberService2>div{
+    margin: 0 10px;
+    color: #ccc;
+    padding-top: 4px; 
+}
+.login-user-low-menu {
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+
+
 .top-memberService {
     position: absolute;
     top: 0;
