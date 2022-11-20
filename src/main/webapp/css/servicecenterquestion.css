@@ -9,6 +9,7 @@
     padding: 50px 0px 80px;
     margin: 0px auto;
     flex-direction: row;
+    -webkit-box-pack: justify;
     justify-content: space-between;
 }
 .servicespace{
@@ -39,7 +40,9 @@ ol, ul {
     border-bottom: 1px solid rgb(242, 242, 242);
     padding: 14px 20px 16px;
     display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
     align-items: center;
     line-height: 19px;
     letter-spacing: -0.3px;
@@ -68,7 +71,9 @@ a {
     padding: 0px 20px;
     margin-top: 20px;
     display: flex;
+    -webkit-box-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
     align-items: center;
     border-radius: 0px 100px 100px 0px;
     background-color: rgb(250, 250, 250);
@@ -107,11 +112,13 @@ a{
     flex-direction: row;
     width: 100%;
     padding-bottom: 27px;
+    -webkit-box-pack: justify;
     justify-content: space-between;
 }
 .noticetextarea{
     display: flex;
     flex-direction: row;
+    -webkit-box-align: center;
     align-items: center;
 }
 .noticetext{
@@ -193,6 +200,7 @@ a{
     text-align: left;
     color: rgb(76, 76, 76);
     white-space: pre-line;
+    display: none;
 }
 .realwriter{
     text-align: center;
@@ -208,6 +216,7 @@ a{
 }
 .pagespace{
     display: flex;
+    -webkit-box-pack: center;
     justify-content: center;
     padding: 60px 0px 30px;
 }

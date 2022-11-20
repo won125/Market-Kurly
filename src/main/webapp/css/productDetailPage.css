@@ -227,7 +227,7 @@ button {
     color: transparent;
     background-size: cover;
     background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/minus-btn.svg);
+    background-image: url(../컬리이미지/가지-상세페이지/minus-btn2.svg);
     vertical-align: top;
 }
 .product-quantity>div {
@@ -1545,19 +1545,7 @@ button {
     width: 88px;
     border-radius: 3px;
 }
-.item-count-btn-down {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    border: none;
-    font-size: 1px;
-    color: transparent;
-    background-size: cover;
-    background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/minus-btn.svg);
-    vertical-align: top;
-}
-.item-count-btn-number {
+.item-count-btn-area>div {
     display: inline-flex;
     overflow: hidden;
     white-space: nowrap;
@@ -1569,18 +1557,6 @@ button {
     width: 31px;
     height: 28px;
     line-height: 28px;
-}
-.item-count-btn-up {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    border: none;
-    font-size: 1px;
-    color: transparent;
-    background-size: cover;
-    background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/plus-btn.svg);
-    vertical-align: top;
 }
 .item-value-area {
     display: flex;

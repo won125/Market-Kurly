@@ -20,7 +20,6 @@
 <script src="${contextPath}/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-
 	<header>
         <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
@@ -36,21 +35,45 @@
 	                        <div> | </div>
 	                        <a href="${contextPath}/member/login.do">로그인</a>
 	                        <div> | </div>
-	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 	<c:when test="${sessionID != null }">
-                		<div class="top-memberService">
-	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
+                		<div class="top-memberService2">
+	                        <a href="${contextPath}/member/mypage.do" id="userNameHover">
+	                            <span class="login-user-tier">일반</span>${sessionID} 님
+	                            <i class="fa-solid fa-caret-down"></i>
+	                        </a>
+	                        <div class="login-user-menu">
+	                            <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
+	                            <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
+	                            <div class="login-user-low-menu"><a href="#">찜한 상품</a></div>
+	                            <div class="login-user-low-menu"><a href="#">배송지 관리</a></div>
+	                            <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
+	                            <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
+	                            <div class="login-user-low-menu"><a href="#">적립금</a></div>
+	                            <div class="login-user-low-menu"><a href="#">쿠폰</a></div>
+	                            <div class="login-user-low-menu"><a href="${contextPath}/member/modMember.do?id=${sessionID}">개인 정보 수정</a></div>
+	                            <div class="login-user-low-menu"><a href="#">나의 컬리 스타일</a></div>
+	                            <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+	                        </div>
 	                        <div> | </div>
-	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="${contextPath}/service/serviceCenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 	<c:when test="${sessionID == 'admin'}">
-                		<div class="top-memberService">
-	                        <a href="${contextPath}/member/mypage.do">${sessionID}</a>
+                		<div class="top-memberService2">
+	                        <a href="${contextPath}/member/mypage.do" id="userNameHover">
+	                            <span class="login-user-tier">관리자</span>${sessionID} 님
+	                            <i class="fa-solid fa-caret-down"></i>
+	                        </a>
+	                        <div class="login-user-menu">
+	                            <div class="login-user-low-menu"><a href="#">공지 관리</a></div>
+	                            <div class="login-user-low-menu"><a href="#">회원 관리</a></div>
+	                            <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+	                        </div>
 	                        <div> | </div>
-	                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+	                        <a href="${contextPath}/service/serviceCenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 	                    </div>
                 	</c:when>
                 </c:choose>
@@ -91,7 +114,7 @@
                             <i class="fa-solid fa-bars"></i>카테고리
                         </div>                        
                         <ul class="menu-list">
-                            <li>신상품</li>
+                            <li><a href="${contextPath}/good1/goodslist.do">신상품</a></li>
                             <li>베스트</li>
                             <li>알뜰쇼핑</li>
                             <li>특가/혜택</li>                        
@@ -120,12 +143,12 @@
                 <div class="servicearea">고객센터</div>
                 <ul class="servicetextarea">
                     <li>
-                        <a class="active notice" href="servicecenter.html">공지사항
+                        <a class="active notice" href="${contextPath}/service/servicecenter.do">공지사항
                             <span class="bracket"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="notice" href="servicecenterquestion.html">자주하는 질문
+                        <a class="notice" href="${contextPath}/service/servicecenter.do">자주하는 질문
                             <span class="bracket"></span>
                         </a>
                     </li>

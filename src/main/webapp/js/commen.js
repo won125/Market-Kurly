@@ -15,6 +15,25 @@ $(".top-serviceCenter-child").mouseout(function(){
     $(".top-serviceCenter-child").css("display", "none");
 });
 
+
+
+// 회원이름 호버 이벤트
+$("#userNameHover").mouseover(function(){
+    $(".login-user-menu").css({"display":"block","zIndex":100});
+  });
+
+$("#userNameHover").mouseout(function(){
+    $(".login-user-menu").css("display", "none");
+});
+
+$(".login-user-menu").mouseover(function(){
+    $(".login-user-menu").css({"display":"block","zIndex":100});
+});
+
+$(".login-user-menu").mouseout(function(){
+    $(".login-user-menu").css("display", "none");
+});
+
 // 카테고리 호버 이벤트
 
 $(".category").mouseover(function(){
@@ -71,14 +90,14 @@ $(".category-low-menu li").eq(4).mouseout(function(){
 
 // 메뉴 탑 고정
 $(document).ready(function(){
-    var jbOffset = $('.top-all-menu-frame').offset();
+    var jbOffset = $(".top-all-menu-frame").offset();
     $(window).scroll(function(){
         if($(document).scrollTop() >jbOffset.top){
-            $('.top-all-menu-frame').addClass('bannertop');
-            // $('.top-all-menu-frame').removeClass('top-all-menu-frame');
+            $(".top-all-menu-frame").addClass("bannertop");
+            // $(".top-all-menu-frame").removeClass("top-all-menu-frame");
         }else{
-            $('.top-all-menu-frame').removeClass('bannertop');
-            // $('.top-all-menu-frame').addClass('top-all-menu-frame');
+            $(".top-all-menu-frame").removeClass("bannertop");
+            // $(".top-all-menu-frame").addClass("top-all-menu-frame");
         }
     });
 }, 3000);

@@ -11,7 +11,9 @@ public class MemberVO {
 	private String address;
 	private String detailAddress;
 	private String gender;
-	private String birth;
+	private String birthyear;
+	private String birthmonth;
+	private String birthday;
 	
 	//생성자 호출
 	public MemberVO() {
@@ -27,7 +29,7 @@ public class MemberVO {
 	}
 	//생성자 초기화
 		public MemberVO(String id, String pw, String name, String email,
-				String phone, String address, String detailAddress, String gender, String birth) {
+				String phone, String address, String detailAddress, String gender, String birthyear, String birthmonth, String birthday) {
 			this.id = id;
 			this.pw = pw;
 			this.name = name;
@@ -36,18 +38,22 @@ public class MemberVO {
 			this.detailAddress = detailAddress;
 			this.phone = phone;
 			this.gender = gender;
-			this.birth = birth;
+			this.birthyear = birthyear;
+			this.birthmonth = birthmonth;
+			this.birthday = birthday;
 		}
 		//생성자 초기화
 		public MemberVO(String id, String pw, String name, String email,
-				String phone, String gender, String birth) {
+				String phone, String gender, String birthyear, String birthmonth, String birthday) {
 			this.id = id;
 			this.pw = pw;
 			this.name = name;
 			this.email = email;
 			this.phone = phone;
 			this.gender = gender;
-			this.birth = birth;
+			this.birthyear = birthyear;
+			this.birthmonth = birthmonth;
+			this.birthday = birthday;
 		}
 
 	public String getId() {
@@ -115,13 +121,31 @@ public class MemberVO {
 		this.gender = gender;
 	}
 
-	public String getBirth() {
-		return birth;
+	public String getBirthyear() {
+		return birthyear;
 	}
 
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setBirthyear(String birthyear) {
+		this.birthyear = birthyear;
 	}
+
+	public String getBirthmonth() {
+		return birthmonth;
+	}
+
+	public void setBirthmonth(String birthmonth) {
+		this.birthmonth = birthmonth;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	
 	
 	
 	

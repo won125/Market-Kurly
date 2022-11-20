@@ -149,7 +149,7 @@ ul {
     color: transparent;
     background-size: cover;
     background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/minus-btn.svg);
+    background-image: url(../컬리이미지/가지-상세페이지/minus-btn2.svg);
     vertical-align: top;
 }
 .count-btn div {
@@ -191,6 +191,8 @@ ul {
     font-size: 16px;
     line-height: 24px;
     color: rgb(51, 51, 51);
+    /* width: 50px;
+    display: inline; */
 }
 .easy-delete-btn {
     width: 30px;

@@ -283,6 +283,7 @@ p {
     line-height: 48px;
     letter-spacing: -0.5px;
     color: rgb(51, 51, 51);
+    margin: 0;
 }
 .wish-list-title span {
     padding-left: 11px;
@@ -306,9 +307,9 @@ p {
     width: 60px;
     height: 78px;
 }
-.wish-list a span {
+.wish-list a img {
     position: absolute;
-    background: url(${contextPath}/컬리이미지/채소/vegetable6.jpg) 50% 50% / cover no-repeat;
+    background: 50% 50% / cover no-repeat;
     width: 60px;
     height: 78px;
 }

@@ -47,12 +47,14 @@ public class MemberDAO {
 					String pw = rs.getString("pw");
 					String name = rs.getString("name");
 					String email = rs.getString("email");
-					String address = rs.getString("email");
-					String detailAddress = rs.getString("email");
-					String phone = rs.getString("email");
-					String gender = rs.getString("email");
-					String birth = rs.getString("email");
-					MemberVO memberVO = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birth);
+					String address = rs.getString("address");
+					String detailAddress = rs.getString("detailAddress");
+					String phone = rs.getString("phone");
+					String gender = rs.getString("gender");
+					String birthyear = rs.getString("birthyear");
+					String birthmonth = rs.getString("birthmonth");
+					String birthday = rs.getString("birthday");
+					MemberVO memberVO = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birthyear, birthmonth, birthday);
 					memberList.add(memberVO);
 				}
 				rs.close();
@@ -76,8 +78,10 @@ public class MemberDAO {
 			String detailAddress = memberVO.getDetailAddress();
 			String phone = memberVO.getPhone();
 			String gender = memberVO.getGender();
-			String birth = memberVO.getBirth();
-			String query = "insert into kurly_member(id,pw,name,email,address,detailAddress,phone,gender,birth) values(?,?,?,?,?,?,?,?,?)";
+			String birthyear = memberVO.getBirthyear();
+			String birthmonth = memberVO.getBirthmonth();
+			String birthday = memberVO.getBirthday();
+			String query = "insert into kurly_member(id,pw,name,email,address,detailAddress,phone,gender,birthyear,birthmonth,birthday) values(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
@@ -87,7 +91,9 @@ public class MemberDAO {
 			pstmt.setString(6, detailAddress);
 			pstmt.setString(7, phone);
 			pstmt.setString(8, gender);
-			pstmt.setString(9, birth);
+			pstmt.setString(9, birthyear);
+			pstmt.setString(10, birthmonth);
+			pstmt.setString(11, birthday);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -136,7 +142,7 @@ public class MemberDAO {
 	}
 	
 	//수정할 회원 정보 찾기
-		public MemberVO findMember(String _id) {
+	public MemberVO findMember(String _id) {
 			MemberVO memfindInfo = null;
 			try {
 				conn = dataFactory.getConnection();
@@ -154,8 +160,10 @@ public class MemberDAO {
 				String address = rs.getString("address");
 				String detailAddress = rs.getString("detailAddress");
 				String gender = rs.getString("gender");
-				String birth = rs.getString("birth");
-				memfindInfo = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birth);
+				String birthyear = rs.getString("birthyear");
+				String birthmonth = rs.getString("birthmonth");
+				String birthday = rs.getString("birthday");
+				memfindInfo = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birthyear, birthmonth, birthday);
 				rs.close();
 				pstmt.close();
 				conn.close();
@@ -165,7 +173,6 @@ public class MemberDAO {
 			return memfindInfo;
 		}
 	
-	
 	public void updateMember(MemberVO memberVO) {
 		try {
 			conn = dataFactory.getConnection();
@@ -174,15 +181,19 @@ public class MemberDAO {
 			String email = memberVO.getEmail();
 			String phone = memberVO.getPhone();
 			String gender = memberVO.getGender();
-			String birth = memberVO.getBirth();
-			String query = "update kurly_member set pw=?,email=?,phone=?,gender=?,birth=? where id=?";
+			String birthyear = memberVO.getBirthyear();
+			String birthmonth = memberVO.getBirthmonth();
+			String birthday = memberVO.getBirthday();
+			String query = "update kurly_member set pw=?,email=?,phone=?,gender=?,birthyear=?,birthmonth=?,birthday=? where id=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, pw);
 			pstmt.setString(2, email);
 			pstmt.setString(3, phone);
 			pstmt.setString(4, gender);
-			pstmt.setString(5, birth);
-			pstmt.setString(6, id);
+			pstmt.setString(5, birthyear);
+			pstmt.setString(6, birthmonth);
+			pstmt.setString(7, birthday);
+			pstmt.setString(8, id);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -209,6 +220,100 @@ public class MemberDAO {
 		}
 		return result;
 	}
-
+	
+	//찜 목록 조회
+	List wishlist(String _id) {
+		List<WishListVO> wlist = new ArrayList();
+		try {
+			conn = dataFactory.getConnection();
+			String query = "select * from kurly_wish where id=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, _id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String id = rs.getString("id");
+				String goodsname = rs.getString("goodsname");
+				String goodscode = rs.getString("goodscode");
+				int goodsprice = rs.getInt("goodsprice");
+	            String goodsimage = rs.getString("goodsimage");
+	            WishListVO wishlist = new WishListVO(id, goodscode, goodsname, goodsimage, goodsprice);
+	            wishlist.setId(id);
+	            wishlist.setGoodscode(goodscode);
+	            wishlist.setGoodsname(goodsname);
+	            wishlist.setGoodsimage(goodsimage);
+	            wishlist.setGoodsprice(goodsprice);
+	            wlist.add(wishlist);
+			}
+		} catch (Exception e) {
+			System.out.println("찜목록 조회 에러!!" + e.getMessage());
+		}
+		return wlist;
+	}
+	
+	public int findwishitem(String goodscode, String id) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "select goodscode from kurly_wish where id=?";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				do {
+					System.out.println(rs.getString("goodscode"));
+					if(rs.getString("goodscode").equals(goodscode)) {
+						return 1;
+					}
+				} while (rs.next());
+			}else {
+				return 0;
+			}
+		} catch (Exception e) {
+			System.out.println("찜목록 겁색 에러!!" + e.getMessage());
+		}
+		return -1;
+	}
+	
+	public void addwishitem(WishListVO wishListVO) {
+		try {
+			conn = dataFactory.getConnection();
+			String goodscode = wishListVO.getGoodscode();
+			String id = wishListVO.getId();
+			String goodsname = wishListVO.getGoodsname();
+			String goodsimage = wishListVO.getGoodsimage();
+			int goodsprice = wishListVO.getGoodsprice();
+			String query = "insert into kurly_wish(id,goodscode,goodsimage,goodsname,goodsprice) values(?,?,?,?,?)";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, goodscode);
+			pstmt.setString(3, goodsimage);
+			pstmt.setString(4, goodsname);
+			pstmt.setInt(5, goodsprice);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println("찜목록 등록 에러!!" + e.getMessage());
+		}
+	}
+	
+	public void deletewishitem(String goodscode, String id) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "delete from kurly_wish where id=? and goodscode=?";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, goodscode);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("찜목록 삭제 에러!!" + e.getMessage());
+		}
+	}
 	
 }
