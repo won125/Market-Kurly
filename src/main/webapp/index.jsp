@@ -54,7 +54,7 @@
             <div class="top-menu-form">
                 <div class="top-main">                                      
 	                <c:choose>
-	                	<c:when test="${sessionID == null }">
+	                	<c:when test="${sessionID eq null }">
 	                		<div class="top-memberService">
 		                        <a href="${contextPath}/member/join.do">회원가입</a>
 		                        <div> | </div>
@@ -63,17 +63,18 @@
 		                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 		                    </div>
 	                	</c:when>
-	                	<c:when test="${sessionID != null }">
+	                	<c:when test="${sessionID ne null and sessionID ne 'admin'}">
 	                		<div class="top-memberService2" style="display: flex">
+	                			<a></a>
 		                        <a href="${contextPath}/member/mypage.do" id="userNameHover">
 		                            <span class="login-user-tier">일반</span>${sessionID} 님
 		                            <i class="fa-solid fa-caret-down"></i>
 		                        </a>
-		                        <div id="login-user-menu">
+		                        <div class="login-user-menu">
 		                            <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
 		                            <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
-		                            <div class="login-user-low-menu"><a href="#">찜한 상품</a></div>
-		                            <div class="login-user-low-menu"><a href="#">배송지 관리</a></div>
+		                            <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
+		                            <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
 		                            <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
 		                            <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
 		                            <div class="login-user-low-menu"><a href="#">적립금</a></div>
@@ -83,10 +84,10 @@
 		                            <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
 		                        </div>
 		                        <div> | </div>
-		                        <a href="${contextPath}/service/serviceCenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+		                        <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
 		                    </div>
 	                	</c:when>
-	                	<c:when test="${sessionID == 'admin'}">
+	                	<c:when test="${sessionID eq 'admin'}">
 	                		<div class="top-memberService2">
 		                        <a href="${contextPath}/member/mypage.do" id="userNameHover">
 		                            <span class="login-user-tier">관리자</span>
@@ -103,10 +104,10 @@
 	                	</c:when>
 	                </c:choose>
                     <div class="top-serviceCenter-child">
-                        <li>공지사항</li>
-                        <li>자주하는 질문</li>
-                        <li>1:1 문의</li>
-                        <li>대량주문 문의</li>
+                        <li><a href="${contextPath}/service/servicecenter.do"></a>공지사항</li>
+                        <li><a href="${contextPath}/service/"></a>자주하는 질문</li>
+                        <li><a href="#"></a>1:1 문의</li>
+                        <li><a href="#"></a>대량주문 문의</li>
                     </div>
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
@@ -138,7 +139,7 @@
                             <li><a href="${contextPath}/good1/goodslist.do">신상품</a></li>
                             <li>베스트</li>
                             <li>알뜰쇼핑</li>
-                            <li>특가/혜택</li>                        
+                            <li><a href="${contextPath}/service/specialoffer.do">특가/혜택</a></li>                        
                         </ul>
                         <div class="shipping">
                             <a href="#"><strong>샛별ㆍ낮</strong> 배송안내</a>                            

@@ -40,6 +40,8 @@ public class ServiceController extends HttpServlet {
 			nextPage = "/index.jsp";
 		}else if(action.equals("/servicecenter.do")) {
 			nextPage = "/kurlycenter/servicecenter.jsp";
+		}else if(action.equals("/specialoffer.do")) {
+			nextPage = "/specialoffer.jsp";
 		}else {
 			nextPage = "/index.jsp";
 		}

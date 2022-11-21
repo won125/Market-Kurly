@@ -55,9 +55,7 @@ public class MemberController extends HttpServlet {
 			String birthYear = request.getParameter("birthYear");
 			String birthMonth = request.getParameter("birthMonth");
 			String birthDay = request.getParameter("birthDay");
-			String birth = "";
-			birth = birthYear + "/" + birthMonth + "/" + birthDay;
-			MemberVO memberVO = new MemberVO(id,pw,name,email,phone,address,detailAddress,gender,birth);
+			MemberVO memberVO = new MemberVO(id,pw,name,email,phone,address,detailAddress,gender,birthYear,birthMonth,birthMonth);
 			memberDAO.addMember(memberVO);
 			request.setAttribute("msg", "addMember");
 			nextPage = "/member/index.do";
@@ -72,11 +70,9 @@ public class MemberController extends HttpServlet {
 		}else if(action.equals("/loginOK.do")) {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
-			
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			int loginResult = memberDAO.login(id, pw);
-			
-			
+
 			if (loginResult == 1) {
 				request.setAttribute("loginResult", loginResult);
 				session.setAttribute("sessionID", id);
@@ -150,14 +146,17 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("wishResult", result);
 				memberDAO.deletewishitem(goodscode, id);
 			}
-			nextPage = "/good1/goodsdetail.do";
+			nextPage = "/member/wishOK.do";
+		}else if(action.equals("/wishOK.do")) {
+			String goodscode = request.getParameter("goodscode");
+			nextPage = "/good1/goodsdetail.do?goodscode="+goodscode;
 		}else if(action.equals("/removewish.do")) {
 			String goodscode = request.getParameter("goodscode");
 	    	String id = (String)session.getAttribute("sessionID");
 			memberDAO.deletewishitem(goodscode, id);
 			nextPage = "/kurlymember/wish/wishList.jsp";
 		}else if(action.equals("/shipping.do")) {
-
+			
 			nextPage = "/kurlymember/shipping/ShippingAddressManagerment.jsp";
 		} else {
 			nextPage = "/index.jsp";

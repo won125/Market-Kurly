@@ -26,7 +26,6 @@ body {
     font-size: 12px;
     display: flex;
     margin: 9.5px 0;
-    display: none;
 }
 .top-memberService2 a{
     padding: 5px;
@@ -52,7 +51,7 @@ body {
     position: absolute;
     right: 75px;
     top: 26px;
-    width: 100px;
+    width: 115px;
     padding: 3px 9px;
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
