@@ -72,3 +72,22 @@ $(document).ready(function(){
         }
     });
 });
+
+$(document).ready(function(){
+    let priceNum=Number(document.getElementById('gcount').value);
+    $(".product-quantity-up").click(function(){
+		alert(priceNum);
+        if (priceNum<99) {
+            priceNum+=1;
+        }
+        
+        $("#gcount").attr("value",priceNum);
+    });
+
+    $(".product-quantity-down").click(function(){
+        if (priceNum>1) {
+            priceNum-=1;
+        }
+        $("#gcount").attr("value",priceNum);
+    });
+});

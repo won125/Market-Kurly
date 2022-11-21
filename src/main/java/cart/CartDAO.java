@@ -39,11 +39,14 @@ public class CartDAO {
 			String id=cartVO.getId();
 			System.out.println(id);
 			String goodscode=cartVO.getGoodscode();
-			String query = "insert into kurly_cart (id,goodscode) values(?,?)";
+			int goodscount=cartVO.getGoodscount();
+			String query = "insert into kurly_cart (id,goodscode,goodscount) values(?,?,?)";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			pstmt.setString(2, goodscode);
+			pstmt.setInt(3, goodscount);
+			System.out.println(goodscount);
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -87,7 +90,7 @@ public class CartDAO {
 			conn = dataFactory.getConnection();
 			String id = cartVO.getId();
 			System.out.println(id);
-			String query = "select c.id, c.goodscode,g.goodsname,g.goodsinfo,g.goodsprice,g.goodsdelivery,g.goodspackage,g.goodsunit,g.goodsweight,g.goodsorigin,g.goodsimage from kurly_cart c inner join kurly_goods g on c.goodscode=g.goodscode where c.id=?";
+			String query = "select c.id, c.goodscode,c.goodscount,g.goodsname,g.goodsinfo,g.goodsprice,g.goodsdelivery,g.goodspackage,g.goodsunit,g.goodsweight,g.goodsorigin,g.goodsimage from kurly_cart c inner join kurly_goods g on c.goodscode=g.goodscode where c.id=?";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -104,7 +107,8 @@ public class CartDAO {
 				String goodsorigin = rs.getString("goodsorigin");
 				String goodsimage=rs.getString("goodsimage");
 				String goodspackage =rs.getString("goodspackage");
-				CartVO cart = new CartVO(_id, goodscode, goodsname, goodsinfo, goodsdelivery, goodsprice, goodspackage, goodsunit, goodsweight, goodsorigin, goodsimage);
+				int goodscount=rs.getInt("goodscount");
+				CartVO cart = new CartVO(_id, goodscode, goodsname, goodsinfo, goodsdelivery, goodsprice, goodspackage, goodsunit, goodsweight, goodsorigin, goodsimage,goodscount);
 				cart.setGoodsinfo(goodsinfo);
 				cart.setGoodscode(goodscode);;
 				cart.setGoodsdelivery(goodsdelivery);
@@ -116,6 +120,7 @@ public class CartDAO {
 				cart.setGoodsunit(goodsunit);
 				cart.setGoodsweight(goodsweight);
 				cart.setId(_id);
+				cart.setGoodscount(goodscount);
 				cartList.add(cart);
 				
 			}
@@ -128,5 +133,18 @@ public class CartDAO {
 		}
 		return cartList;
 	}
-	
+	public void delCart(String goodscode) {
+		try {
+			conn=dataFactory.getConnection();
+			String query="delete from kurly_cart where goodscode=?";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, goodscode);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println("삭제중 오류발생!!");
+		}
+	}
 }

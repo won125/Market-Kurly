@@ -41,9 +41,11 @@ public class CartController extends HttpServlet {
 		else if(action.equals("/addCart.do")) {
 			String goodscode=request.getParameter("goodscode");
 			String id=request.getParameter("id");
+			int goodscount=Integer.parseInt(request.getParameter("goodscount"));
 			int result =cartDAO.productCheck(id, goodscode);
+			System.out.println(result);
 			if(result == 1) {
-			CartVO cartVO = new CartVO(id, goodscode);
+			CartVO cartVO = new CartVO(id, goodscode,goodscount);
 			cartDAO.addCart(cartVO);
 			request.setAttribute("result", result);
 			}
@@ -61,6 +63,14 @@ public class CartController extends HttpServlet {
 			List<CartVO> cartList = cartDAO.listCart(cartVO);
 	        request.setAttribute("cartList", cartList);
 			nextPage="/mkurly/shoppingBack.jsp";
+		}
+		else if (action.equals("/delCart.do")) {
+			System.out.println("삭제");
+			String goodscode=request.getParameter("goodscode");
+			System.out.println(goodscode);
+			cartDAO.delCart(goodscode);
+			request.setAttribute("msg", "deleted");
+			nextPage="/cart/listCart.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);

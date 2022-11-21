@@ -35,6 +35,22 @@ button {
     height: 552px;
     background: url(../컬리이미지/채소/vegetable6.jpg) 0% 0% / cover;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin : 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+#gcount{
+	border:none;
+	text-align:center;
+	display:inline-block;
+	width:30.79px;
+	height:28px;
+}
 .right-information-area {
     width: 560px;
 }

@@ -1,3 +1,18 @@
+	function totalfc(){
+				var tot=0;
+				var tot1=0;
+				
+		$("input[name=onecheck]:checked").each(function(){
+				var cou=Number($(this).closest(".item").find(".gcount1").val()); 
+				var pri=Number($(this).closest(".item").find(".pinput").val());
+				
+				tot1=cou*pri;
+				$(this).closest(".item").find(".pinput1").val(tot1);
+				tot += cou * pri;
+				$(this).closest("main").find(".wprice").val(tot);
+				$(this).closest("main").find(".tprice1").val(tot);
+		});
+	}
 $(document).ready(function(){
     var jbOffset = $('.shipping-address-and-price-area').offset();
     $(window).scroll(function(){
@@ -10,85 +25,66 @@ $(document).ready(function(){
 }, 3000);
 
 $(document).ready(function(){
-    /*웹페이지 열었을 때*/
-    $("#img1").show();
-    $("#img2").hide();
-    $("#check").show();
-    $("#check2").hide();
-    $("#img3").show();
-    $("#img4").hide();
+		totalfc();
+		/*$(".item-all-choice-delete-area").on("click", ".check-btn-input", function () {
+		    $(this).parents(".item").find('input').prop("checked",true);
+			        totalfc();
+	    });*/
+		$(".item-all-choice-delete-area").on('click','.check-btn-input',function(){
+			    if($('#allcheck').is(':checked')){
+			       $('.item-btn-input').prop('checked',true);
+				    }else{
+			       $('.item-btn-input').prop('checked',false);    
+				$(this).closest("main").find(".wprice").val(0);
+				$(this).closest("main").find(".tprice1").val(0);
+			    }
+			    totalfc();
+			});
 
-    /*img1을 클릭했을 때 img2를 보여줌*/
-    $("#img1").click(function(){
-        $("#img1").hide();
-        $("#img2").show();
-        $("#check").hide();
-        $("#check2").show();
-        $("#img3").hide();
-        $("#img4").show();
-    });
-
-    /*img2를 클릭했을 때 img1을 보여줌*/
-    $("#img2").click(function(){
-        $("#img1").show();
-        $("#img2").hide();
-        $("#check").show();
-        $("#check2").hide();
-        $("#img3").show();
-        $("#img4").hide();
-    });
-
-    $("#img3").click(function(){
-        $("#img1").hide();
-        $("#img2").show();
-        $("#check").hide();
-        $("#check2").show();
-        $("#img3").hide();
-        $("#img4").show();
-    });
-
-    /*img2를 클릭했을 때 img1을 보여줌*/
-    $("#img4").click(function(){
-        $("#img1").show();
-        $("#img2").hide();
-        $("#check").show();
-        $("#check2").hide();
-        $("#img3").show();
-        $("#img4").hide();
-    });
-
-    $("#check").click(function(){
-        $("#check").hide();
-        $("#check2").show();
-    });
-
-    /*img2를 클릭했을 때 img1을 보여줌*/
-    $("#check2").click(function(){
-        $("#check").show();
-        $("#check2").hide();
-    });
-});	
-
-$(document).ready(function(){
-    var countNum=Number(document.getElementById('asdasd').innerText);
-    var priceNum=Number(document.getElementById('price123').innerText);
-    var totp;
-    $(".product-quantity-up").click(function(){
-        if (countNum<99) {
-            countNum+=1;
-            totp=countNum*priceNum;
-        }
-        
-        $(".product-quantity-count").text(countNum);
-        $("#price123").text(totp);
-    });
-
-    $(".product-quantity-down").click(function(){
-        if (countNum>1) {
-            countNum-=1;
-         totp=countNum*priceNum;
-        }
-        $(".product-quantity-count").text(countNum);
-        $("#price123").text(totp);
-    });
-});
+		/*$(".item").on("click", ".item-btn-area", function() {
+		    
+		        totalfc();
+		    $(".item .item-btn-input").each(function(){
+		            if($('.item-btn-input').is(':checked')){
+				       $('.item-btn-input').prop('checked',true);
+				    }else{
+				       $('.item-btn-input').prop('checked',false);
+				    }
+		        
+		    });*/
+		    $('.item').on('click','.item-btn-area',function(){
+			 totalfc();
+				
+				    if($('input[class=item-btn-input]:checked').length==$('.item-btn-input').length){
+				        $('#allcheck').prop('checked',true);
+				       	
+				    }else{
+				       $('#allcheck').prop('checked',false);
+				       totalfc();
+				       if($('input[class=item-btn-input]:checked').length==0){
+						$(this).closest("main").find(".wprice").val(0);
+						$(this).closest("main").find(".tprice1").val(0);
+						}
+				    }
+				});
+		});
+		$(document).ready(function(){
+			
+			$('.product-quantity-up').on("click", function(){
+					
+				let quantity = $(this).parent('div').find('#gcount').val();
+				$(this).parent("div").find("#gcount").val(++quantity);
+				totalfc();
+				
+			});
+	
+			$(".product-quantity-down").on("click", function(){
+			
+					let quantity1 = $(this).parent("div").find("#gcount").val();
+					if(quantity1 > 1){
+						$(this).parent("div").find("#gcount").val(--quantity1);
+						totalfc();
+						}
+			});
+		});
+		

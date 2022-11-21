@@ -92,7 +92,7 @@ public class MostQnaController extends HttpServlet {
 		          int mostnum=Integer.parseInt(request.getParameter("mostnum"));
 		          mostQnaDAO.delMember(mostnum);
 		          request.setAttribute("msg", "deleted");
-		          nextPage="/mostqna/listMostQna.do";//nextPage="/meminfo/listMembers.jsp"
+		          nextPage="/mostqna/listMostQna.do";
 		       }
 		      RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
 		      dispatcher.forward(request, response);

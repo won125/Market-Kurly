@@ -55,7 +55,9 @@ public class MostQnaDAO {
 				mostQna.setCategory(category);
 				mostQna.setMosttitle(mosttitle);
 				mostQna.setMostcontents(mostcontents);
+				
 				mostQnaList.add(mostQna);
+				System.out.println(mostQnaList);
 			}
 			rs.close();
 			pstmt.close();

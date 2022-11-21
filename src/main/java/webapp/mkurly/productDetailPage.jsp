@@ -217,9 +217,9 @@
                                     <span>적립제외상품</span>
                                     <div class="product-quantity-value">
                                         <div class="product-quantity">
-                                            <button type="button" disabled aria-label="수량내리기" class="product-quantity-down"></button>
-                                            <div name="goodscount">1</div>
-                                            <button type="button" disabled aria-label="수량올리기" class="product-quantity-up"></button>
+                                            <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                                            <div><input type="number" name="goodscount" id="gcount" value="1"></div>
+                                            <button type="button"aria-label="수량올리기" class="product-quantity-up"></button>
                                         </div>
                                         <div class="product-pay">
                                             <span>2,480원</span>

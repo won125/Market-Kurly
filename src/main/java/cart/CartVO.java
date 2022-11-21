@@ -14,9 +14,10 @@ public class CartVO {
 	private String goodsweight;
 	private String goodsorigin;
 	private String goodsimage;
+	private int goodscount;
 	
 	public CartVO(String id,String goodscode, String goodsname, String goodsinfo, String goodsdelivey, String goodsprice, 
-			String goodspackage, String goodsunit, String goodsweight, String goodsorigin, String goodsimage) {
+			String goodspackage, String goodsunit, String goodsweight, String goodsorigin, String goodsimage, int goodscount) {
 			this.id=id;
 			this.goodscode=goodscode;
 			this.goodsname=goodsname;
@@ -28,9 +29,20 @@ public class CartVO {
 			this.goodsorigin=goodsorigin;
 			this.goodsimage=goodsimage;
 			this.goodsdelivery=goodsdelivey;
+			this.goodscount=goodscount;
 	}
 	
 	
+	public int getGoodscount() {
+		return goodscount;
+	}
+
+
+	public void setGoodscount(int goodscount) {
+		this.goodscount = goodscount;
+	}
+
+
 	public CartVO() {
 		System.out.println("cartVO생성");
 	}
@@ -38,9 +50,10 @@ public class CartVO {
 	public CartVO(String id) {
 		this.id=id;
 	}
-	public CartVO(String id,String goodscode) {
+	public CartVO(String id,String goodscode,int goodscount) {
 		this.id=id;
 		this.goodscode=goodscode;
+		this.goodscount=goodscount;
 	}
 	
 	public String getGoodsname() {

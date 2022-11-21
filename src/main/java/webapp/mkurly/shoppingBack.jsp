@@ -3,7 +3,8 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<c:set var="cart" value="${cart.listCart}"/>
+	<c:set var="cart" value="${cart.cartList}"/>
+	
     <%
 		request.setCharacterEncoding("utf-8");
 	%>
@@ -25,12 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/mkurly/js/shoppingBack.js"></script>
+    
 </head>
-<style>
- .item-btn-area{
- 	display:inline-block;
- 	}
-</style>
 <body>
     <header>
         <div class="top-ad">
@@ -107,27 +104,26 @@
     </header>
     <!-- 프로젝트 작성 영역 start -->
 
-
+	<form method="get" name="cartselect" action="${contextPath}/pay/listPay.do">
     <main class="shopping-back-main">
         <h2 class="shopping-back-title">장바구니</h2>
         <div class="shopping-back-frame">
             <div class="item-list-frame">
                 <div class="item-all-choice-delete-frame">
                     <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img1" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드.svg" alt="전체체크">
-                            <img id="img2" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드 2.svg" alt="전체체크">
-                            <span>전체선택 (1/1)</span>
+                        <label class="check-btn check">
+                            <input type="checkbox" class="check-btn-input" id="allcheck" name="checkall">
+                            <span class="img1 ico" id="checkv"></span>
+                            <span class="allselect">전체선택 (1/1)</span>
                         </label>
                         <span class="division"></span>
-                        <button class="delete-btn" disabled>선택삭제</button>
+                        <button class="delete-btn" >선택삭제</button>
                     </div>                    
                 </div>
-
+   
                 <div class="shopping-back-list-area">
                     <div>
-                        <ul>
+                        <ul class="itemlist">
                             <c:choose>
 					        	<c:when test="${empty cartList}">
 									<tr>
@@ -136,11 +132,11 @@
 								</c:when>
 								<c:when test="${!empty cartList}">
 							<c:forEach var="cart" items="${cartList}">
+							
                             <li class="item">
-                                <label class="item-btn-area">
-                                    <input type="checkbox" class="item-btn-input">
-                                    <img id="check" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드.svg" alt="상품체크">
-                                    <img id="check2" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드 2.svg" alt="상품체크">
+                                <label class="item-btn-area check">
+                                    <input type="checkbox" class="item-btn-input" name="onecheck" value="${cart.goodscode}">
+                                    <span class="img1 ico" id="cimg"></span>
                                 </label>
                                 <a href="productDetailPage.html">
                                     <span class="list-img"><img id="cartlimg" src="${contextPath}/mkurly/컬리이미지/채소/${cart.goodsimage}" alt=""></span>
@@ -148,17 +144,19 @@
                                 <div class="item-code">
                                     <p class="item-code-name">${cart.goodsname}</p>
                                 </div>
-
+ 	 
                                 <div class="count-btn">
                                     <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
-                                    <div class="product-quantity-count" id="asdasd">1</div>
+                                    <div class="product-quantity-count"><input type="number" name="goodscount" class="gcount1" id="gcount" value="${cart.goodscount}"></div>
                                     <button type="button" aria-label="수량올리기" class="product-quantity-up"></button>
                                 </div>
 
                                 <div class="item-pay">
-                                    <div id="price123">${cart.goodsprice}</div>원
+	                                <input type="hidden" id="priceinput" name="goodsprice" class="pinput"  value="${cart.goodsprice}">
+	                                 <div id="price123"><input type="text" id="priceinput1" name="gooodspirce1" readonly="readonly" class="pinput1" value=""></div>원
                                 </div>
-                                <button class="easy-delete-btn" type="button"><span><!--back img--></span></button>
+                                <a href="${contextPath}/cart/delCart.do?goodscode=${cart.goodscode}"><button class="easy-delete-btn" type="button"><span><!--back img--></span></button></a>
+                                		<p class="asdqwe">총 가격</p>
                             </li>
                              </c:forEach>
                         </c:when>
@@ -167,17 +165,17 @@
                        
                     </div>
                 </div>
-
-                <div class="item-all-choice-delete-frame">
+		
+				
+                 <div class="item-all-choice-delete-frame">
                     <div class="item-all-choice-delete-area">
-                        <label class="check-btn">
-                            <input type="checkbox" class="check-btn-input" checked>
-                            <img id="img3" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드.svg" alt="체크">
-                            <img id="img4" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드 2.svg" alt="체크">
-                            <span>전체선택 (0/1)</span>
+                        <label class="check-btn check">
+                            <input type="checkbox" class="check-btn-input" id="allcheck" name="checkall" >
+                            <span class="img1 ico" id="checkv"></span>
+                            <span class="allselect">전체선택 (1/1)</span>
                         </label>
                         <span class="division"></span>
-                        <button class="delete-btn" disabled>선택삭제</button>
+                        <a href="${contextPath}/cart/delCartList.do}"><button type="button" class="delete-btn">선택삭제</button></a>
                     </div>                    
                 </div>
             </div>
@@ -187,7 +185,7 @@
                     <div class="user-address-area">
                         <h3 class="user-address-title"><i class="fa-solid fa-location-dot"></i>배송지</h3>
                         <div class="user-address">
-                            <p class="address">경기 이천시 아리역로 1</p>
+                            <p class="address">  이천시 아리역로 1</p>
                             <div class="shipping-time-area">
                                 <span>낮배송</span>
                             </div>
@@ -196,11 +194,10 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="amount-of-payment-area">
                         <div class="item-price">
                             <span class="price-title">상품금액</span>
-                            <span class="price">2,480<span>원</span></span>
+                            <span class="price"><input type="text" id="tprice" class="wprice" readonly="readonly" value=""><span>원</span></span>
                         </div>
                         <div class="other-price">
                             <span class="price-title">상품할인금액</span>
@@ -212,16 +209,15 @@
                         </div>
                         <div class="all-price">
                             <span class="price-title">결제예정금액</span>
-                            <span class="total-price"><strong class="price">2,480</strong><span>원</span></span>
+                            <span class="total-price"><input type="text" name="totalprice" readonly="readonly" class="tprice1"><span>원</span></span>
                         </div>
                         <div class="point-accumulate">
                             <span class="accumulate-mark">적립</span>최대
                             <strong>0원 적립</strong>
                         </div>
                     </div>
-
                     <div class="user-order-area">
-                        <button class="user-order-btn" type="button"><span>주문하기</span></button>
+                        <input type="submit" class="user-order-btn" value="주문하기">
                         <ul class="user-order-precautions">
                             <li class="order-precautions">쿠폰/적립금은 주문서에서 사용 가능합니다</li>
                             <li class="order-precautions">[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
@@ -234,6 +230,9 @@
             </div>
         </div>
     </main>
+    </form>
+    
+    
 
 
     <!-- 프로젝트 작성 영역 end -->
