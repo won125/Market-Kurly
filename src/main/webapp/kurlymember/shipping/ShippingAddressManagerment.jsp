@@ -133,7 +133,18 @@
         </div>
     </header>
     <!-- 프로젝트 작성 영역 start -->
-
+	<script type="text/javascript">
+		function addshippingForm(obj) {
+			obj.action = "${contextPath}/member/addshippingForm.do";
+			obj.submit();
+		}
+		function updateshippingForm(obj) {
+			let shippingindex = document.frmshippingform.index.value;
+			alert(shippingindex);
+			obj.action = "${contextPath}/member/updateshippingForm.do?shippingindex="+shippingindex;
+			obj.submit();
+		}
+	</script>
     <main class="main-frame">
         <div class="my-information-list-frame">
             <div class="my-information-list-area">
@@ -219,62 +230,67 @@
                     <span><i class="fa-solid fa-caret-right"></i></span>
                 </div>
             </div>
-            
-            <div class="shipping-address-frame">
-                <div class="shipping-address-title-area">
-                    <div class="shipping-address-title">
-                        <div class="shipping-address">
-                            <span class="shipping-address-text1">배송지 관리</span>
-                            <span class="shipping-address-text2">배송지에 따라 상품정보 및 배송유형이 달라질 수 있습니다.</span>
-                        </div>
-                        <div>
-                            <div class="new-shipping-adress-plus-frame">
-                                <button class="new-shipping-adress-plus-btn" type="button" height="60" onclick="execDaumPostcode()">
-                                    <span class="new-shipping-adress-title"><img src="${contextPath}/컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="shipping-address-list-title">
-                    <div class="title-a">선택</div>
-                    <div class="title-b">주소</div>
-                    <div class="title-c">받으실 분</div>
-                    <div class="title-d">연락처</div>
-                    <div class="title-e">배송유형</div>
-                    <div class="title-f">수정</div>
-                </div>
-
-                <ul class="shipping-address-list-ul">
-                    <li class="shipping-address-list-li">
-                        <div class="shipping-address-list-div">
-                            <div class="shipping-address-list-check-area">
-                                <label class="shipping-address-list-check" for="user-shipping-address">
-                                    <input id="user-shipping-address" type="checkbox" class="user-shipping-address-c">
-                                    <img id="checkview" src="${contextPath}/컬리이미지/주문서페이지/다운로드.svg" alt="" class="shipping-address-check-img">
-                                    <img id="checkviewno" src="${contextPath}/컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="shipping-address-check-img">
-                                </label>
-                            </div>
-                            <div class="user-shipping-address-text">
-                                <div>서울특별시 컬리구 컬리란로 111, 11층(컬리동)</div>
-                            </div>
-                            <div class="user-name">이익희</div>
-                            <div class="user-tell">010-0000-0000</div>
-                            <div class="shipping-address-type">
-                                <div>
-                                    <span type="direct" class="shipping-address-type-text">샛별배송</span>
-                                </div>
-                            </div>
-                            <div class="shipping-address-correction">
-                                <button>
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+          	<form name="frmshippingform">            
+	            <div class="shipping-address-frame">
+	                <div class="shipping-address-title-area">
+	                    <div class="shipping-address-title">
+	                        <div class="shipping-address">
+	                            <span class="shipping-address-text1">배송지 관리</span>
+	                            <span class="shipping-address-text2">배송지에 따라 상품정보 및 배송유형이 달라질 수 있습니다.</span>
+	                        </div>
+	                        <div>
+	
+	                            <div class="new-shipping-adress-plus-frame">
+	                                <button class="new-shipping-adress-plus-btn" type="button" height="60" onclick="addshippingForm(this.form);">
+	                                    <span class="new-shipping-adress-title"><img src="${contextPath}/컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="shipping-address-list-title">
+	                    <div class="title-a">선택</div>
+	                    <div class="title-b">주소</div>
+	                    <div class="title-c">받으실 분</div>
+	                    <div class="title-d">연락처</div>
+	                    <div class="title-e">배송유형</div>
+	                    <div class="title-f">수정</div>
+	                </div>
+	
+	                <ul class="shipping-address-list-ul">
+	                    <li class="shipping-address-list-li">
+	                    	<c:forEach var="sList" items="${shippingList}">
+	                    	<input type="hidden" name="index" value="${sList.shippingindex}">
+		                        <div class="shipping-address-list-div">
+		                            <div class="shipping-address-list-check-area">
+		                                <label class="shipping-address-list-check" for="user-shipping-address">
+		                                    <input id="user-shipping-address" type="checkbox" class="user-shipping-address-c">
+		                                    <img id="checkview" src="${contextPath}/컬리이미지/주문서페이지/다운로드.svg" alt="" class="shipping-address-check-img">
+		                                    <img id="checkviewno" src="${contextPath}/컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="shipping-address-check-img">
+		                                </label>
+		                            </div>
+		                            <div class="user-shipping-address-text">
+		                                <div>${sList.shippingaddress} ${sList.shippingdetailaddress}</div>
+		                            </div>
+		                            <div class="user-name">${sList.shippingname}</div>
+		                            <div class="user-tell">${sList.shippingphone}</div>
+		                            <div class="shipping-address-type">
+		                                <div>
+		                                    <span type="direct" class="shipping-address-type-text">샛별배송</span>
+		                                </div>
+		                            </div>
+		                            <div class="shipping-address-correction">
+			                            <a href="${contextPath}/member/updateshippingForm.do?shippingindex=${sList.shippingindex}" style="text-decoration: none;">
+			                                <i class="fa-regular fa-pen-to-square"></i>
+			                            </a>
+		                            </div>
+		                        </div>
+	                        </c:forEach>
+	                    </li>
+	                </ul>
+	            </div>
+            </form>
         </div>
     </main>
 
@@ -388,64 +404,6 @@
     </footer>
     <script src="${contextPath}/js/commen.js"></script>
     <script src="${contextPath}/js/ShippingAddressManagement.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
-                document.getElementById('addressarea_after').style.display = "inline-block";
-                document.getElementById('addressbtnarea_after').style.display = "block";
-                document.getElementById('addressarea_before').style.display = "none";
-                
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("extraAddress").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    
-
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-</script>
     
 </body>
 </html>

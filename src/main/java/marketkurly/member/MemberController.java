@@ -55,10 +55,12 @@ public class MemberController extends HttpServlet {
 			String birthYear = request.getParameter("birthYear");
 			String birthMonth = request.getParameter("birthMonth");
 			String birthDay = request.getParameter("birthDay");
-			MemberVO memberVO = new MemberVO(id,pw,name,email,phone,address,detailAddress,gender,birthYear,birthMonth,birthMonth);
+			MemberVO memberVO = new MemberVO(id,pw,name,email,phone,address,detailAddress,gender,birthYear,birthMonth,birthDay);
+			ShippingVO shippingVO = new ShippingVO(id, name, phone, address, detailAddress);
 			memberDAO.addMember(memberVO);
+			memberDAO.addshipping(shippingVO);
 			request.setAttribute("msg", "addMember");
-			nextPage = "/member/index.do";
+			nextPage ="/kurlymember/join/joinOK.jsp";
 		}else if(action.equals("/idCheck.do")) {
 			String id = request.getParameter("id");
 			boolean result = memberDAO.idCheck(id);
@@ -87,18 +89,30 @@ public class MemberController extends HttpServlet {
 			}
 			
 		}else if(action.equals("/logout.do")) {
+			session.removeAttribute("sessionID");
 			request.getSession().invalidate();
 			nextPage = "/member/index.do";
 		}else if(action.equals("/removeMember.do")) {
 			String id = (String)session.getAttribute("sessionID");
-			int result = memberDAO.deleteMember(id);
-			if(result == 1) {
-				request.getSession().invalidate();
-				request.setAttribute("result", result);
-				nextPage = "/member/index.do";
+			if(id.equals("admin")) {
+				int result = memberDAO.deleteMember(id);
+				if(result == 1) {
+					request.setAttribute("result", result);
+					nextPage = "/member/managerMember.do";
+				}else {
+					request.setAttribute("result", result);
+					nextPage = "/member/managerMember.do";
+				}
 			}else {
-				request.setAttribute("result", result);
-				nextPage = "/member/index.do";
+				int result = memberDAO.deleteMember(id);
+				if(result == 1) {
+					request.getSession().invalidate();
+					request.setAttribute("result", result);
+					nextPage = "/member/index.do";
+				}else {
+					request.setAttribute("result", result);
+					nextPage = "/member/index.do";
+				}
 			}
 			
 		}else if(action.equals("/modMember.do")) {
@@ -135,7 +149,6 @@ public class MemberController extends HttpServlet {
 			int goodsprice = Integer.parseInt(request.getParameter("goodsprice"));
 			System.out.println(id + goodscode + goodsname + goodsimage + goodsprice);
 			WishListVO wishListVO = new WishListVO(id, goodscode, goodsname, goodsimage, goodsprice);
-			
 			int result = memberDAO.findwishitem(goodscode, id);
 			System.out.println(result);
 			if(result == 0) {
@@ -155,9 +168,51 @@ public class MemberController extends HttpServlet {
 	    	String id = (String)session.getAttribute("sessionID");
 			memberDAO.deletewishitem(goodscode, id);
 			nextPage = "/kurlymember/wish/wishList.jsp";
-		}else if(action.equals("/shipping.do")) {
-			
+		}else if(action.equals("/shippingList.do")) {
+			String id = (String)session.getAttribute("sessionID");
+			List shippingList = memberDAO.shippingList(id);
+			request.setAttribute("shippingList", shippingList);
 			nextPage = "/kurlymember/shipping/ShippingAddressManagerment.jsp";
+		}else if(action.equals("/addshippingForm.do")) {
+			nextPage = "/kurlymember/shipping/addshipping.jsp";
+		}else if(action.equals("/addshipping.do")) {
+			String id = (String)session.getAttribute("sessionID");
+			String shippingname = request.getParameter("name");
+			String shippingphone = request.getParameter("phone");
+			String shippingaddress = request.getParameter("address");
+			String shippingdetailaddress = request.getParameter("detailaddress");
+			ShippingVO shippingVO = new ShippingVO(id, shippingname, shippingphone, shippingaddress, shippingdetailaddress);
+			memberDAO.addshipping(shippingVO);
+			nextPage = "/kurlymember/shipping/addshippingOK.jsp";
+		}else if(action.equals("/updateshippingForm.do")) {
+			String idx = request.getParameter("shippingindex");
+			int shippingindex = Integer.parseInt(idx);
+			ShippingVO shippingInfo = memberDAO.findShipping(shippingindex);
+			request.setAttribute("shippingInfo", shippingInfo);
+			nextPage = "/kurlymember/shipping/modshipping.jsp";
+		}else if(action.equals("/updateshipping.do")) {
+			String id = (String)session.getAttribute("sessionID");
+			String shippingname = request.getParameter("name");
+			String shippingphone = request.getParameter("phone");
+			String shippingaddress = request.getParameter("address");
+			String shippingdetailaddress = request.getParameter("detailaddress");
+			ShippingVO shippingVO = new ShippingVO(id, shippingname, shippingphone, shippingaddress, shippingdetailaddress);
+			memberDAO.updateshipping(shippingVO);
+			nextPage = "/kurlymember/shipping/modshippingOK.jsp";
+		}else if(action.equals("/deleteshipping.do")) {
+			String id = (String)session.getAttribute("sessionID");
+			int idx = Integer.parseInt(request.getParameter("shippingindex"));
+			int sresult = memberDAO.deleteshipping(id,idx);
+			request.setAttribute("sresult", sresult);
+			nextPage = "/kurlymember/shipping/modshippingOK.jsp";
+		}else if(action.equals("/adminpage.do")) {
+			nextPage = "/kurlymember/admin/manager.jsp";
+		}else if(action.equals("/managerMember.do")) {
+			List memberList = memberDAO.memberList();
+			request.setAttribute("memberList", memberList);
+			nextPage = "/kurlymember/admin/managerMember.jsp";
+		}else if(action.equals("/managerPost.do")) {
+			nextPage = "/kurlymember/admin/managerPost.jsp";
 		} else {
 			nextPage = "/index.jsp";
 		}

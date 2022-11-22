@@ -10,8 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	response.sendRedirect("${contextPath}/good1/goodsdetail.do?goodscode=${goodscode}");
-%>
+<script type="text/javascript">
+	location.href="${contextPath}/member/wishList.do";
+</script>
 </body>
 </html>

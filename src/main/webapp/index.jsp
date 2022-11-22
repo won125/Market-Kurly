@@ -74,7 +74,7 @@
 		                            <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
 		                            <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
 		                            <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
-		                            <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
+		                            <div class="login-user-low-menu"><a href="${contextPath}/member/shippingList.do">배송지 관리</a></div>
 		                            <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
 		                            <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
 		                            <div class="login-user-low-menu"><a href="#">적립금</a></div>
@@ -89,7 +89,7 @@
 	                	</c:when>
 	                	<c:when test="${sessionID eq 'admin'}">
 	                		<div class="top-memberService2">
-		                        <a href="${contextPath}/member/mypage.do" id="userNameHover">
+		                        <a href="${contextPath}/member/adminpage.do" id="userNameHover">
 		                            <span class="login-user-tier">관리자</span>
 		                            <i class="fa-solid fa-caret-down"></i>
 		                        </a>

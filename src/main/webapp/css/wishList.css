@@ -301,11 +301,25 @@ p {
     padding: 24px 0px;
     border-top: 1px solid rgb(244, 244, 244);
 }
-.wish-list a {
+.wish-list > a {
     display: block;
     position: relative;
     width: 60px;
     height: 78px;
+}
+.etc-btn a{
+    display: block;
+    text-align: center;
+    width: 104px;
+    height: 36px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(95, 0, 128);
+    border-image: initial;
 }
 .wish-list a img {
     position: absolute;
@@ -343,7 +357,6 @@ p {
 }
 .item-delete {
     display: block;
-    padding: 0px 10px;
     text-align: center;
     overflow: hidden;
     width: 104px;
@@ -357,10 +370,10 @@ p {
     display: inline-block;
     font-size: 13px;
     font-weight: 500;
+    line-height: 3;
 }
 .item-input {
     display: block;
-    padding: 0px 10px;
     text-align: center;
     overflow: hidden;
     width: 104px;
@@ -375,6 +388,7 @@ p {
     align-items: center;
     justify-content: center;
     font-size: 13px;
+    line-height: 3;
 }
 .item-input span i {
     display: inline-block;
