@@ -1,0 +1,16 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <circle stroke="#DDD" cx="20" cy="20" r="19.5"/>
+        <g transform="translate(10.5 11)" stroke="#333" stroke-width="1.8">
+            <circle cx="3" cy="9" r="2.1"/>
+            <g transform="translate(5.137)">
+                <circle cx="8.863" cy="3" r="2.1"/>
+                <path stroke-linecap="square" d="M0 8.136 6.363 4.5"/>
+            </g>
+            <g transform="matrix(1 0 0 -1 5.137 18)">
+                <circle cx="8.863" cy="3" r="2.1"/>
+                <path stroke-linecap="square" d="M0 8.136 6.363 4.5"/>
+            </g>
+        </g>
+    </g>
+</svg>

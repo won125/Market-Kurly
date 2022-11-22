@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>ic/05_eco</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-" transform="translate(-32.000000, -743.000000)">
+            <g id="ic/05_eco" transform="translate(32.000000, 743.000000)">
+                <circle id="Oval" fill="#5F0080" fill-rule="nonzero" cx="20" cy="20" r="20"></circle>
+                <circle id="Oval" stroke="#FFFFFF" cx="20" cy="20" r="2.4"></circle>
+                <g id="Group-13" stroke-linecap="round" stroke-linejoin="round" transform="translate(8.000000, 7.200000)" stroke="#FFFFFF">
+                    <path d="M5.66784,9.2952 L9.96384,1.8552 C11.08384,-0.0848 12.91664,-0.0848 14.03584,1.8552 L17.02144,7.0256" id="Stroke-1"></path>
+                    <polyline id="Stroke-3" points="17.10184 3.9284 17.10184 5.546 17.10184 7.1636 15.70104 6.3548 14.30024 5.546"></polyline>
+                    <path d="M11.50576,21.11864 L2.91456,21.11864 C0.67456,21.11864 -0.24224,19.53144 0.87776,17.59144 L3.86336,12.42104" id="Stroke-5"></path>
+                    <polyline id="Stroke-7" points="1.14088 13.90024 2.54168 13.09144 3.94248 12.28264 3.94248 13.90024 3.94248 15.51784"></polyline>
+                    <path d="M18.8264,10.15336 L23.1224,17.59416 C24.2424,19.53416 23.3256,21.12056 21.0856,21.12056 L15.1144,21.12056" id="Stroke-9"></path>
+                    <polyline id="Stroke-11" points="17.75688 22.73896 16.35608 21.93016 14.95528 21.12136 16.35608 20.31256 17.75688 19.50376"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
