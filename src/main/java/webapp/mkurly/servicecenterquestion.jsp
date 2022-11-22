@@ -30,34 +30,77 @@
     <script src="${contextPath}/mkurly/js/servicecenterquestion.js"></script>
 </head>
 <body>
-    <header>
-        <!--<div class="top-ad">
+  <header>
+        <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
-        </div>-->
+        </div>
         <!-- 헤더영역시작 -->
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
-                    <div class="top-memberService">
-                        <a href="join.html">회원가입</a>
-                        <div> | </div>
-                        <a href="${contextPath}/member/login.do">로그인</a>
-                        <div> | </div>
-                        <a href="servicecenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
-                    </div>
+                    <c:choose>
+                      <c:when test="${sessionID eq null }">
+                         <div class="top-memberService">
+                              <a href="${contextPath}/member/join.do">회원가입</a>
+                              <div> | </div>
+                              <a href="${contextPath}/member/login.do">로그인</a>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID ne null and sessionID ne 'admin'}">
+                         <div class="top-memberService2" style="display: flex">
+                            <a></a>
+                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                                  <span class="login-user-tier">일반</span>${sessionID} 님
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
+                                  <div class="login-user-low-menu"><a href="#">적립금</a></div>
+                                  <div class="login-user-low-menu"><a href="#">쿠폰</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/modMember.do?id=${sessionID}">개인 정보 수정</a></div>
+                                  <div class="login-user-low-menu"><a href="#">나의 컬리 스타일</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID eq 'admin'}">
+                         <div class="top-memberService2">
+                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                                  <span class="login-user-tier">관리자</span>
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerPost.do">공지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerMember.do">회원 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                   </c:choose>
 
                     <div class="top-serviceCenter-child">
-                        <li><a href="servicecenter.html"></a>공지사항</li>
-                        <li><a href="servicecenterquestion.html"></a>자주하는 질문</li>
+                        <li><a href="${contextPath}/help">공지사항</a></li>
+                        <li><a href="${contextPath}/mostqna">자주하는 질문</a></li>
                         <li>1:1 문의</li>
                         <li>대량주문 문의</li>
                     </div>
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="index.html"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="index.html"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="index.html"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -67,8 +110,8 @@
 
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="${contextPath}/member/wishList.do"><i class="fa-regular fa-heart"></i></a>
+                                <a href="${contextPath}/cart/listCart.do"><i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
                         </div>                        
                     </div>

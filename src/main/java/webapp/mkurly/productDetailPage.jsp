@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-    <%
-		request.setCharacterEncoding("utf-8");
-	%>
-	<!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="gdetail" value="${gdetail}"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>해더/푸터</title>
+    
     <link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
     <link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/mkurly/css/productDetailPage.css">
@@ -24,10 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
     <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/mkurly/js/productDetailPage.js"></script>
-   
 </head>
-
-<body>
 <c:choose>
 	<c:when test="${result == 1}">
 		<script>
@@ -40,51 +39,111 @@
 		</script>
 	</c:when>
 </c:choose>
-    <header>
+<body>
+    <script type="text/javascript">
+    function rDelete(obj){
+    	obj.action="${contextPath}/good1/rDelete.do?id=${id}";
+    	obj.submit();
+    }
+    function rModify(obj){
+    	
+    }
+    //질문 클릭
+    $(function(index){
+      $(document).on("click", ".user-inquiry-post", function(){
+         $(this).find(".answerarea").toggle();
+      });
+    });    
+    
+    </script>
+   <header>
         <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
-        <!--  -->
+        <!-- 헤더영역시작 -->
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
-                    <div class="top-memberService">
-                        <a href="member.html">회원가입</a>
-                        <div> | </div>
-                        <a href="${contextPath}/mkurly/login.jsp">로그인</a>
-                        <div> | </div>
-                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
-                    </div>
+                    <c:choose>
+                      <c:when test="${sessionID eq null }">
+                         <div class="top-memberService">
+                              <a href="${contextPath}/member/join.do">회원가입</a>
+                              <div> | </div>
+                              <a href="${contextPath}/member/login.do">로그인</a>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID ne null and sessionID ne 'admin'}">
+                         <div class="top-memberService2" style="display: flex">
+                            <a></a>
+                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                                  <span class="login-user-tier">일반</span>${sessionID} 님
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
+                                  <div class="login-user-low-menu"><a href="#">적립금</a></div>
+                                  <div class="login-user-low-menu"><a href="#">쿠폰</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/modMember.do?id=${sessionID}">개인 정보 수정</a></div>
+                                  <div class="login-user-low-menu"><a href="#">나의 컬리 스타일</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID eq 'admin'}">
+                         <div class="top-memberService2">
+                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                                  <span class="login-user-tier">관리자</span>
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerPost.do">공지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerMember.do">회원 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                   </c:choose>
 
                     <div class="top-serviceCenter-child">
-                        <li>공지사항</li>
-                        <li>자주하는 질문</li>
+                        <li><a href="${contextPath}/help">공지사항</a></li>
+                        <li><a href="${contextPath}/mostqna">자주하는 질문</a></li>
                         <li>1:1 문의</li>
                         <li>대량주문 문의</li>
                     </div>
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="index.html"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="index.html"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="index.html"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                <a href="${contextPath}/member/wishList.do"><i class="fa-regular fa-heart"></i></a>
                                 <a href="${contextPath}/cart/listCart.do"><i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
                         </div>                        
                     </div>
-                    
+
                 </div>
-                              <!-- top 고정중 -->
+                <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
                     <div class="top-all-menu">
                         <div class="category">
@@ -102,11 +161,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/커뮤니티/vegetable.png" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/커뮤니티/beef.png" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/커뮤니티/sideDish.png" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/커뮤니티/milk.png" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/커뮤니티/alcohol.png" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -119,30 +178,41 @@
     <!-- 프로젝트 작성 영역 start -->
 
 
-
+<!--상품상세정보 백엔드부분-->
     <main class="main-frame">
-        <div class="main-area">
-        <form method="get" name="goods" action="${contextPath}/cart/addCart.do">
-            <article class="product-information-area">	
-            <input type="hidden" name="goodscode" value="1111">
-             <input type="hidden" name="id" value="${sessionID}">
-                <div class="left-img-area" name="goodsimage"><!--css background img--></div>
 
+        <div class="main-area">
+        <c:forEach var="gdetail" items="${gdetail}">
+        <form method="get" name="goods" action="${contextPath}/cart/addCart.do">
+            <article class="product-information-area">
+            <input type="hidden" name="id" value="${sessionID}">
+                <div class="left-img-area">
+                	<img src="${contextPath}/mkurly/컬리이미지/${gdetail.goodsimage}" alt="가지상세이미지">
+                </div><!--12.상품 메인이미지 goodsimgage-->
+                <input type="hidden" name="goodscode" value="${gdetail.goodscode}">   <!--1.상품코드-->                               
                 <div class="right-information-area">
                     <div>
                         <div class="title-sub-text">샛별배송</div>
                         <div class="title-area">
                             <div class="gaji-title">
-                                <h2 name=goodsname id="goodsname">[KF365] 가지 2입</h2>
+                                ${gdetail.goodsname}                 <!--2..상품이름 부분 goodsname -->
                                 <button class="share-img"></button>
                             </div>
-                            <p name="goodsinfo">믿고 먹을 수 있는 상품을 합리적인 가격에, KF365</p>
+                            <!--3.상품 문구goodsinfo-->
+                            ${gdetail.goodsinfo}
                         </div>
                     </div>
 
                     <div class="product-information">
-                        <span class="product-information-value" name="goodsprice">2,480</span>
-                        <span class="product-information-unit">원</span>
+                        <!-- 4.상품 가격  goodsprice-->
+                        <span class="product-information-value">${gdetail.goodsprice}</span>
+                        <span class="product-information-unit">원</span> 
+                        
+                        <!--5,상품할인율? goodsdiscount-->
+                        <input type="hidden" value="${gdetail.goodsdiscount}">
+                        <!--17번 상품 제고 -->
+                        <input type="hidden" value="${gdetail.goodsstock}">
+                        
                     </div>
 
                     <div class="guide-text">로그인 후, 적립 혜택이 제공됩니다.</div>
@@ -151,8 +221,8 @@
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">배송</dt>
                             <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p">샛별배송</p>
-                                <p class="sales-content-list-p2">23시 전 주문 시 내일 아침 7시 전 도착 (대구·부산·울산 샛별배송 운영시간 별도 확인)</p>
+                                ${gdetail.goodsdelivery}<!--6.배송타입-->
+                                
                             </dd>
                         </dl>
 
@@ -166,82 +236,81 @@
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">포장타입</dt>
                             <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p" name="goodspackage">냉장 (종이포장)</p>
-                                <p class="sales-content-list-p2" name="goodsdelivery">택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>
+                                ${gdetail.goodspackage}<!--7.포장타입 goodspackage-->
+                                
                             </dd>
                         </dl>
 
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">판매단위</dt>
                             <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p" name="goodsunit">1봉</p>
+                                ${gdetail.goodsunit}<!--8.판매단위 goodsunit-->
                             </dd>
                         </dl>
 
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">중량/용량</dt>
                             <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p" name="goodsweight">2입</p>
+                                ${gdetail.goodsweight}<!--9.중량용량 goodsweight-->
                             </dd>
                         </dl>
 
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">원산지</dt>
                             <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p" name="goodsorigin">국산</p>
-                            </dd>
+                                ${gdetail.goodsorigin}<!--10. 원산지 goodsorigin-->
+                                <input type="hidden" name="goodsorigin" value="${gdetail.goodsorigin}">
+                            </dd>                         
+                                      <!--11.상품찾는 이름? goodsselect-->
+                            
                         </dl>
-
-                        <dl class="sales-content-list">
-                            <dt class="sales-content-list-child">유통기한(또는 소비기한) 정보</dt>
-                            <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p">농산물로 별도의 유통기한은 없으나 가급적 빠르게 드시기 바랍니다.</p>
-                            </dd>
-                        </dl>
-
-                        <dl class="sales-content-list">
-                            <dt class="sales-content-list-child">안내사항</dt>
-                            <dd class="sales-content-list-child2">
-                                <p class="sales-content-list-p">신선식품의 특성상 상품의 중량에 3% 내외의 차이가 발생할 수 있습니다.</p>
-                                <p class="sales-content-list-p">-가지의 꼭지부분의 색이 상품 이미지와는 다른 색깔일 수 있으나 정상상품입니다. </p>
-                            </dd>
-                        </dl>
+                        <input type="hidden" value="${gdetail.goodsselect}">
+                        <!--13.상품 컨텐츠 내용 goodscontents-->
+        
+                        <!--13.컨텐스내용1번끝-->
                     </div>
-
+      
+                    
                     <div class="shopping-basket-area">
-                        <div class="product-selection-frame">
-                            <dl class="product-selection">
-                                <dt class="sales-content-list-child">상품선택</dt>
-                                <div class="product-selection-detail-page">
-                                    <div class="product-name"><span name="goodsselect">[KF365] 가지 2입</span></div>
-                                    <span>적립제외상품</span>
-                                    <div class="product-quantity-value">
-                                        <div class="product-quantity">
-                                            <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+							<div class="product-selection-frame">
+								<dl class="product-selection">
+									<dt class="sales-content-list-child">상품선택</dt>
+									<div class="product-selection-detail-page">
+										<div class="product-name">
+											<span>${goodstitle}</span>
+										</div>
+										<span>적립제외상품</span>
+										<div class="product-quantity-value">
+											<div class="product-quantity">
+											   <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
                                             <div><input type="number" name="goodscount" id="gcount" value="1"></div>
                                             <button type="button"aria-label="수량올리기" class="product-quantity-up"></button>
-                                        </div>
-                                        <div class="product-pay">
-                                            <span>2,480원</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </dl>
-                        </div>
+											</div>	
+											<div class="product-pay">
+												<span>${goodsprice}원</span>
+											</div>
+										</div>
+									</div>
+								</dl>
+							</div>
 
-                        <div class="total-product-amount">
+
+
+							<div class="total-product-amount">
                             <div class="total-product-amount-area">
                                 <div class="total-pay">
                                     <span class="total-pay-title">총 상품금액 :</span>
-                                    <span class="total-pay-value">2,480</span>
+                                    <span class="total-pay-value">${goodsprice}</span>
                                     <span class="total-pay-won">원</span>
                                 </div>
+                        
                                 <div class="login-accumulate">
                                     <span class="mark">적립</span>
                                     <span class="item-point-login">로그인 후, 적립 혜택 제공</span>                                    
                                 </div>
                             </div>
                         </div>
+                        
 
                         <div class="put-in-shopping-cart">
                             <button type="button" class="heart-img">
@@ -255,13 +324,14 @@
                                 </span>
                             </button>
                             <div class="shopping-cart-btn">
-                                <input type="submit" class="input-cart-btn" value="장바구니 담기">
+                            <input type="submit" class="input-cart-btn" value="장바구니 담기">
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </article>
-            </form>
+
             <nav class="product-information-sub-menu">
                 <nav class="product-information-sub-menu-frame">
                     <div class="sub-menu-1">
@@ -279,26 +349,22 @@
                 </nav>
             </nav>
 
-            <div class="product-description-frame">
-                <div class="gaji-description">
+       <div class="product-description-frame">
+          <div class="gaji-description">
                     <div class="gaji-description-1">
                         <div class="gaji-description-2">
 
                             <div class="gaji-intro">
                                 <div class="gaji-pic">
-                                    <img src="${contextPath}/mkurly/컬리이미지/가지-상세페이지/gaji (1).jpg" alt="가지">
-                                </div>
-                                <div class="gaji-context">
-                                    <h3><small>활용도 높은 보라빛 채소</small>가지</h3>
-                                    <p>늘 먹는 채소도 기본이 중요합니다. 없으면 허전한 필수 채소, 신선하게 담아가 보세요. 컬리는 제철에 가장 맛이 좋은 가지를 준비했어요. 길쭉하게 뻗은 몸통에 윤기가 흐르는 신선한 가지랍니다. 특히나 수분이 많은 채소라 시원한 느낌으로 즐기기에도 좋지요. 가지볶음이나 가지나물 등 친숙한 요리부터, 가지 튀김이나 라자냐같은 별미 요리를 펼쳐보세요. 약간의 쓴맛이 느껴진다면, 꼭지를 자른 뒤 옅은 소금물이나 식초물에 담갔다가 사용해도 좋을 거예요.</p>
+                                    <img src="${contextPath}/mkurly/상세페이지/${gdetail.goodscontents1}">
                                 </div>
                             </div>
     
                             <div class="gaji-point">
-                                <h3><span>Kurly's Check Point</span></h3>
+                               
                                 <div class="gaji-context">
                                     <div class="gaji-pic">
-                                        <img src="${contextPath}/mkurly/컬리이미지/가지-상세페이지/gaji (2).jpg" alt="가지 성분">
+                                        <img src="${contextPath}/mkurly/상세페이지/${gdetail.goodscontents2}">
                                     </div>
                                 </div>
                             </div>
@@ -306,52 +372,20 @@
                             <div class="gaji-desc">
                                 <div class="gaji-context">
                                     <div class="gaji-pic">
-                                        <img src="${contextPath}/mkurly/컬리이미지/기타/gaji-ad.webp" alt="광고">
+                                        <img src="${contextPath}/mkurly/상세페이지/${gdetail.goodscontents3}">
                                     </div>
                                 </div>
                             </div>
     
-                            <div class="gaji-tip">
-                                <h3><span>Kurly’s Tip</span></h3>
-                                <div class="tip-box">
-                                    <div class="gaji-context">
-                                        <p class="gaji-context-words"> <strong>보관법</strong> <b>・</b>물기를 제거한 가지를 키친타올로 감싼 후, 밀폐용기에 담아 냉장 보관하세요. 단, 가능한 한 이른 시일 내에 드셔야 맛과 식감을 지킬 수 있어요. </p>
-                                        <p class="gaji-context-words"> <strong>세척법</strong> <b>・</b>까슬까슬한 꼭지 부분을 잘라내세요. 베이킹소다 등을 표면에 고루 뿌려준 뒤 흐르는 물로 세척하면 됩니다. <br> 
-                                            <b>・</b>쓴맛이 느껴진다면, 꼭지를 잘라낸 뒤 옅은 소금물이나 식초물에 5분 정도 담갔다가 사용하세요. </p>
-                                        <p class="gaji-context-words"> <strong>활용팁</strong> <b>・</b>가지를 살짝 익혀서 무치거나 절임을 만들어보세요. 특유의 촉촉하고 말랑한 식감 덕에 맛깔스러운 반찬이 완성됩니다.<br> 
-                                            <b>・</b>먹기 좋게 썰어 바삭하게 튀겨내 보세요. 중화풍으로 양념을 입혀도 좋고, 탕수육처럼 새콤달콤한 소스를 뿌려 즐겨도 좋아요.<br> 
-                                            <b>・</b>라따뚜이, 멜란자네 등 근사한 요리를 할 때에도 빼놓을 수 없겠지요. 얇게 썰어 면 대신 활용하기에도 알맞습니다. </p>                                   
-                                    </div>
-                                </div>
-                            </div>
                         </div>                        
                     </div>
                 </div>
-
+                
                 <div class="gaji-detail">
-                    <div class="gaji-detail-list1"><img src="${contextPath}/mkurly/컬리이미지/가지-상세페이지/gaji.jpg" alt="크기사진"></div>
                     
-                    <div class="gaji-detail-list2">
-                        <h3>상품고시정보</h3>
-                        <ul class="detail-list-table">
-                            <li class="detail-list-table-left">포장단위별 용량(중량), 수량, 크기</li>
-                            <li class="detail-list-table-right">1봉 2개입</li>
-                            <li class="detail-list-table-left">관련법상 표시사항</li>
-                            <li class="detail-list-table-right">해당사항 없음</li>
-                            <li class="detail-list-table-left">생산자, 수입품의 경우 수입자를 함께 표기</li>
-                            <li class="detail-list-table-right">제품 별도 라벨 표기 참조</li>
-                            <li class="detail-list-table-left">상품구성</li>
-                            <li class="detail-list-table-right">상품설명 및 상품이미지 참조</li>
-                            <li class="detail-list-table-left">농수산물의 원산지 표시에 관한 법률에 따른 원산지</li>
-                            <li class="detail-list-table-right">국산</li>
-                            <li class="detail-list-table-left">보관방법 또는 취급방법</li>
-                            <li class="detail-list-table-right">냉장보관</li>
-                            <li class="detail-list-table-left">제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</li>
-                            <li class="detail-list-table-right">농산물로 별도의 유통기한 없음ㅁ</li>
-                            <li class="detail-list-table-left">소비자상담 관련 전화번호</li>
-                            <li class="detail-list-table-right">마켓컬리 고객행복센터(1644-1107)</li>
-                        </ul>
-                    </div>
+                    <!--16.컨텐츠 내용4 goodscontents4시작-->
+                    <div class="gaji-detail-list1"><img src="${contextPath}/mkurly/상세페이지/${gdetail.goodscontents4}" alt="크기사진"></div>
+                    <!--16. 컨텐츠내용4 goodscontents4 끝-->
 
                     <div class="seller">
                         <h3>판매자정보</h3>
@@ -429,6 +463,7 @@
                             </ul>
                         </div>
                     </div>
+                   
 
                     <div class="exchange-and-refund-information">
                         <strong class="exchange-and-refund-information-title">교환 및 환불 안내</strong>
@@ -500,6 +535,7 @@
                     </div>
                 </div>
 
+
                 <div id="review-form-frame">
                     <section class="review-form-area">
                         <h2>상품 후기</h2>
@@ -520,6 +556,11 @@
                             <button class="review-img8 review-img"></button>
                             <a class="review-img-plus"><span>+더보기</span></a>
                         </div>
+                        <div class="contect-us-btn">
+                            <span><a href="${contextPath}/good1/reviewAdd.do?goodscode=${goodscode}">후기작성</a></span>
+                        </div>
+                        <br><br><br>
+                        
 
                         <div class="poeple-review-text-page">
                             <div class="review-text-page-1div">
@@ -529,6 +570,7 @@
                                     <button class="recent-btn">최근등록순</button>
                                 </div>
                             </div>
+                      
         
                             <div class="review-text-page-2div">
                                 <span>공지</span>
@@ -539,8 +581,10 @@
                                 <span>공지</span>
                                 <button>금주의 베스트 후기 안내</button>
                             </div>
-        
+        <!-- 리뷰 시작 -->
+        	              <c:forEach var="ReviewList" items="${ReviewList}" >
                             <div class="review-text-page-3div">
+              
                                 <div class="review-user-frame">
                                     <div class="review-user-area">
                                         <span>베스트</span>
@@ -548,35 +592,51 @@
                                         <span>이*희</span>
                                     </div>
                                 </div>
-                                
-                                <article class="review-content-frame">
-                                    <div class="review-content-area">
-                                        <div class="review-item-name">
-                                            <h3>[KF365] 가지 2입</h3>
-                                        </div>
-                                        <p>여름철에 제철인 가지를 자주 사먹는데 컬리를 통해 편하게 배송 받았어요.
-                                            보라색 고운 빛깔과 윤기가 있고 길게 뻗은 싱싱한 가지가 배송되었네요.
-                                            수분이 많고 열량이 낮은데 우리 몸에 이로운 효과를 많이 주는 건강 식재료라 아이한테 꼭 먹이고 싶은 데 무쳐줘도 볶아줘도 흐물거리는 가지 특유의 식감때문에 잘 안먹어요ㅠㅜ
-                                            뭐 색다른방법 없을까하다가 썰은 가지를 프라이팬에 구워서 두가지종류 치즈를 올려서 줬더니 너무 잘 먹네요.
-                                            가지가 치즈를 만나니 맛도 좋고 영양도 풍부해서 간식으로 준비해줘도 좋고 빵도우 위에 올린 치즈보다 밀가루가 아니니까 속도 한결 편하네요~
-                                            다음에는 응용해서 가지 피자를 만들어줘야겠어요^^</p>
-                                        <div class="review-item-image">
-                                            <button class="review-item-img1 review-img"></button>
-                                            <button class="review-item-img2 review-img"></button>
-                                        </div>
-                                        <div class="review-day-or-like">
-                                            <div class="review-day">
-                                                <span>2021.09.05</span>
-                                            </div>
-                                            <button class="like-btn">
-                                                <span><i class="fa-regular fa-thumbs-up"></i></span>
-                                                <span>도움돼요 7</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </article>
+               		
+										<article class="review-content-frame">
+								
+											<div class="review-content-area">
+												<div class="review-item-name">
+													
+											<input type="hidden" value="${ReviewList.id}"> 
+											<input type="hidden" value="${ReviewList.reviewnum}"> 
+											<input	type="hidden" value="${ReviewList.goodscode}"> 
+											
+											
+													${ReviewList.goodsname}
+												</div>
+												<p>${ReviewList.reviewcontents}</p>
+												<div class="review-item-image">
+													<img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}">
+													<button >
+													<img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}"></button>
+													
+												</div>
+												<div class="review-day-or-like">
+													<div class="review-day">
+														<span>${ReviewList.reviewdate}</span>
+													</div>
+													
+												
+													<button class="like-btn">
+														<span><i class="fa-regular fa-thumbs-up"></i></span> 
+														<span>도움돼요7</span>
+													</button>
+													<a href="${contextPath}/good1/rModify.do?reviewnum=${ReviewList.reviewnum}">수정</a>
+													<a href="${contextPath}/good1/rDelete.do?reviewnum=${ReviewList.reviewnum}&goodscode=${goodscode}">삭제</a>
+													
+													
+												</div>
+											</div>
+									                
+							</article>
+						
+
+							
+               
+         <!-- 리뷰 끝나느부분-->                       
                             </div>
-        
+        	</c:forEach> 
                             <div class="review-text-page-3div">
                                 <div class="review-user-frame">
                                     <div class="review-user-area">
@@ -620,11 +680,12 @@
                         </div>
                     </section>
                 </div>
-
+                 </c:forEach>               
+<!-- 상품문의 작성 -->
                 <div class="inquiry-form-frame">
                     <div class="inquiry-form-area">
                         <div class="contect-us-btn">
-                            <button><span>문의하기</span></button>
+                            <span><a href="${contextPath}/good1/QnaAdd.do?goodscode=${goodscode}">문의하기</a></span>
                         </div>
 
                         <div class="user-inquiry">
@@ -635,14 +696,32 @@
                             </ul>
                         </div>
 
-                        <div class="user-inquiry-post-frame">
-                            <table class="user-inquiry-post">
+					<div class="infospace">
+						<div width="70" class="infonumber">제목</div>
+						<div width="70" class="infotitle">작성자</div>
+						<div width="70" class="infotitle">작성일</div>
+						<div width="70" class="infotitle">답변상태</div>
+						<div width="70" class="infotitle">삭제</div>
+						<div width="70" class="infotitle">삭제</div>
+						<div class="write">제목</div>
+					</div>
+
+
+
+
+
+
+
+					<div class="user-inquiry-post-frame">
+                             <table class="user-inquiry-post">
                                 <thead class="user-inquiry-list-title-area">
                                     <tr>
                                         <th class="user-inquiry-title">제목</th>
                                         <th class="user-inquiry-auther">작성자</th>
                                         <th class="user-inquiry-created-date">작성일</th>
                                         <th class="user-inquiry-status">답변상태</th>
+                                        <th class="user-inquiry-status">삭제</th>
+                                        <th class="user-inquiry-status">수정</th>
                                     </tr>
                                 </thead>
                                 <tbody class="user-inquiry-post-list">
@@ -656,29 +735,33 @@
                                         <td class="user-inquiry-post-status">-</td>
                                     </tr>
                                     
-                                    <tr class="user-inquiry-post">
-                                        <td class="user-inquiry-post-title">
-                                            <div class="post-title">
-                                                <span>비밀글입니다.</span>
-                                                <span class="lock"><!--back img--></span>
-                                            </div>
-                                        </td>
-                                        <td class="user-inquiry-post-auther">이*희</td>
-                                        <td class="user-inquiry-post-created-date">2022.10.26</td>
-                                        <td class="user-inquiry-post-status-clear">답변완료</td>
+                                  <c:forEach var="Qlist" items="${Qlist}">
+                                  <div>  
+                                   	<tr class="user-inquiry-post">
+                                   		<div>	                       
+                                        <td class="user-inquiry-post-auther">${Qlist.qnatitle}</td>
+                                        <td class="user-inquiry-post-auther">${Qlist.name}</td>
+                                        <td class="user-inquiry-post-status">${Qlist.qnadate}</td>
+                                        <td class="user-inquiry-post-status"><a href="${contextPath}/good1/qnaMod.do?qnanum=${Qlist.qnanum}&goodscode=${goodscode}">수정하기</a></td>
+                                        <td class="user-inquiry-post-status"><a href="${contextPath}/good1/qndDel.do?qnanum=${Qlist.qnanum}">삭제하기</a></td>
+                                    	</div>
+                                    	<div class="answerarea">
+                                   		<tr class="user-inquiry-post">
+                                     	<td class="user-inquiry-post-created-date">${Qlist.qnacontents}</td>
+                                    	</tr>
+                                    	</div>
                                     </tr>
-
-                                    <tr class="user-inquiry-post">
-                                        <td class="user-inquiry-post-title">
-                                            <div class="post-title">
-                                                <span>비밀글입니다.</span>
-                                                <span class="lock"></span>
-                                            </div>
-                                        </td>
-                                        <td class="user-inquiry-post-auther">서*범</td>
-                                        <td class="user-inquiry-post-created-date">2022.10.25</td>
-                                        <td class="user-inquiry-post-status-clear">답변완료</td>
-                                    </tr>
+                                   
+                                   
+                                    </div>		
+                                     		<input type="hidden" value="${Qlist.id}">
+                                            <input type="hidden" value="${Qlist.goodscode}">
+                                            <input type="hidden" value="${Qlist.qnalock}">
+                                            <input type="hidden" value="${Qlist.qnaanswer}">
+                                            <input type="hidden" value="${Qlist.name}">
+                                     
+                                           
+                                  </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -703,7 +786,7 @@
             <div class="item-quantity-information-one-frame">
                 <div class="item-quantity-information-one-area">
                     <span class="item-quantity-information-name">
-                        <span class="item-quantity-information-title">[KF365] 가지 2입</span>
+                        <span class="item-quantity-information-title">${goodstitle}</span>
                         <span class="item-point-guide">적립제외상품</span>
                     </span>
                     <span class="item-count-btn-frame">
@@ -713,7 +796,7 @@
                             <button type="button" class="item-count-btn-up"><!--back img--></button>
                         </div>
                         <span class="item-value-area">
-                            <span>2,480원</span>
+                            <span>${goodsprice}</span>
                         </span>
                     </span>
                 </div>
@@ -747,9 +830,10 @@
                             </span>
                         </button>
                         <div class="shoppingback">
-                            <button class="item-input-shoppingback" type="button">
-                                <span>장바구니 담기</span>
-                            </button>
+                            <a href="${contextPath}/cart/addCart.do"><button class="item-input-shoppingback" type="button">
+			                                <span>장바구니 담기</span>
+			                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

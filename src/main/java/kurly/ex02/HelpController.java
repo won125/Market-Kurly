@@ -53,7 +53,7 @@ public class HelpController extends HttpServlet {
 		System.out.println("요청 이름 : " + action);
 		try {
 			List<HelpVO> helpList = new ArrayList<HelpVO>();
-			if(action == null || action.equals("/listHelp.do")) {//action 값이 listArticles.do면 전체 값을 조회
+			if(action == null || action.equals("/helpList.do")) {//action 값이 listArticles.do면 전체 값을 조회
 				 String _section =request.getParameter("section"); 
 				 String _pageNum=request.getParameter("pageNum"); 
 				 int section = Integer.parseInt((_section ==null)? "1" : _section); 

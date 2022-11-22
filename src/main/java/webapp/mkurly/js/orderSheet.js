@@ -15,6 +15,25 @@ $(document).ready(function(){
         $("#img4").hide();
     });
 });
+        window.onload=function(){
+        $(function(){
+            $('.goods-list-down, .goods-list-up').click(function(){
+                    $('.order-goods-list').toggle();   
+                });
+            });
+            $('.goods-list-up').show();
+            $('.goods-list-down').hide();
+
+            $('.goods-list-up').click(function(){
+                $('.goods-list-up').hide();
+                $('.goods-list-down').show();
+            });
+            $('.goods-list-down').click(function(){
+                $('.goods-list-down').hide();
+                $('.goods-list-up').show();
+            });
+        } 
+
 
 $(document).ready(function(){
     /*웹페이지 열었을 때*/

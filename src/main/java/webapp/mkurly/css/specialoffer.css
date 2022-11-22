@@ -1,0 +1,39 @@
+@charset "utf-8";
+.allspecialofferform{
+    width: 1050px;
+    margin: 0px auto;
+    padding-top: 0px;
+}
+.specialofferform{
+    margin-bottom: 10px;
+    background-color: rgb(244, 244, 244);
+}
+.banner{
+    display: block;
+    cursor: pointer;
+}
+.advertisingbanner{
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+img, legend {
+    border: 0;
+    vertical-align: top;
+}
+
+canvas, img, video {
+    max-width: 100%;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+*, :after, :before, legend, td, th {
+    padding: 0;
+}

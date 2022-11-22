@@ -8,6 +8,10 @@
 html {
     line-height: 1.15;
 }
+.goods-list-up i {
+    width: 30px;
+    height: 30px;
+}
 button {
     overflow: visible;
     background-color: transparent;

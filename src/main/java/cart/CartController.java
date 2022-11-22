@@ -40,8 +40,11 @@ public class CartController extends HttpServlet {
 		}
 		else if(action.equals("/addCart.do")) {
 			String goodscode=request.getParameter("goodscode");
+			System.out.println(goodscode);
 			String id=request.getParameter("id");
+			System.out.println(id);
 			int goodscount=Integer.parseInt(request.getParameter("goodscount"));
+			System.out.println(goodscount);
 			int result =cartDAO.productCheck(id, goodscode);
 			System.out.println(result);
 			if(result == 1) {
@@ -52,7 +55,7 @@ public class CartController extends HttpServlet {
 			else if(result==0){
 				request.setAttribute("result", result);
 			}
-			nextPage="/mkurly/productDetailPage.jsp";
+			nextPage="/good1/goodsdetail.do";
 		}
 		else if(action.equals("/listCart.do")) {
 			System.out.println("장바구니로");
