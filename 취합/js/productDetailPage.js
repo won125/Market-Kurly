@@ -101,4 +101,11 @@ $(document).ready(function(){
         }
         $(".product-quantity-count").text(countNum);
     });
+
+    $( ".user-inquiry-post").click(function() {
+        let idx = $(this).index();
+        $(".user-inquiry-qna").eq(idx/2).toggle();
+    });
+
 });
+

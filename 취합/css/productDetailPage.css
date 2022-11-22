@@ -1373,6 +1373,10 @@ button {
     margin-left: 3px;
     color: rgb(153, 153, 153);
 }
+
+.stop-selling {
+    width: 100%;
+}
 .user-inquiry-post {
     width: 100%;
     border-collapse: collapse;
@@ -1659,4 +1663,64 @@ button {
     display: inline-block;
     font-size: 16px;
     font-weight: 500;
+}
+
+/* 문의 내용 css */
+.user-inquiry-qna {
+    background-color: rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(244, 244, 244);
+    max-width: 100px;
+    display: none;
+}
+.user-inquiry-qnaA-frame {
+    max-width: 1010px;
+}
+.user-inquiry-qnaA-area {
+    display: flex;
+    padding: 22px 20px 30px;
+    align-items: flex-start;
+}
+.user-inquiry-qnaA-img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+.user-inquiry-qnaA-text {
+    margin-left: 12px;
+    padding-top: 2px;
+    font-size: 14px;
+    word-break: break-all;
+    line-height: 19px;
+    letter-spacing: -0.5px;
+}
+
+
+
+.user-inquiry-qnaQ-frame {
+    max-width: 1010px;
+}
+.user-inquiry-qnaQ-area {
+    display: flex;
+    padding: 22px 20px 30px;
+    align-items: flex-start;
+}
+.user-inquiry-qnaQ-img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+.user-inquiry-qnaQ-text {
+    margin-left: 12px;
+    padding-top: 2px;
+    font-size: 14px;
+    word-break: break-all;
+    line-height: 19px;
+    letter-spacing: -0.5px;
+}
+.user-inquiry-qna-date {
+    padding: 0px 16px 20px;
+    margin-left: 40px;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgb(153, 153, 153);
 }
