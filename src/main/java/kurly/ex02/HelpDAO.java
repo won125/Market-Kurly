@@ -32,6 +32,7 @@ public class HelpDAO {
 		
 		//글 목록 페이징 메서드
 		public List selectAllArticles(Map<String, Integer> pagingMap){
+
 			List<HelpVO> helpList = new ArrayList<HelpVO>();
 			int section = (Integer)pagingMap.get("section");
 			int pageNum = (Integer)pagingMap.get("pageNum");
@@ -74,6 +75,7 @@ public class HelpDAO {
 		
 		//글 번호 생성 메서드
 		private int getNewArticleNO() {
+
 			try {
 				conn=dataFactory.getConnection();
 				//기본 글 번호 중 max 함수를 이용해 가장 큰 번호를 조회
@@ -96,6 +98,7 @@ public class HelpDAO {
 		
 		//새 글 추가 메서드
 				public int insertNewArticle(HelpVO help) {
+
 					int helpnum=getNewArticleNO();//db연결안되도 선언되게
 					try {
 						conn=dataFactory.getConnection();
@@ -122,6 +125,7 @@ public class HelpDAO {
 				
 				//선택 글 상세내용
 				public HelpVO selectHelp(int helpnum) {
+
 					HelpVO help = new HelpVO();
 					try {
 						conn =dataFactory.getConnection();
@@ -155,8 +159,10 @@ public class HelpDAO {
 					return help;
 				}
 				
+				
 				//글 수정하기
 				public void updateHelp(HelpVO help) {
+
 					int helpnum = help.getHelpnum();
 					String helptitle=help.getHelptitle();
 					String helpcontents = help.getHelpcontents();
@@ -190,7 +196,7 @@ public class HelpDAO {
 					List<Integer> helpnumList = new ArrayList<Integer>();
 					try {
 						conn=dataFactory.getConnection();
-						String query = "SELECT helpnum FROM kurly_help helpnum=?";
+						String query = "SELECT helpnum FROM kurly_help where helpnum=?";
 						System.out.println(query);
 						pstmt=conn.prepareStatement(query);
 						pstmt.setInt(1, helpnum);

@@ -80,19 +80,19 @@ public class PayDAO {
 			pstmt.setString(1, id);
 			pstmt.setString(2, totalprice);
 			pstmt.executeUpdate();
-			String query = "select c.id, c.goodscode,c.goodscount,g.goodsname,g.goodsinfo,g.goodsprice,"
+			String query = "select c.goodscode,c.goodscount,g.goodsname,g.goodsinfo,g.goodsprice,"
 					+ "g.goodsdelivery,g.goodspackage,g.goodsunit,g.goodsweight,g.goodsorigin,g.goodsimage,m.name,m.email,"
-					+ "m.phone,m.address,m.detailaddress,s.shippingname,s.shippingphone,s.shippingaddress,s.shippingdefaultaddress,"
+					+ "m.phone,m.address,m.detailaddress,s.shippingname,s.shippingphone,s.shippingaddress,s.shippingdetailaddress,"
 					+ "o.totalprice from kurly_cart c inner join kurly_goods g on c.goodscode=g.goodscode"
 					+ " inner join kurly_member m on c.id=m.id inner join kurly_shipping s on m.id=s.id inner join kurly_order o on"
 					+ " s.id=o.id where c.id=?";
 			System.out.println(query);	
 			pstmt = conn.prepareStatement(query);
-		
-			pstmt.setString(1, id);
+			String id1 = payVO.getId();
+			pstmt.setString(1, id1);
+			System.out.println(id1);
 			ResultSet rs =pstmt.executeQuery();
 			while(rs.next()) {
-				String _id = rs.getString("id");
 				String goodscode =rs.getString("goodscode");
 				String goodsname=rs.getString("goodsname");
 				String goodsinfo=rs.getString("goodsinfo");
@@ -112,34 +112,31 @@ public class PayDAO {
 				String shippingname=rs.getString("shippingname");
 				String shippingphone=rs.getString("shippingphone");
 				String shippingaddress=rs.getString("shippingaddress");
-				String shippingdefaultaddress=rs.getString("shippingdefaultaddress");
+				String shippingdetailaddress=rs.getString("shippingdetailaddress");
 				String _totalprice=rs.getString("totalprice");
-				PayVO pay = new PayVO(_id, goodscode, goodsname, goodsinfo, goodsdelivery,
-						goodsprice, goodspackage, goodsunit, goodsweight, goodsorigin,
-						goodsimage, goodscount, shippingname, shippingphone, shippingaddress,
-						shippingdefaultaddress, shippingname, email, shippingphone, shippingdefaultaddress, detailaddress,_totalprice);
-				pay.setTotalprice(_totalprice);
-				pay.setGoodsinfo(goodsinfo);
-				pay.setGoodscode(goodscode);;
-				pay.setGoodsdelivery(goodsdelivery);
-				pay.setGoodsimage(goodsimage);
+				PayVO pay = new PayVO(id, goodscode, goodsname, goodsinfo, goodsprice, goodspackage, goodsunit, goodsweight, goodsorigin, goodsimage, goodsdelivery,goodscount, shippingname, shippingphone, shippingaddress, shippingdetailaddress, name, email, phone, address, detailaddress,_totalprice);	
+				pay.setId(id);
+				pay.setAddress(goodscode);
 				pay.setGoodsname(goodsname);
-				pay.setGoodsorigin(goodsorigin);
-				pay.setGoodspackage(goodspackage);
+				pay.setGoodsinfo(goodsinfo);
 				pay.setGoodsprice(goodsprice);
+				pay.setGoodspackage(goodspackage);
 				pay.setGoodsunit(goodsunit);
 				pay.setGoodsweight(goodsweight);
-				pay.setId(_id);
+				pay.setGoodsorigin(goodsorigin);
+				pay.setGoodsimage(goodsimage);
+				pay.setGoodsdelivery(goodsdelivery);
 				pay.setGoodscount(goodscount);
-				pay.setName(name);
+				pay.setShippingname(shippingname);
+				pay.setShippingphone(shippingphone);
+				pay.setShippingaddress(shippingaddress);
+				pay.setShippingdetailaddress(shippingdetailaddress);
+				pay.setName(shippingname);
 				pay.setEmail(email);
 				pay.setPhone(phone);
 				pay.setAddress(address);
 				pay.setDetailaddress(detailaddress);
-				pay.setShippingname(shippingname);
-				pay.setShippingphone(shippingphone);
-				pay.setShippingaddress(shippingaddress);
-				pay.setShippingdefaultaddress(shippingdefaultaddress);
+				pay.setTotalprice(_totalprice);
 				payList.add(pay);
 				
 			}

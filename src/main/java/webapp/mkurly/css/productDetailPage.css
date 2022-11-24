@@ -5,7 +5,6 @@
 img {
     vertical-align: top;
 }
-
 button {
     margin: 0;
     padding: 0;
@@ -28,34 +27,11 @@ button {
     display: flex;
     justify-content: space-between;
 }
-.left-img-area {
+.left-img-area img {
     width: 430px;
     height: 552px;
     width: 430px;
     height: 552px;
-}
-.left-img-area img{
-    width: 430px;
-    height: 552px;
-    width: 430px;
-    height: 552px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin : 0;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-#gcount{
-	border:none;
-	text-align:center;
-	display:inline-block;
-	width:30.79px;
-	height:28px;
 }
 .right-information-area {
     width: 560px;
@@ -251,7 +227,7 @@ input[type="number"] {
     color: transparent;
     background-size: cover;
     background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/minus-btn.svg);
+    background-image: url(../컬리이미지/가지-상세페이지/minus-btn2.svg);
     vertical-align: top;
 }
 .product-quantity>div {
@@ -337,6 +313,7 @@ input[type="number"] {
     color: rgb(102, 102, 102);
 }
 .put-in-shopping-cart {
+	position:relative;
     display: flex;
     gap: 8px;
     margin-top: 20px;
@@ -348,10 +325,16 @@ input[type="number"] {
     overflow: hidden;
     width: 56px;
     height: 56px;
+    line-height: 51px;
     border-radius: 3px;
     color: rgb(51, 51, 51);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(221, 221, 221);
+    
+}
+.heart-img img{
+    vertical-align: middle;
+    
 }
 .heart-img span {
     display: inline-block;
@@ -1344,6 +1327,25 @@ input[type="number"] {
     position: absolute;
     right: 0px;
 }
+#gcount
+{
+	border:none;
+	width:30px;
+	height:28px;
+	text-align:center;
+}
+#gcountt
+{
+	border:none;
+	width:30px;
+	height:28px;
+	text-align:center;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 .contect-us-btn button {
     display: block;
     padding: 0px 10px;
@@ -1569,19 +1571,7 @@ input[type="number"] {
     width: 88px;
     border-radius: 3px;
 }
-.item-count-btn-down {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    border: none;
-    font-size: 1px;
-    color: transparent;
-    background-size: cover;
-    background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/minus-btn.svg);
-    vertical-align: top;
-}
-.item-count-btn-number {
+.item-count-btn-area>div {
     display: inline-flex;
     overflow: hidden;
     white-space: nowrap;
@@ -1593,18 +1583,6 @@ input[type="number"] {
     width: 31px;
     height: 28px;
     line-height: 28px;
-}
-.item-count-btn-up {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    border: none;
-    font-size: 1px;
-    color: transparent;
-    background-size: cover;
-    background-color: transparent;
-    background-image: url(../컬리이미지/가지-상세페이지/plus-btn.svg);
-    vertical-align: top;
 }
 .item-value-area {
     display: flex;

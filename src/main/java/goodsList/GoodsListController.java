@@ -21,6 +21,7 @@ import org.apache.commons.io.FileUtils;
 
 import goods.GoodsDAO;
 import goods.GoodsVO;
+import member.MemberDAO;
 import qna.QnaDAO;
 import qna.QnaVO;
 import review.ReviewDAO;
@@ -35,6 +36,7 @@ public class GoodsListController extends HttpServlet {
 	GoodsDAO goodsDAO;
 	QnaDAO qnaDAO;
 	ReviewDAO reviewDAO;
+	MemberDAO memberDAO;
 
 	@Override
 	public void init() throws ServletException {
@@ -42,9 +44,10 @@ public class GoodsListController extends HttpServlet {
 		goodsDAO = new GoodsDAO();
 		qnaDAO = new QnaDAO();
 		reviewDAO = new ReviewDAO();
+		memberDAO = new MemberDAO();
 	}
 
-	private static String ART_IMAGE_REPO1 = "C:\\Users\\HS\\Desktop\\kurlyworkspace\\workspace\\MarketKurly2\\MarketKurly2\\src\\main\\webapp\\upload";
+	private static String ART_IMAGE_REPO1 = "C:\\myJSP\\kurlyspace\\MarketKurly\\src\\main\\java\\webapp\\mkurly\\상세페이지\\upload";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,18 +62,19 @@ public class GoodsListController extends HttpServlet {
 	private void doHandle(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextPage = null;
+		String nextPage;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String action = request.getPathInfo();
 		//System.out.println("액션 실행중>>" + action);
-
-		if (action == null || action.equals("/goodslist.do")) {
+		if (action.equals("/goodslist.do")) {
+			System.out.println(action);
 			List<GoodsListVO> glist = goodListDAO.goodslist();
 			request.setAttribute("glist", glist);
-			nextPage = "/mkurly/newproduct.jsp";
+			nextPage="/mkurly/newproduct.jsp";
 		//품목별 찾는방법
 		}else if (action.equals("/search.do")){
+			System.out.println(action);
 			String keyword = request.getParameter("keyword");
 			System.out.println(keyword);
 			List<GoodsListVO> findlist = goodListDAO.findlist(keyword);
@@ -100,100 +104,111 @@ public class GoodsListController extends HttpServlet {
 			request.setAttribute("findlist", findlist);
 			nextPage = "/mkurly/FindProduct.jsp";	
 		}else if (action.equals("/goodsdetail.do")) {
-		
-			String goodscode = request.getParameter("goodscode");
-			String goodsprice = request.getParameter("goodsprice");
-			String goodstitle = request.getParameter("goodstitle");
+		      
+	         String goodscode = request.getParameter("goodscode");
+	         System.out.println(goodscode+"여기");
+	         String goodsprice = request.getParameter("goodsprice");
+	         System.out.println(goodsprice);
+	         String goodstitle = request.getParameter("goodstitle");
+	         System.out.println(goodstitle);
+
+	         List<ReviewVO> ReviewList = reviewDAO.selectAllReview(goodscode);
+	         request.setAttribute("ReviewList", ReviewList);
+
+	         List<QnaVO> QnaList = qnaDAO.selectAllQna(goodscode);
+	         request.setAttribute("Qlist", QnaList);
+
+	         List<GoodsVO> gdetail = goodsDAO.goodsdetail(goodscode);
+	         request.setAttribute("gdetail", gdetail);// 리스트를 보낸다.
+
+	         request.setAttribute("goodscode", goodscode);
+	         request.setAttribute("goodsprice", goodsprice);
+	         request.setAttribute("goodstitle", goodstitle);
+
+	         nextPage = "/mkurly/productDetailPage.jsp";
+		}else if (action.equals("/goodsdetail1.do")){
+		       HttpSession session = request.getSession();
+	           String id = (String)session.getAttribute("sessionID");
+	            String goodscode=request.getParameter("goodscode");
+	            int result = memberDAO.findwishitem(goodscode, id);
+	            System.out.println(goodscode);
+	            List<GoodsVO> gdetail = goodsDAO.goodsdetail(goodscode);
+	            System.out.println(gdetail.isEmpty());//리스트가  NULL인지 아닌지 확인한다.
+	            System.out.println(gdetail.toString());//gdetail hash 값으로 나온다. toString  문자열로 바꿔줘야지 확인 가능
+	            request.setAttribute("gdetail", gdetail);//리스트를 보낸다.
+	            request.setAttribute("wishResult", result);
 	
+	            System.out.println(action +"실행중");
+	            
+	            nextPage= "/mkurly/productDetailPage.jsp";
 
-			List<ReviewVO> ReviewList = reviewDAO.selectAllReview(goodscode);
-			request.setAttribute("ReviewList", ReviewList);
-
-			List<QnaVO> QnaList = qnaDAO.selectAllQna(goodscode);
-			request.setAttribute("Qlist", QnaList);
-
-			List<GoodsVO> gdetail = goodsDAO.goodsdetail(goodscode);
-			request.setAttribute("gdetail", gdetail);// 리스트를 보낸다.
-			request.setAttribute("goodscode", goodscode);
-			request.setAttribute("goodsprice", goodsprice);
-			request.setAttribute("goodstitle", goodstitle);
-
-			//System.out.println(gdetail.isEmpty());// 리스트가 NULL인지 아닌지 확인한다.
-			//System.out.println(gdetail.toString());// gdetail hash 값으로 나온다. toString 문자열로 바꿔줘야지 확인 가능
-
-			//System.out.println(QnaList.isEmpty());
-			//System.out.println(QnaList.toString());
-
-			//System.out.println(action + "실행중asd");
-
-			nextPage = "/mkurly/productDetailPage.jsp";
-			// 1:1문의 게시글 작성 이동
 		} else if (action.equals("/QnaAdd.do")) {
-			HttpSession session = request.getSession();
-			String _goodscode = request.getParameter("goodscode");
-			GoodsVO goodsvo = goodsDAO.findimg(_goodscode);
-			System.out.println(goodsvo);
-			request.setAttribute("goodsimg", goodsvo);
-			request.setAttribute("goodscode", _goodscode);
-			nextPage = "/mkurly/qnaForm.jsp";
-			// 게시글 추가
-		} else if (action.equals("/insertQna.do")) {
-			String id = request.getParameter("id");
-			String name = request.getParameter("name");
-			String qnatitle = request.getParameter("qnatitle");
-			String qnacontents = request.getParameter("qnacontents");
-			String goodscode = request.getParameter("goodscode");
-			QnaVO qnaVO = new QnaVO();
-			qnaVO.setId(id);
-			qnaVO.setName(name);
-			qnaVO.setQnatitle(qnatitle);
-			qnaVO.setQnacontents(qnacontents);
-			qnaVO.setGoodscode(goodscode);
-			qnaDAO.insertQna(qnaVO);
-			nextPage = "/good1/goodsdetail.do";
-			// 해당 게시글 삭제할때
-		} else if (action.equals("/qndDel.do")) {
-			String qnanum = request.getParameter("qnanum");
-			System.out.println(qnanum);
-			String goodscode = request.getParameter("goodscode");
-			request.setAttribute("goodscode", goodscode);
-			qnaDAO.delQna(qnanum);
-			nextPage = "/good1/goodsdetail.do";
-			// 게시글 수정페이지 이동
-		} else if (action.equals("/qnaMod.do")) {
-			String qnanum = request.getParameter("qnanum");
-			QnaVO qnaVO = qnaDAO.findqna(qnanum);
-			request.setAttribute("qnaInfo", qnaVO);
+	         HttpSession session = request.getSession();
+	         String _goodscode = request.getParameter("goodscode");
+	         GoodsVO goodsvo = goodsDAO.findimg(_goodscode);
+	         System.out.println(goodsvo);
+	         request.setAttribute("goodsimg", goodsvo);
+	         request.setAttribute("goodscode", _goodscode);
+	         nextPage = "/mkurly/qnaForm.jsp";
+	         // 게시글 추가
+	      } else if (action.equals("/insertQna.do")) {
+	          String id = request.getParameter("id");
+	          String name = request.getParameter("name");
+	          String qnatitle = request.getParameter("qnatitle");
+	          String qnacontents = request.getParameter("qnacontents");
+	          String goodscode = request.getParameter("goodscode");
 
-			String goodscode = request.getParameter("goodscode");
-			GoodsVO goodsvo = goodsDAO.findimg(goodscode);
-			request.setAttribute("gimg", goodsvo);
+	          QnaVO qnaVO = new QnaVO();
+	          qnaVO.setId(id);
+	          qnaVO.setName(name);
+	          qnaVO.setQnatitle(qnatitle);
+	          qnaVO.setQnacontents(qnacontents);
+	          qnaVO.setGoodscode(goodscode);
+	          qnaDAO.insertQna(qnaVO);
+	          nextPage = "/good1/goodsdetail.do";
+	          // 해당 게시글 삭제할때
+	       }else if (action.equals("/qndDel.do")) {
+	           String qnanum = request.getParameter("qnanum");
+	           System.out.println(qnanum);
+	           String goodscode = request.getParameter("goodscode");
+	           request.setAttribute("goodscode", goodscode);
+	           qnaDAO.delQna(qnanum);
+	           nextPage = "/good1/goodsdetail.do?goodscode="+goodscode;
+	           // 게시글 수정페이지 이동
+	        } else if (action.equals("/qnaMod.do")) {
+	            String qnanum = request.getParameter("qnanum");
+	            QnaVO qnaVO = qnaDAO.findqna(qnanum);
+	            request.setAttribute("qnaInfo", qnaVO);
 
-			request.setAttribute("goodscode", goodscode);
+	            String goodscode = request.getParameter("goodscode");
+	            GoodsVO goodsvo = goodsDAO.findimg(goodscode);
+	            request.setAttribute("gimg", goodsvo);
 
-			nextPage = "/mkurly/modForm.jsp";
+	            request.setAttribute("goodscode", goodscode);
 
-		} else if (action.equals("/qnaModOk.do")) {
+	            nextPage = "/mkurly/modForm.jsp";
 
-			String qnanum = request.getParameter("qnanum");
-			String id = request.getParameter("id");
-			String name = request.getParameter("name");
-			String qnatitle = request.getParameter("qnatitle");
-			String qnacontents = request.getParameter("qnacontents");
-			String goodscode = request.getParameter("goodscode");
-			QnaVO qnaVO = new QnaVO(id, name, goodscode, qnatitle, qnacontents, qnanum);
-			qnaDAO.updateQna(qnaVO);
+	         } else if (action.equals("/qnaModOk.do")) {
 
-			nextPage = "/good1/goodsdetail.do";
-			// 후기작성
-		} else if (action.equals("/reviewAdd.do")) {
-			String goodscode = request.getParameter("goodscode");
-			GoodsVO goodsvo = goodsDAO.findimg(goodscode);
-			System.out.println(goodsvo);
-			request.setAttribute("goodsimg", goodsvo);
-			request.setAttribute("goodscode", goodscode);
-			nextPage = "/mkurly/reviewForm.jsp";
-		} else if (action.equals("/insertReview.do")) {
+	             String qnanum = request.getParameter("qnanum");
+	             String id = request.getParameter("id");
+	             String name = request.getParameter("name");
+	             String qnatitle = request.getParameter("qnatitle");
+	             String qnacontents = request.getParameter("qnacontents");
+	             String goodscode = request.getParameter("goodscode");
+	             QnaVO qnaVO = new QnaVO(id, name, goodscode, qnatitle, qnacontents, qnanum);
+	             qnaDAO.updateQna(qnaVO);
+
+	             nextPage = "/good1/goodsdetail.do";
+	             // 후기작성
+	          } else if (action.equals("/reviewAdd.do")) {
+	              String goodscode = request.getParameter("goodscode");
+	              GoodsVO goodsvo = goodsDAO.findimg(goodscode);
+	              System.out.println(goodsvo);
+	              request.setAttribute("goodsimg", goodsvo);
+	              request.setAttribute("goodscode", goodscode);
+	              nextPage = "/mkurly/reviwForm.jsp";
+	           } else if (action.equals("/insertReview.do")) {
 			int articleNo=0;
 			Map<String , String>articleMap=upload(request, response);
 			String id = articleMap.get("id");
@@ -218,7 +233,7 @@ public class GoodsListController extends HttpServlet {
 			rVO.setReviewimage(reviewimage);
 			rVO.setGoodsname(goodsname);
 			articleNo = reviewDAO.insertRview(rVO);
-			if(reviewimage != null && reviewimage.length() !=0) {
+			if(reviewimage != "" && reviewimage.length() !=0) {
 				File srcFile = new File(ART_IMAGE_REPO1+"\\"+"temp\\"+reviewimage);
 				File destDir= new File(ART_IMAGE_REPO1+"\\"+ articleNo);
 				destDir.mkdir();//글번호생성
@@ -232,35 +247,41 @@ public class GoodsListController extends HttpServlet {
 	    	  String reviewnum = request.getParameter("reviewnum");
 	    	  reviewDAO.delReview(reviewnum);
 	    	  String goodscode = request.getParameter("goodscode");
+	    	  System.out.println(goodscode);
 			  request.setAttribute("goodscode", goodscode);
-	    	  
 	    	  nextPage="/good1/goodsdetail.do";
 	    	  
 	      }else if(action.equals("/rModify.do")) {
 	    	 String reviewnum = request.getParameter("reviewnum");
+	    	 System.out.println(reviewnum);
 	    	 ReviewVO reviewVO = reviewDAO.findreview(reviewnum);
 	    	 request.setAttribute("reviewinfo", reviewVO);
-	    	 
 	    	 String goodscode = request.getParameter("goodscode");
+	    	 System.out.println(goodscode);
 	    	 request.setAttribute("goodscode", goodscode);
-	    	
 	    	 nextPage = "/mkurly/ModReviwForm.jsp";
 	    	  
-	      }else if(action.equals("/rModify.do")) {
+	      }else if(action.equals("/ModReviwOk.do")) {
 	    	  String Reviewcontents = request.getParameter("Reviewcontents");
+	    	  System.out.println(Reviewcontents);
 	    	  String reviewimage = request.getParameter("reviewimage");
+	    	  System.out.println(reviewimage);
 	    	  String reviewnum =request.getParameter("reviewnum");
-	    	  
+	    	  System.out.println(reviewnum);
 	    	  ReviewVO reviewVO =  new ReviewVO(reviewnum, Reviewcontents, reviewimage);
 	    	  reviewDAO.updatereview(reviewVO);
-	    	  
 	    	  String goodscode = request.getParameter("goodscode");
 	    	  nextPage="/good1/goodsdetail.do";
 	  	  
 	      }
- 
+	      else {
+	    	  System.out.println(action);
+	    	  nextPage = "/mkurly/newproduct.jsp";
+	      }
+		
+		
 	      RequestDispatcher dispatcher=request.getRequestDispatcher(nextPage);
-	      dispatcher.forward(request, response);
+		      dispatcher.forward(request, response);
 	      
 	}
 

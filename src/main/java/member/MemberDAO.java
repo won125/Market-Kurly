@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import shipping.ShippingVO;
+
 public class MemberDAO {
 	private DataSource dataFactory;
 	private Connection conn;
@@ -38,11 +40,12 @@ public class MemberDAO {
 			List<MemberVO> memberList = new ArrayList();
 			try {
 				conn = dataFactory.getConnection();//조회할때마다 데이터베이스 연결
-				String query = "select * from membertbl order by joinDate desc";//회원 테이블 조회 쿼리문
+				String query = "select * from kurly_member";//회원 테이블 조회 쿼리문
 				System.out.println("쿼리문 출력 : " + query);
 				pstmt = conn.prepareStatement(query);
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()) {
+					if(!rs.getString("id").equals("admin")) {
 					String id = rs.getString("id");
 					String pw = rs.getString("pw");
 					String name = rs.getString("name");
@@ -56,12 +59,13 @@ public class MemberDAO {
 					String birthday = rs.getString("birthday");
 					MemberVO memberVO = new MemberVO(id, pw, name, email, phone, address, detailAddress, gender, birthyear, birthmonth, birthday);
 					memberList.add(memberVO);
+					}
 				}
 				rs.close();
 				pstmt.close();
 				conn.close();
 			} catch (Exception e) {
-				System.out.println("DB 처리 중 에러");
+				System.out.println("DB 처리 중 에러"+e.getMessage());
 			}
 			return memberList;
 		}
@@ -252,6 +256,7 @@ public class MemberDAO {
 	
 	public int findwishitem(String goodscode, String id) {
 		try {
+			
 			conn = dataFactory.getConnection();
 			String query = "select goodscode from kurly_wish where id=?";
 			System.out.println(query);
@@ -315,5 +320,135 @@ public class MemberDAO {
 			System.out.println("찜목록 삭제 에러!!" + e.getMessage());
 		}
 	}
+	
+	//배송지 목록 조회
+    public List<ShippingVO> shippingList(String _id) {
+       List<ShippingVO> shipList = new ArrayList();
+       try {
+          conn = dataFactory.getConnection();//조회할때마다 데이터베이스 연결
+          String query = "select * from kurly_shipping where id=?";//회원 테이블 조회 쿼리문
+          System.out.println("쿼리문 출력 : " + query);
+          pstmt = conn.prepareStatement(query);
+          pstmt.setString(1, _id);
+          ResultSet rs = pstmt.executeQuery();
+          while (rs.next()) {
+             String id = rs.getString("id");
+             String shippingname = rs.getString("shippingname");
+             String shippingphone = rs.getString("shippingphone");
+             String shippingaddress = rs.getString("shippingaddress");
+             String shippingdetailaddress = rs.getString("shippingdetailaddress");
+             int shippingindex = rs.getInt("shippingindex");
+             ShippingVO shippingVO = new ShippingVO(id, shippingname, shippingphone, shippingaddress, shippingdetailaddress,shippingindex);
+             shipList.add(shippingVO);
+          }
+          rs.close();
+          pstmt.close();
+          conn.close();
+       } catch (Exception e) {
+          System.out.println("DB 처리 중 에러");
+       }
+       return shipList;
+    }
+ 
+ //배송지 등록
+ public void addshipping(ShippingVO shippingVO) {
+    try {
+       conn = dataFactory.getConnection();
+       String id = shippingVO.getId();
+       String shippingname = shippingVO.getShippingname();
+       String shippingphone = shippingVO.getShippingphone();
+       String shippingaddress = shippingVO.getShippingaddress();
+       String shippingdetailaddress = shippingVO.getShippingdetailaddress();
+       String query = "insert into kurly_shipping(id,shippingname,shippingphone,shippingaddress,shippingdetailaddress,shippingindex) values(?,?,?,?,?,SQ_shippingindex.NEXTVAL)";
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, id);
+       pstmt.setString(2, shippingname);
+       pstmt.setString(3, shippingphone);
+       pstmt.setString(4, shippingaddress);
+       pstmt.setString(5, shippingdetailaddress);
+       pstmt.executeUpdate();
+       pstmt.close();
+       conn.close();
+    } catch (Exception e) {
+       System.out.println("배송지 추가 중 DB에러!!" + e.getMessage());
+    }
+ }
+ 
+ //수정할 배송지 찾기
+ public ShippingVO findShipping(int idx) {
+       ShippingVO shippingInfo = null;
+       try {
+          conn = dataFactory.getConnection();
+          String query = "select * from kurly_shipping where shippingindex=?";
+          System.out.println(query);
+          pstmt=conn.prepareStatement(query);
+          pstmt.setInt(1, idx);
+          System.out.println(idx);
+          System.out.println(query);
+          ResultSet rs = pstmt.executeQuery();
+          if(rs.next()) {
+             String id = rs.getString("id");
+             String shippingname = rs.getString("shippingname");
+             String shippingphone = rs.getString("shippingphone");
+             String shippingaddress = rs.getString("shippingaddress");
+             String shippingdetailaddress = rs.getString("shippingdetailaddress");
+             int shippingindex = rs.getInt("shippingindex");
+             System.out.println(id);
+             shippingInfo = new ShippingVO(id, shippingname, shippingphone, shippingaddress, shippingdetailaddress,shippingindex);
+          }
+          
+          rs.close();
+          pstmt.close();
+          conn.close();
+       } catch (Exception e) {
+          System.out.println("수정할 자료를 찾지 못했습니다." + e.getMessage());
+       }
+       return shippingInfo;
+    }
+
+ 
+ 
+ public void updateshipping(ShippingVO shippingVO) {
+    try {
+       conn = dataFactory.getConnection();
+       String id = shippingVO.getId();
+       String shippingname = shippingVO.getShippingname();
+       String shippingphone = shippingVO.getShippingphone();
+       String shippingdetailaddress = shippingVO.getShippingdetailaddress();
+       int shippingindex = shippingVO.getShippingindex();
+       String query = "update kurly_shipping set shippingname=?,shippingphone=?,shippingdetailaddress=? where id=? and shippingindex=?";
+       System.out.println(query);
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, shippingname);
+       pstmt.setString(2, shippingphone);
+       pstmt.setString(3, shippingdetailaddress);
+       pstmt.setString(4, id);
+       pstmt.setInt(5, shippingindex);
+       pstmt.executeUpdate();
+       pstmt.close();
+       conn.close();
+    } catch (Exception e) {
+       System.out.println("배송지 정보 수정 에러!!" + e.getMessage());
+    }
+ }
+ 
+ public int deleteshipping(String id, int idx) {
+    int result = 0;
+    try {
+       conn = dataFactory.getConnection();
+       String query = "delete from kurly_shipping where id=? and shippingindex=?";
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, id);
+       pstmt.setInt(2, idx);
+       pstmt.executeUpdate();
+       pstmt.close();
+       conn.close();
+       result=1;
+       
+    } catch (Exception e) {
+       System.out.println("삭제 실패!!"+e.getMessage());
+    }
+    return result;
+ }
 	
 }

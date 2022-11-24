@@ -1,6 +1,7 @@
 package cart;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class CartController extends HttpServlet {
 		else if(action.equals("/addCart.do")) {
 			String goodscode=request.getParameter("goodscode");
 			System.out.println(goodscode);
-			String id=request.getParameter("id");
+			String id =(String)session.getAttribute("sessionID");
 			System.out.println(id);
 			int goodscount=Integer.parseInt(request.getParameter("goodscount"));
 			System.out.println(goodscount);
@@ -80,6 +81,7 @@ public class CartController extends HttpServlet {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("여기에러" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

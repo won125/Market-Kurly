@@ -268,134 +268,202 @@ p {
 }
 
 
-.wish-list-frame {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.noticespace{
     width: 820px;
 }
-.wish-list-title {
+.noticearea{
     display: flex;
-    align-items: center;
-    padding-bottom: 27px;
-    border-bottom: 2px solid rgb(51, 51, 51);
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 }
-.wish-list-title h2 {
+.noticetextarea{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.noticetext{
     font-weight: 500;
     font-size: 24px;
-    line-height: 48px;
-    letter-spacing: -0.5px;
     color: rgb(51, 51, 51);
-    margin: 0;
+    letter-spacing: -0.5px;
+    line-height: 48px;
 }
-.wish-list-title span {
+.noticeinfo{
     padding-left: 11px;
     font-size: 14px;
     letter-spacing: -0.3px;
     color: rgb(153, 153, 153);
     line-height: 20px;
 }
-.wish-list-area {
-    padding: 0px 20px;
-}
-.wish-list {
+.infospace{
     display: flex;
-    height: 128px;
-    padding: 24px 0px;
-    border-top: 1px solid rgb(244, 244, 244);
+    width: 100%;
+    padding: 20px 0px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    border-top: 2px solid rgb(51, 51, 51);
+    font-size: 16px;
 }
-.wish-list > a {
-    display: block;
-    position: relative;
-    width: 60px;
-    height: 78px;
-}
-.etc-btn a{
-    display: block;
+.infonumber{
+    flex-basis: 120px;
     text-align: center;
-    width: 104px;
-    height: 36px;
-    color: rgb(95, 0, 128);
-    background-color: rgb(255, 255, 255);
-    overflow: hidden;
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(95, 0, 128);
-    border-image: initial;
-}
-.wish-list a img {
-    position: absolute;
-    background: 50% 50% / cover no-repeat;
-    width: 60px;
-    height: 78px;
-}
-.wish-list-item-information {
-    width: calc(100% - 90px);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-.item-name-area {
-    padding: 0px 20px;
-}
-.item-name {
-    overflow: hidden;
-    word-break: break-all;
-    white-space: normal;
-    font-size: 16px;
-    line-height: normal;
-}
-.item-value {
-    margin-top: 6px;
-    margin-right: 4px;
-    line-height: 19px;
+    line-height: 20px;
+    font-weight: 400;
     color: rgb(51, 51, 51);
-    font-size: 16px;
-    font-weight: bold;
 }
-.etc-btn {
+.infotitle{
+    flex-grow: 1;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.write{
+    flex-basis: 150px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.correctionBtn{
+    flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.deleteBtn{
+    flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.writespace{
+    padding: 0;
     display: flex;
     flex-direction: column;
 }
-.etc-btn a:first-child {
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    width: 104px;
-    height: 36px;
-    border-radius: 4px;
-    color: rgb(222, 40, 100);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(222, 40, 100);
-    margin-bottom: 5px;
-}
-.item-delete span {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 3;
-}
-.item-input {
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    width: 104px;
-    height: 36px;
-    border-radius: 4px;
-    color: rgb(95, 0, 128);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(95, 0, 128);
-}
-.item-input span {
+.writearea{
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    font-size: 14px;
+}
+.realnotice{
+    text-align: center;
+    padding: 20px 0px;
+    color: rgb(76, 76, 76);
+    flex-basis: 120px;
+}
+.realinfo{
+    padding: 20px 0px 20px 0px;
+    color: rgb(76, 76, 76);
+    flex-basis: 120px;
+    text-align: center;
+}
+.realwriter{
+    text-align: center;
+    padding: 20px 0px;
+    color: rgb(76, 76, 76);
+    flex-basis: 150px;
+}
+.realdate{
+    text-align: center;
+    padding: 20px 0px;
+    flex: 1;
+    color: rgb(76, 76, 76);
+}
+.realcorrection{
+    text-align: center;
+    padding: 20px 0px;
+    flex-basis: 50px;
+    color: rgb(153, 153, 153);
+}
+.correction {
+    border: 1px solid rgb(95, 0, 128);
+    background-color: rgb(95, 0, 128);
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.delete {
+    border: 1px solid rgb(255, 50, 50);
+    color: rgb(255, 50, 50);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.realdelete{
+    text-align: center;
+    padding: 20px 0px;
+    flex-basis: 50px;
+    color: rgb(153, 153, 153);
+}
+.pagespace{
+    display: flex;
     justify-content: center;
-    font-size: 13px;
-    line-height: 3;
+    padding: 60px 0px 30px;
 }
-.item-input span i {
-    display: inline-block;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    top: 4px;
+.backbutton:disabled{
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-disabled.svg);
+    cursor: default;
 }
+button[disabled], input[disabled] {
+    cursor: default;
+}
+.backbutton{
+    width: 44px;
+    height: 44px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-prev-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover;  
+}
+.pagetext{
+    overflow: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+}
+.pagearea button + button{
+    margin-left: 12px;
+}
+.nextbutton{
+    width: 44px;
+    height: 44px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-activated.svg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+

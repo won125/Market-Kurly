@@ -49,6 +49,7 @@ public class PayController extends HttpServlet {
 			payDAO.delOrder(id);
 			PayVO payVO = new PayVO(id,totalprice);
 			List<PayVO> payList = payDAO.listPay(payVO);
+			System.out.println(payList);
 	        request.setAttribute("payList", payList);
 			nextPage="/mkurly/ordersheet.jsp";
 		}

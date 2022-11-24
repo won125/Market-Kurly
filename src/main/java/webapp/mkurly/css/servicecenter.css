@@ -34,6 +34,17 @@ ol, ul {
     color: rgb(95, 0, 128);
     font-weight: 500;
 }
+.realwriter{
+	dislplay:inline;
+	width:80px;
+}
+.realwriter1{
+	display:inline-block;
+}
+.realwriter2{
+	width:720px;
+	display:inline-block;
+}
 .notice{
     cursor: pointer;
     border-bottom: 1px solid rgb(242, 242, 242);
@@ -53,6 +64,12 @@ a {
 }
 .notice.active > span, .notice:hover > span{
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjExIiB2aWV3Qm94PSIwIDAgNiAxMSI+CiAgICA8cGF0aCBmaWxsPSIjNUYwMDgwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xIDExTDYgNS41IDEgMCAwIDEuMSA0IDUuNSAwIDkuOXoiLz4KPC9zdmc+Cg==);
+}
+
+
+.del{
+	text-align:center;
+	width:100px;
 }
 .bracket{
     display: inline-block;
@@ -156,11 +173,33 @@ a{
     font-weight: 400;
     color: rgb(51, 51, 51);
 }
+.realnotice{
+	flex-basis: 50px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.realinfo{
+	flex-basis: 400px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.realwriter{
+	flex-basis: 100px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
 .writespace{
     display: flex;
     flex-direction: column;
 }
 .writearea{
+	width:720px;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgb(244, 244, 244);

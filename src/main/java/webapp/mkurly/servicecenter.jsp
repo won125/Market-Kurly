@@ -50,7 +50,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                               <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -73,7 +73,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -97,9 +97,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -189,24 +189,30 @@
                     </div>
                 </div>
                 <div class="infospace">
-                    <div width="50" class="infonumber">번호</div>
-                    <div class="infotitle">제목</div>
-                    <div width="100" class="write">작성자</div>
-                    <div width="100" class="write">작성일</div>
+                    <div  class="infonumber">번호</div>
+                    <div class="infotitle" >제목</div>
+                    <div class="write">작성자</div>
+                    <div class="write">작성일</div>
+                    <div class="write">삭제</div>
                 </div>
                 <ul class="writespace">
               <c:choose>
               	 <c:when test="${!empty helpList}">
 					<c:forEach var="hel" items="${helpList}" varStatus="start">
                     <li>
-                        <a href="${contextPath}/help/viewHelp.do?helpnum=${hel.helpnum}">	
+                        <a class="realwriter2" href="${contextPath}/help/viewHelp.do?helpnum=${hel.helpnum}">	
                             <div class="writearea">
-                                <div class="realnotice">${(pageNum-1)*10+start.count}</div>
-                                <div class="realinfo">${hel.helptitle}</div>
+                                <div class="realnotice" >${(pageNum-1)*10+start.count}</div>
+                                <div class="realinfo" >${hel.helptitle}</div>
                                 <div class="realwriter">${hel.admin}</div>
-                                <div class="realdate">${hel.helpwritedate}</div>
-                            </div>
+                                <div class="realwriter" >${hel.helpwritedate}</div>
+                       		</div>
                         </a>
+                        		<a href="${contextPath}/help/removeHelp.do?helpnum=${hel.helpnum}" class="realwriter1">
+	                                <c:if test="${sessionID eq 'admin'}">
+	                                	<div class="realwriter">삭제</div>
+	                            	</c:if>
+                            	</a>
                     </li>
                 </ul>
                </c:forEach>
@@ -243,21 +249,25 @@
 					<c:forEach var="page" begin="1"  end="${totHelp/10+1}" step="1">
 						<c:choose>
 							<c:when test="${page==pageNum}">
-								<a class="selPage" href="${contextPath}/help/listHelp.do?section=${section}&pageNum=${page}">${page}</a>
+								<a class="selPage" href="${contextPath}/help/helpList.do?section=${section}&pageNum=${page}">${page}</a>
 							</c:when>
 							<c:otherwise>
-								<a class="noLine" href="${contextPath}/help/listHelp.do?section=${section}&pageNum=${page}">${page}</a>
+								<a class="noLine" href="${contextPath}/help/helpList.do?section=${section}&pageNum=${page}">${page}</a>
 							</c:otherwise>	
 						</c:choose>					
 					</c:forEach>
 				</c:when>
 			</c:choose>
 		</c:if>
-		<p align="center"><a href="${contextPath}/help/helpWriteForm.do">글 작성하러 가기</a></p>
                 </div>                   
             </div>
         </div>
     </div>
+    <c:if test="${sessionID eq 'admin'}">
+    	<a href="${contextPath}/help/helpWriteForm.do">
+    		<div class="realwriter">공지 글 쓰러가기</div>
+    	</a>
+    </c:if>
     <!--고객센터 영역 종료-->
     <!-- 프로젝트 작성 영역 end -->
     <footer>

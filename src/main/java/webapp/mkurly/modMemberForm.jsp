@@ -8,18 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="${contextPath}/css/normalize.css">
-<link rel="stylesheet" href="${contextPath}/css/commen.css">
-<link rel="stylesheet" href="${contextPath}/css/userChangingInformation.css">
+<link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
+<link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
+<link rel="stylesheet" href="${contextPath}/mkurly/css/userChangingInformation.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script type="text/javascript" src="${contextPath}/js/confirm.js"></script>
-<script type="text/javascript" src="${contextPath}/js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="${contextPath}/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/confirm.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 function removeMember(obj) { //회원 탈퇴 버튼 클릭시 액션
@@ -41,52 +41,93 @@ function updateMember(obj) { //회원정보수정 버튼 클릭시 액션
 <body>
 
 
-<header>
-
-        <div class="top-ad">
+       <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
-        <!--  -->
+        <!-- 헤더영역시작 -->
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
-                    <div class="top-memberService">
-                        <a href="${contextPath}/member/join.do">회원가입</a>
-                        <div> | </div>
-                        <a href="${contextPath}/member/login.do">로그인</a>
-                        <div> | </div>
-                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
-                    </div>
+                    <c:choose>
+                      <c:when test="${sessionID eq null }">
+                         <div class="top-memberService">
+                              <a href="${contextPath}/member/join.do">회원가입</a>
+                              <div> | </div>
+                              <a href="${contextPath}/member/login.do">로그인</a>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID ne null and sessionID ne 'admin'}">
+                         <div class="top-memberService2" style="display: flex">
+                            <a></a>
+                               <a href="${contextPath}/member/wishList.do" id="userNameHover">
+                                  <span class="login-user-tier">일반</span>${sessionID} 님
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
+                                  <div class="login-user-low-menu"><a href="#">적립금</a></div>
+                                  <div class="login-user-low-menu"><a href="#">쿠폰</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/modMember.do?id=${sessionID}">개인 정보 수정</a></div>
+                                  <div class="login-user-low-menu"><a href="#">나의 컬리 스타일</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID eq 'admin'}">
+                         <div class="top-memberService2">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
+                                  <span class="login-user-tier">관리자</span>
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerPost.do">공지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerMember.do">회원 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                   </c:choose>
 
                     <div class="top-serviceCenter-child">
-                        <li>공지사항</li>
-                        <li>자주하는 질문</li>
+                        <li><a href="${contextPath}/help">공지사항</a></li>
+                        <li><a href="${contextPath}/mostqna">자주하는 질문</a></li>
                         <li>1:1 문의</li>
                         <li>대량주문 문의</li>
                     </div>
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/"><img src="${contextPath}/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="${contextPath}/member/wishList.do"><i class="fa-regular fa-heart"></i></a>
+                                <a href="${contextPath}/cart/listCart.do"><i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
                         </div>                        
                     </div>
-                    
+
                 </div>
-                              <!-- top 고정중 -->
+                <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
                     <div class="top-all-menu">
                         <div class="category">
@@ -502,17 +543,17 @@ function updateMember(obj) { //회원정보수정 버튼 클릭시 액션
                         팩스 : 123 - 4567 - 8910
                     </div>
                     <div class="footer-sns-icon">
-                        <a href="https://www.instagram.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
-                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
-                        <a href="https://www.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
-                        <a href="https://post.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
-                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
+                        <a href="https://www.instagram.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
+                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
+                        <a href="https://www.naver.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
+                        <a href="https://post.naver.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
+                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
                     </div>
                 </div>
             </div>
             <div class="footer-license">
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
                     <p>
                         [인증범위] 마켓컬리 쇼핑몰 서비스 개발ㆍ운영<br>
                         (심사받지 않은 물리적 인프라 제외)<br>
@@ -520,21 +561,21 @@ function updateMember(obj) { //회원정보수정 버튼 클릭시 액션
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
                     <p>
                         개인정보보호 우수 웹사이트ㆍ<br>
                         개인정보처리시스템 인증 (ePRIVACY PLUS)
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
                     <p>
                         토스페이먼츠 구매안전(에스크로)<br>
                         서비스를 이용하실 수 있습니다.
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>
@@ -615,7 +656,7 @@ function updateMember(obj) { //회원정보수정 버튼 클릭시 액션
         
     });
 </script>
-    <script type="text/javascript" src="${contextPath}/js/commen.js"></script>
-    <script type="text/javascript" src="${contextPath}/js/userChangingInformation.js"></script>
+    <script type="text/javascript" src="${contextPath}/mkurly/js/commen.js"></script>
+    <script type="text/javascript" src="${contextPath}/mkurly/js/userChangingInformation.js"></script>
 </body>
 </html>
