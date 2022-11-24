@@ -48,7 +48,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -71,7 +71,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -95,9 +95,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -170,7 +170,7 @@
 							<c:forEach var="pay" items="${payList}">
 							
                 <div class="order-goods-list">
-                    <span class="goods-image"></span>
+                    <span class="goods-image"><img src="${contextPath}/mkurly/컬리이미지/${pay.goodsimage}"></span>
                     <span class="goods-text-frame">
                         <span class="goods text">${pay.goodsname}</span>
                     </span>

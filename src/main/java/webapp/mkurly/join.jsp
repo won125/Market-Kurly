@@ -17,155 +17,113 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script src="${contextPath}/mkurly/js/jquery-3.6.1.min.js"></script>
-<script src="${contextPath}/mkurly/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/confirm.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 function toMain(obj) { //게시글 목록으로 돌가가는 함수
 	obj.action = "${contextPath}/member/";
 	obj.submit();
 }
-window.onload = function() {
-    document.frmJoinForm.onsubmit = function() {
-    	let id = document.frmJoinForm.id;
-		let pw = document.frmJoinForm.pw;
-		let name = document.frmJoinForm.name;
-		let email = document.frmJoinForm.email;
-		
-		if(id.value ==""){
-			alert("아이디를 반드시 입력하세요.");
-			id.focus();
-			return false;
-		}
-		
-		if(pw.value ==""){
-			alert("비밀번호를 반드시 입력하세요.");
-			pw.focus();
-			return false;
-		}
-		
-		if(pw.value.length < 7){
-			alert("비밀번호는 7글자 이상으로 만들어주세요.");
-			pw.focus();
-			return false;
-		}
-		
-		if(pwCheck.value ==""){
-			alert("비밀번호 확인란에 입력해주세요.");
-			pwCheck.focus();
-			return false;
-		}
-		
-		if(pw.value != pwCheck.value){
-			alert("입력하신 비밀번호가 같지 않습니다.");
-			pwCheck.focus();
-			return false;
-		}
-		
-		if(name.value ==""){
-			alert("이름을 반드시 입력하세요.");
-			name.focus();
-			return false;
-		}
-
-		
-		if(email.value ==""){
-			alert("이메일을 입력하세요.");
-			email.focus();
-			return false;
-		}
-    }
-  //성별 라디오 버튼
-    $('.dividespace .circle').click(function(){
-        $('.circle').removeClass("changebigcircle");
-        $(this).addClass("changebigcircle");
-    });
-    $('.seconddividespace .bigcircle').click(function(){
-        $('.bigcircle').removeClass("changebigcircle");
-        $(this).addClass("changebigcircle");
-    });
-    $('.circle').trigger('click');
-
-    //추가입력사항 라디오 버튼
-    $(function(){
-        $('.bigcircle').click(function(){
-             $('.hiddeninput').show(); //함수에 attr로 연결해서 그림넣을 수 있음. 3초 동안 그림보여주고, 그림 바뀜
-        });
-     });
-    function div_show(selectList) {
-        var obj1 = document.getElementById("js_pay_type1"); 
-        var obj2 = document.getElementById("js_pay_type2"); 
-
-        if( selectList == "0" ) { 
-            obj1.style.display = "block";    
-            obj2.style.display = "none";
-        } else if( selectList == "1" ) { 
-            obj1.style.display = "none";    
-            obj2.style.display = "block";
-        }
-    } 
-    function idCheck(obj, root){
-    	alert(obj.id.value);
-    	if(obj.id.value ==""){
-    		alert("아이디를 반드시 입력하세요.");
-    		obj.id.focus();
-    		return false;
-    	}else{
-    		var url = root + "/member/idCheck.do?id=" + obj.id.value;
-    		//alert(url);
-    		window.open(url, "", "width=400, height=200");
-    	}
-    }
-}
-
 </script>
 </head>
 <body>
-<header>
+<script>
+function idCheck(){
+	let id = document.frmJoinForm.id.value;
+	window.open("${contextPath}/member/idCheck.do?id="+id,"_blank","width=400px height=150px");
+}
+</script>
+
+	  <header>
         <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
-        <!--  -->
+        <!-- 헤더영역시작 -->
         <div class="top-menu">
             <div class="top-menu-form">
                 <div class="top-main">
-                    <div class="top-memberService">
-                        <a href="${contextPath}/member/join.do">회원가입</a>
-                        <div> | </div>
-                        <a href="${contextPath}/member/login.do">로그인</a>
-                        <div> | </div>
-                        <a href="serviceCenter.html" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
-                    </div>
+                    <c:choose>
+                      <c:when test="${sessionID eq null }">
+                         <div class="top-memberService">
+                              <a href="${contextPath}/member/join.do">회원가입</a>
+                              <div> | </div>
+                              <a href="${contextPath}/member/login.do">로그인</a>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID ne null and sessionID ne 'admin'}">
+                         <div class="top-memberService2" style="display: flex">
+                            <a></a>
+                              <a href="${contextPath}/member/wishList.do" id="userNameHover">
+                                  <span class="login-user-tier">일반</span>${sessionID} 님
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="#">주문 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="#">선물 내역</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/wishList.do">찜한 상품</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/shipping.do">배송지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 후기</a></div>
+                                  <div class="login-user-low-menu"><a href="#">상품 문의</a></div>
+                                  <div class="login-user-low-menu"><a href="#">적립금</a></div>
+                                  <div class="login-user-low-menu"><a href="#">쿠폰</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/modMember.do?id=${sessionID}">개인 정보 수정</a></div>
+                                  <div class="login-user-low-menu"><a href="#">나의 컬리 스타일</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                      <c:when test="${sessionID eq 'admin'}">
+                         <div class="top-memberService2">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
+                                  <span class="login-user-tier">관리자</span>
+                                  <i class="fa-solid fa-caret-down"></i>
+                              </a>
+                              <div class="login-user-menu">
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerPost.do">공지 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/managerMember.do">회원 관리</a></div>
+                                  <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
+                              </div>
+                              <div> | </div>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                          </div>
+                      </c:when>
+                   </c:choose>
 
                     <div class="top-serviceCenter-child">
-                        <li>공지사항</li>
-                        <li>자주하는 질문</li>
+                        <li><a href="${contextPath}/help">공지사항</a></li>
+                        <li><a href="${contextPath}/mostqna">자주하는 질문</a></li>
                         <li>1:1 문의</li>
                         <li>대량주문 문의</li>
                     </div>
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/"><img src="${contextPath}/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="icon-menu">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="${contextPath}/member/wishList.do"><i class="fa-regular fa-heart"></i></a>
+                                <a href="${contextPath}/cart/listCart.do"><i class="fa-solid fa-cart-shopping"></i></a>
                             </div>
                         </div>                        
                     </div>
-                    
+
                 </div>
-                              <!-- top 고정중 -->
+                <!-- top 고정중 -->
                 <div class="top-all-menu-frame">
                     <div class="top-all-menu">
                         <div class="category">
@@ -194,7 +152,7 @@ window.onload = function() {
             </div>
         </div>
     </header>
-	<form name="frmJoinForm" action="${contextPath}/member/addMember.do" method="post">
+	<form name="frmJoinForm" class="userjoin" action="${contextPath}/member/addMember.do" method="post">
 		<div class="allmemberjoinform">
 		    <div class="memberjoin">회원가입</div>
 		    <div class="middlememberjoinform">
@@ -211,15 +169,16 @@ window.onload = function() {
 			                <div class="actualinput">
 			                    <div class="middleactualinput">
 			                        <div class="smallactualinput">
-			                            <input data-testid="input-box" id="memberId" name="id" placeholder="아이디를 입력해주세요" type="text" required class="inputhint" >
+			                            <input data-testid="input-box" id="id" name="id" placeholder="아이디를 입력해주세요" type="text" class="inputhint" >
 			                        </div>
 			                    </div>
 			                </div>
 			                <div class="alldoublecheck">
-			                    <button class="insidedoublecheck" type="button" onclick="winopen()">
+			                    <button class="insidedoublecheck" type="button" onclick="idCheck()">
 			                        <span class="sentencedoublecheck">중복확인</span>
 			                    </button>
 			                </div>
+			                <input type="hidden" id="idCheckResult" value="false">
 			            </div>
 	            	<div class="wholecompartment">
 	                	<div class="firstcompartment">
@@ -262,7 +221,7 @@ window.onload = function() {
 		                <div class="actualinput">
 		                    <div class="middleactualinput">
 		                        <div class="smallactualinput">
-		                            <input data-testid="input-box" id="name" name="name" placeholder="이름을 입력해 주세요" type="text" required class="inputhint" >
+		                            <input data-testid="input-box" id="kname" name="name" placeholder="이름을 입력해 주세요" type="text" class="inputhint" >
 		                        </div>
 		                    </div>
 		                </div>
@@ -277,7 +236,7 @@ window.onload = function() {
 		                <div class="actualinput">
 		                    <div class="middleactualinput">
 		                        <div class="smallactualinput">
-		                            <input data-testid="input-box" id="email" name="email" placeholder="예: marketkurly@kurly.com" type="email" required class="inputhint">  
+		                            <input data-testid="input-box" id="email" name="email" placeholder="예: marketkurly@kurly.com" type="email" class="inputhint">  
 		                        </div>
 		                    </div>
 		                </div>
@@ -296,7 +255,7 @@ window.onload = function() {
 		                <div class="actualinput">
 		                    <div class="middleactualinput">
 		                        <div class="smallactualinput">
-		                            <input data-testid="input-box" id="mobileNumber" name="phone" placeholder="숫자만 입력해주세요." type="text" required class="inputhint">
+		                            <input data-testid="input-box" id="mobileNumber" name="phone" placeholder="숫자만 입력해주세요." type="text" class="inputhint">
 		                        </div>
 		                    </div>
 		                </div>
@@ -404,57 +363,56 @@ window.onload = function() {
 		                </div>
 		                <div class="alldoublecheck"></div>
 		            </div>
-		            <div class="wholecompartment">
-		                <div class="firstcompartment">
-		                    <label class="requiredinput">추가입력 사항</label>
-		                </div>
-		                <div class="actualinput">
-		                    <div class="genderdivide">
-		                        <label class="seconddividespace" for="additional-recommender">
-		                            <input data-testid="radio-RECOMMEND" id="additional-recommender" name="joinExtraInputType" type="radio" class="divideinput" value="RECOMMEND" onclick="div_show('0');">
-		                            <span class="bigcircle">
-		                                <div class="secondsmallcircle"></div>
-		                            </span>
-		                            <span aria-labelledby="additional-recommender" class="sentencedivide">친구초대 추천인 아이디</span>
-		                        </label>
-		                        <label class="seconddividespace" for="additional-event">
-		                            <input data-testid="radio-EVENT" id="additional-event" name="joinExtraInputType" type="radio" class="divideinput" value="EVENT" onclick="div_show('1');">
-		                            <span class="bigcircle">
-		                                <div class="secondsmallcircle"></div>
-		                            </span>
-		                            <span aria-labelledby="additional-event" class="sentencedivide">참여 이벤트명</span>
-		                        </label>
-		                    </div>   
-		                    <div class="hiddeninput" id="js_pay_type1">
-		                        <div class="middleactualinput">
-		                            <div class="smallactualinput">
-		                                <input data-testid="input-box" name="joinExtraInput" placeholder="추천인 아이디를 입력해 주세요." type="text" class="inputhint" >
-		                            </div>
-		                        </div>
-		                        <span class="eventtext">
-		                            <div>가입 후 7일 내 첫 주문 배송완료 시, 친구초대 이벤트 적립금이 지급됩니다.</div>
-		                        </span>
-		                    </div>
-		                    <div class="hiddeninput" id="js_pay_type2">
-		                        <div class="middleactualinput">
-		                            <div class="smallactualinput">
-		                                <input data-testid="input-box" name="joinExtraInput" placeholder="참여 이벤트명을 입력해 주세요." type="text" class="inputhint" >
-		                            </div>
-		                        </div>
-		                        <span class="eventtext">
-		                            <div>추천인 아이디와 참여 이벤트명 중 하나만 선택 가능합니다.
-		                                <br>
-		                                가입 이후는 수정이 불가능 합니다.
-		                                <br>
-		                                대소문자 및 띄어쓰기에 유의해주세요.
-		                            </div>
-		                        </span>
-		                    </div>
-		                </div>
-		                <div class="alldoublecheck"></div>
-		            </div>
-
-	        	</div>
+					<div class="wholecompartment">
+	                    <div class="firstcompartment">
+	                        <label class="requiredinput">추가입력 사항</label>
+	                    </div>
+	                    <div class="actualinput">
+	                        <div class="genderdivide">
+	                            <label class="seconddividespace" for="additional-recommender">
+	                                <input data-testid="radio-RECOMMEND" id="additional-recommender" name="joinExtraInputType" type="radio" class="divideinput" value="RECOMMEND">
+	                                <span class="bigcircle1">
+	                                    <div class="secondsmallcircle"></div>
+	                                </span>
+	                                <span aria-labelledby="additional-recommender" class="sentencedivide">친구초대 추천인 아이디</span>
+	                            </label>
+	                            <label class="seconddividespace" for="additional-event">
+	                                <input data-testid="radio-EVENT" id="additional-event" name="joinExtraInputType" type="radio" class="divideinput" value="EVENT" >
+	                                <span class="bigcircle2">
+	                                    <div class="secondsmallcircle"></div>
+	                                </span>
+	                                <span aria-labelledby="additional-event" class="sentencedivide">참여 이벤트명</span>
+	                            </label>
+	                        </div>   
+	                        <div class="hiddeninput1" id="js_pay_type1">
+	                            <div class="middleactualinput">
+	                                <div class="smallactualinput">
+	                                    <input data-testid="input-box" name="joinExtraInput" placeholder="추천인 아이디를 입력해 주세요." type="text" class="inputhint" value="">
+	                                </div>
+	                            </div>
+	                            <span class="eventtext">
+	                                <div>가입 후 7일 내 첫 주문 배송완료 시, 친구초대 이벤트 적립금이 지급됩니다.</div>
+	                            </span>
+	                        </div>
+	                        <div class="hiddeninput2" id="js_pay_type2">
+	                            <div class="middleactualinput">
+	                                <div class="smallactualinput">
+	                                    <input data-testid="input-box" name="joinExtraInput" placeholder="참여 이벤트명을 입력해 주세요." type="text" class="inputhint" value="">
+	                                </div>
+	                            </div>
+	                            <span class="eventtext">
+	                                <div>추천인 아이디와 참여 이벤트명 중 하나만 선택 가능합니다.
+	                                    <br>
+	                                    가입 이후는 수정이 불가능 합니다.
+	                                    <br>
+	                                    대소문자 및 띄어쓰기에 유의해주세요.
+	                                </div>
+	                            </span>
+	                        </div>
+	                    </div>
+	                    <div class="alldoublecheck"></div>
+	                </div>
+	            </div>
 	        	<div class="division"></div>
 				<div class="whitespace">
 		                <div class="lowerspace">
@@ -545,7 +503,7 @@ window.onload = function() {
 		             </div>
 			            
 	            <div class="joinspace">
-		            <button class="joinbutton" type="submit" width="240" height="56" radius="3" onclick>
+		            <button id="joinBtn" class="joinbutton" type="submit" width="240" height="56" radius="3" >
 		                <span class="sentencedoublecheck">가입하기</span>
 		            </button>
             	</div>
@@ -611,17 +569,17 @@ window.onload = function() {
                         팩스 : 123 - 4567 - 8910
                     </div>
                     <div class="footer-sns-icon">
-                        <a href="https://www.instagram.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
-                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
-                        <a href="https://www.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
-                        <a href="https://post.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
-                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
+                        <a href="https://www.instagram.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
+                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
+                        <a href="https://www.naver.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
+                        <a href="https://post.naver.com/"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
+                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/mkurly/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
                     </div>
                 </div>
             </div>
             <div class="footer-license">
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
                     <p>
                         [인증범위] 마켓컬리 쇼핑몰 서비스 개발ㆍ운영<br>
                         (심사받지 않은 물리적 인프라 제외)<br>
@@ -629,21 +587,21 @@ window.onload = function() {
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
                     <p>
                         개인정보보호 우수 웹사이트ㆍ<br>
                         개인정보처리시스템 인증 (ePRIVACY PLUS)
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
                     <p>
                         토스페이먼츠 구매안전(에스크로)<br>
                         서비스를 이용하실 수 있습니다.
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/mkurly/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>
@@ -661,39 +619,84 @@ window.onload = function() {
             <p>© KURLY CORP. ALL RIGHTS RESERVED</p>
         </div>
     </footer>
-    
+    <script>
+    $('.userjoin').on('submit',()=>{
+    	let idval = $('#id').val();
+        let idvalcheck = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+        let idCheckval = $('#idCheckResult').val();
+        let pwdval = $('#pw').val();
+        let pwdokval = $('#passwordConfirm').val();
+        let pwdcheck = /^[a-zA-Z0-9]+$/;
+        let nameval = $('#kname').val();
+        let emailval = $('#email').val();
+        let emailcheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        // 이메일이 적합한지 검사할 정규식
+        let addressval = $('#roadAddress').val();
+        let phoneval = $('#mobileNumber').val();
+        
+        if(idCheckval == 'true'){
+        	if (!idvalcheck.test(idval) || idval.length<6){
+            	alert('아이디는 영소문자,숫자로 구성된 6글자 이상으로 조합하시오.');
+                $('#id').focus();
+                return false;
+            }
+        }else{
+        	alert('아이디 중복확인을 진행해 주십시오');
+            $('#id').focus();
+            return false;
+        }
+        if (!pwdcheck.test(pwdval) || pwdval.length<8){
+        	alert('비밀번호는 영대소문자,숫자로 구성된 8글자 이상으로 조합하시오.');
+        	$('#pw').focus();
+        	return false;
+        } else {
+        	if(pwdokval){
+            	if (pwdval!=pwdokval){
+                	alert('비밀번호가 일치하지 않습니다.');
+                    $('#passwordConfirm').focus();
+                    return false;
+                } 
+            } else {
+            	alert('비밀번호확인을 입력하시오.');
+                $('#passwordConfirm').focus();
+                return false;
+            }
+        }
+        
+        if(nameval == ''){
+        	alert('이름을 입력하시오.');
+            $('#kname').focus();
+            return false;
+        }
+        
+        if(emailval){
+        	if (!emailcheck.test(emailval)){
+            	alert('형식에 맞지않는 이메일주소입니다. 다시 입력해주시기 바랍니다.');
+            	$('#email').focus();
+            	return false;
+            }
+        }else{
+        	alert('이메일을 입력하시오.');
+            $('#email').focus();
+            return false;
+        }
+        
+        if(addressval==''){
+        	alert('주소를 입력하시오.');
+            $('#addressarea_before').focus();
+            return false;
+        }
+        
+        if(phoneval==''){
+        	alert('연락처를 입력하시오.');
+            $('#mobileNumber').focus();
+            return false;
+        }
+        
+    });
+</script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    function check(){ 
-    	//아이디가 입력이 안되어있을 경우 아이디입력하라는 메세지 출력
-    	if(document.frmJoinForm.id.value == "" || document.frmJoinForm.id.value.length < 0){ 
-    		alert("아이디를 입력해주세요")
-    		history.back()
-    		document.frmJoinForm.id.focus();
-    		return false;
-    	}
-    	
-    	if(document.frmJoinForm.gender[0].checked == false && document.frmJoinForm.gender[1].checked == false){
-    		alert("성별을 확인해주세요")
-    		history.back()
-    		document.frmJoinForm.id.focus();
-    		return false;
-    	}
-    }
-
-    <!-- 아이디중복체크 -->
-    function winopen(){
-    	//새창을 열어서 페이지를 오픈 후 -> 회원아이디정보를 가지고 중복체크
-    	//1. 아이디가 없으면 알림창과 진행x
-    	if(document.frmJoinForm.id.value =="" || document.frmJoinForm.id.value.length < 0){
-    		alert("아이디를 먼저 입력해주세요")
-    		document.fr.id.focus();
-    	}else{
-    		//2. 회원정보아이디를 가지고 있는 지 체크하려면 DB에 접근해야한다.
-    		//자바스크립트로 어떻게 DB에 접근할까? => 파라미터로 id값을 가져가서 jsp페이지에서 진행하면 된다.
-    		window.open("idCheck.do?id="+document.frmJoinForm.id.value,"","width=500, height=300");
-    	}
-    }
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function execDaumPostcode() {
         new daum.Postcode({
@@ -750,7 +753,8 @@ window.onload = function() {
         }).open();
     }
 </script>
-    <script src="${contextPath}/mkurly/js/commen.js"></script>
+    <script type="text/javascript" src="${contextPath}/mkurly/js/commen.js"></script>
     <script type="text/javascript" src="${contextPath}/mkurly/js/join.js"></script>
+
 </body>
 </html>

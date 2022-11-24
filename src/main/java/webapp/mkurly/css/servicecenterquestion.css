@@ -188,6 +188,7 @@ a{
     text-align: left;
 }
 .answerarea{
+	display:none;
     position: relative;
     padding: 30px 30px 30px 70px;
     text-align: left;

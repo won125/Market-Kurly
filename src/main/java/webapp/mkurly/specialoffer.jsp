@@ -10,16 +10,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마켓컬리</title>
-<link rel="stylesheet" href="${contextPath}/css/commen.css">
-<link rel="stylesheet" href="${contextPath}/css/specialoffer.css">
-<link rel="stylesheet" href="${contextPath}/css/normalize.css">
+<link rel="stylesheet" href="${contextPath}/mkruly/css/commen.css">
+<link rel="stylesheet" href="${contextPath}/mkruly/css/specialoffer.css">
+<link rel="stylesheet" href="${contextPath}/mkruly/css/normalize.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script src="${contextPath}/js/jquery-3.6.1.min.js"></script>
+<script src="${contextPath}/mkruly/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <c:choose>
@@ -65,7 +65,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                               <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -88,7 +88,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -112,9 +112,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -149,11 +149,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkruly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkruly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkruly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkruly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/mkruly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -166,44 +166,44 @@
     <ul class="allspecialofferform">
         <li class="specialofferform">
             <div class="banner">
-                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/brand/221020"><img src="${contextPath}/컬리이미지/특가혜택/sale (1).jpg" alt="광고배너" class="
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/brand/221020"><img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (1).jpg" alt="광고배너" class="
                 advertising banner"></a>
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/value_item/221110"><img src="${contextPath}/컬리이미지/특가혜택/sale (6).jpg" alt="광고배너" class="
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/value_item/221110"><img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (6).jpg" alt="광고배너" class="
                 advertising banner"></a>
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/2021/0903/fresh"><img src="${contextPath}/컬리이미지/특가혜택/sale (3).jpg" alt="광고배너" class="advertisingbanner">
+                <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/2021/0903/fresh"><img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (3).jpg" alt="광고배너" class="advertisingbanner">
             </div></a>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <img src="${contextPath}/컬리이미지/특가혜택/sale (7).jpg" alt="광고배너" class="advertisingbanner">
+                <img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (7).jpg" alt="광고배너" class="advertisingbanner">
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <img src="${contextPath}/컬리이미지/특가혜택/sale (8).jpg" alt="광고배너" class="advertisingbanner">
+                <img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (8).jpg" alt="광고배너" class="advertisingbanner">
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <img src="${contextPath}/컬리이미지/특가혜택/sale (2).jpg" alt="광고배너" class="advertisingbanner">
+                <img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (2).jpg" alt="광고배너" class="advertisingbanner">
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <img src="${contextPath}/컬리이미지/특가혜택/sale (4).jpg" alt="광고배너" class="advertisingbanner">
+                <img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (4).jpg" alt="광고배너" class="advertisingbanner">
             </div>
         </li>
         <li class="specialofferform">
             <div class="banner">
-                <img src="${contextPath}/컬리이미지/특가혜택/sale (5).jpg" alt="광고배너" class="advertisingbanner">
+                <img src="${contextPath}/mkruly/컬리이미지/특가혜택/sale (5).jpg" alt="광고배너" class="advertisingbanner">
             </div>
         </li>
     </ul>
@@ -266,17 +266,17 @@
                         팩스 : 123 - 4567 - 8910
                     </div>
                     <div class="footer-sns-icon">
-                        <a href="https://www.instagram.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
-                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
-                        <a href="https://www.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
-                        <a href="https://post.naver.com/"><img src="${contextPath}/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
-                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
+                        <a href="https://www.instagram.com/"><img src="${contextPath}/mkruly/컬리이미지/snsIcon/ico_instagram.webp" alt="인스타그램"></a>
+                        <a href="https://ko-kr.facebook.com/"><img src="${contextPath}/mkruly/컬리이미지/snsIcon/ico_fb.webp" alt="페이스북"></a>
+                        <a href="https://www.naver.com/"><img src="${contextPath}/mkruly/컬리이미지/snsIcon/ico_blog.webp" alt="네이버블로그"></a>
+                        <a href="https://post.naver.com/"><img src="${contextPath}/mkruly/컬리이미지/snsIcon/ico_naverpost.webp" alt="네이버포스트"></a>
+                        <a href="https://www.youtube.com/?hl=ko&gl=KR"><img src="${contextPath}/mkruly/컬리이미지/snsIcon/ico_youtube.webp" alt="유튜브"></a>
                     </div>
                 </div>
             </div>
             <div class="footer-license">
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
+                    <img src="${contextPath}/mkruly/컬리이미지/footerimg/logo_isms.svg" alt="쇼핑몰서비스 인증">
                     <p>
                         [인증범위] 마켓컬리 쇼핑몰 서비스 개발ㆍ운영<br>
                         (심사받지 않은 물리적 인프라 제외)<br>
@@ -284,21 +284,21 @@
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
+                    <img src="${contextPath}/mkruly/컬리이미지/footerimg/logo_privacy.svg" alt="개인정보보호 인증">
                     <p>
                         개인정보보호 우수 웹사이트ㆍ<br>
                         개인정보처리시스템 인증 (ePRIVACY PLUS)
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
+                    <img src="${contextPath}/mkruly/컬리이미지/footerimg/logo_tosspayments.svg" alt="토스페이먼츠 인증">
                     <p>
                         토스페이먼츠 구매안전(에스크로)<br>
                         서비스를 이용하실 수 있습니다.
                     </p>
                 </div>
                 <div class="license-list">
-                    <img src="${contextPath}/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
+                    <img src="${contextPath}/mkruly/컬리이미지/footerimg/logo_wooriBank.svg" alt="은행협업 인증">
                     <p>
                         고객님이 현금으로 결제한 금액에 대해 우리은행과<br>
                         채무지급보증 계약을 체결하여 안전거래를 보장하고<br>
@@ -316,7 +316,7 @@
             <p>© KURLY CORP. ALL RIGHTS RESERVED</p>
         </div>
     </footer>
-    <script src="${contextPath}/js/commen.js"></script>
-    <script src="${contextPath}/js/index.js"></script>
+    <script src="${contextPath}/mkruly/js/commen.js"></script>
+    <script src="${contextPath}/mkruly/js/index.js"></script>
 </body>
 </html>

@@ -17,10 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script src="${contextPath}/mkurly/js/jquery-3.6.1.min.js"></script>
+<script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<header>
         <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
@@ -41,7 +40,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                               <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -64,7 +63,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -88,9 +87,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -125,11 +124,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="${contextPath}/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -137,7 +136,13 @@
         </div>
     </header>
     <!-- 프로젝트 작성 영역 start -->
-
+	<script type="text/javascript">
+		function addshippingForm(obj) {
+			obj.action = "${contextPath}/member/addshippingForm.do";
+			obj.submit();
+		}
+	
+	</script>
     <main class="main-frame">
         <div class="my-information-list-frame">
             <div class="my-information-list-area">
@@ -223,62 +228,67 @@
                     <span><i class="fa-solid fa-caret-right"></i></span>
                 </div>
             </div>
-            
-            <div class="shipping-address-frame">
-                <div class="shipping-address-title-area">
-                    <div class="shipping-address-title">
-                        <div class="shipping-address">
-                            <span class="shipping-address-text1">배송지 관리</span>
-                            <span class="shipping-address-text2">배송지에 따라 상품정보 및 배송유형이 달라질 수 있습니다.</span>
-                        </div>
-                        <div>
-                            <div class="new-shipping-adress-plus-frame">
-                                <button class="new-shipping-adress-plus-btn" type="button" height="60" onclick="execDaumPostcode()">
-                                    <span class="new-shipping-adress-title"><img src="${contextPath}/mkurly/컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="shipping-address-list-title">
-                    <div class="title-a">선택</div>
-                    <div class="title-b">주소</div>
-                    <div class="title-c">받으실 분</div>
-                    <div class="title-d">연락처</div>
-                    <div class="title-e">배송유형</div>
-                    <div class="title-f">수정</div>
-                </div>
-
-                <ul class="shipping-address-list-ul">
-                    <li class="shipping-address-list-li">
-                        <div class="shipping-address-list-div">
-                            <div class="shipping-address-list-check-area">
-                                <label class="shipping-address-list-check" for="user-shipping-address">
-                                    <input id="user-shipping-address" type="checkbox" class="user-shipping-address-c">
-                                    <img id="checkview" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드.svg" alt="" class="shipping-address-check-img">
-                                    <img id="checkviewno" src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="shipping-address-check-img">
-                                </label>
-                            </div>
-                            <div class="user-shipping-address-text">
-                                <div>서울특별시 컬리구 컬리란로 111, 11층(컬리동)</div>
-                            </div>
-                            <div class="user-name">이익희</div>
-                            <div class="user-tell">010-0000-0000</div>
-                            <div class="shipping-address-type">
-                                <div>
-                                    <span type="direct" class="shipping-address-type-text">샛별배송</span>
-                                </div>
-                            </div>
-                            <div class="shipping-address-correction">
-                                <button>
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+          	<form name="frmshippingform">            
+	            <div class="shipping-address-frame">
+	                <div class="shipping-address-title-area">
+	                    <div class="shipping-address-title">
+	                        <div class="shipping-address">
+	                            <span class="shipping-address-text1">배송지 관리</span>
+	                            <span class="shipping-address-text2">배송지에 따라 상품정보 및 배송유형이 달라질 수 있습니다.</span>
+	                        </div>
+	                        <div>
+	
+	                            <div class="new-shipping-adress-plus-frame">
+	                                <button class="new-shipping-adress-plus-btn" type="button" height="60" onclick="addshippingForm(this.form);">
+	                                    <span class="new-shipping-adress-title"><img src="${contextPath}/mkurly/컬리이미지/기타/newplus.svg" alt="새 배송지 추가">새 배송지 추가</span>
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="shipping-address-list-title">
+	                    <div class="title-a">선택</div>
+	                    <div class="title-b">주소</div>
+	                    <div class="title-c">받으실 분</div>
+	                    <div class="title-d">연락처</div>
+	                    <div class="title-e">배송유형</div>
+	                    <div class="title-f">수정</div>
+	                </div>
+	
+	                <ul class="shipping-address-list-ul">
+	                <c:forEach var="sList" items="${shippingList}">
+	                    <li class="shipping-address-list-li">
+	                    	<input type="hidden" name="index" value="${sList.shippingindex}">
+		                        <div class="shipping-address-list-div">
+		                            <div class="shipping-address-list-check-area">
+		                                <label class="shipping-address-list-check" for="user-shipping-address">
+		                                    <input id="user-shipping-address" type="checkbox" class="user-shipping-address-c">
+		                                    <img src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드.svg" alt="" class="checkview shipping-address-check-img">
+		                                    <img src="${contextPath}/mkurly/컬리이미지/주문서페이지/다운로드 2.svg" alt="" class="checkviewno shipping-address-check-img">
+		                                </label>
+		                            </div>
+		                            <div class="user-shipping-address-text">
+		                                <div>${sList.shippingaddress} ${sList.shippingdetailaddress}</div>
+		                            </div>
+		                            <div class="user-name">${sList.shippingname}</div>
+		                            <div class="user-tell">${sList.shippingphone}</div>
+		                            <div class="shipping-address-type">
+		                                <div>
+		                                    <span type="direct" class="shipping-address-type-text">샛별배송</span>
+		                                </div>
+		                            </div>
+		                            <div class="shipping-address-correction">
+			                            <a href="${contextPath}/member/updateshippingForm.do?shippingindex=${sList.shippingindex}" style="text-decoration: none;">
+			                                <i class="fa-regular fa-pen-to-square"></i>
+			                            </a>
+		                            </div>
+		                        </div>
+	                    	</li>
+	                     </c:forEach>
+	                </ul>
+	            </div>
+            </form>
         </div>
     </main>
 
@@ -392,64 +402,6 @@
     </footer>
     <script src="${contextPath}/mkurly/js/commen.js"></script>
     <script src="${contextPath}/mkurly/js/ShippingAddressManagement.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-    function execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
-                document.getElementById('addressarea_after').style.display = "inline-block";
-                document.getElementById('addressbtnarea_after').style.display = "block";
-                document.getElementById('addressarea_before').style.display = "none";
-                
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("extraAddress").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    
-
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-</script>
     
 </body>
 </html>

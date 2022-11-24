@@ -271,131 +271,82 @@ p {
 .wish-list-frame {
     width: 820px;
 }
-.wish-list-title {
+.wish-list-box {
     display: flex;
     align-items: center;
-    padding-bottom: 27px;
-    border-bottom: 2px solid rgb(51, 51, 51);
 }
-.wish-list-title h2 {
+.wish-list-box h2 {
     font-weight: 500;
     font-size: 24px;
     line-height: 48px;
     letter-spacing: -0.5px;
     color: rgb(51, 51, 51);
-    margin: 0;
 }
-.wish-list-title span {
+.wish-list-box span {
     padding-left: 11px;
     font-size: 14px;
     letter-spacing: -0.3px;
     color: rgb(153, 153, 153);
     line-height: 20px;
 }
-.wish-list-area {
-    padding: 0px 20px;
-}
-.wish-list {
+.wish-list-title {
     display: flex;
-    height: 128px;
-    padding: 24px 0px;
-    border-top: 1px solid rgb(244, 244, 244);
-}
-.wish-list > a {
-    display: block;
-    position: relative;
-    width: 60px;
-    height: 78px;
-}
-.etc-btn a{
-    display: block;
-    text-align: center;
-    width: 104px;
-    height: 36px;
-    color: rgb(95, 0, 128);
-    background-color: rgb(255, 255, 255);
-    overflow: hidden;
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(95, 0, 128);
-    border-image: initial;
-}
-.wish-list a img {
-    position: absolute;
-    background: 50% 50% / cover no-repeat;
-    width: 60px;
-    height: 78px;
-}
-.wish-list-item-information {
-    width: calc(100% - 90px);
-    display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(51, 51, 51);
 }
-.item-name-area {
-    padding: 0px 20px;
+
+.order-list-area {
+    padding-top: 20px;
+    position: relative;
+    height: 100%;
 }
-.item-name {
-    overflow: hidden;
-    word-break: break-all;
-    white-space: normal;
-    font-size: 16px;
-    line-height: normal;
+.order-list {
+    height: 300px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
 }
-.item-value {
-    margin-top: 6px;
-    margin-right: 4px;
-    line-height: 19px;
-    color: rgb(51, 51, 51);
-    font-size: 16px;
-    font-weight: bold;
-}
-.etc-btn {
+.order-list-item-information {
     display: flex;
     flex-direction: column;
-}
-.etc-btn a:first-child {
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    width: 104px;
-    height: 36px;
-    border-radius: 4px;
-    color: rgb(222, 40, 100);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(222, 40, 100);
-    margin-bottom: 5px;
-}
-.item-delete span {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 3;
-}
-.item-input {
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    width: 104px;
-    height: 36px;
-    border-radius: 4px;
-    color: rgb(95, 0, 128);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(95, 0, 128);
-}
-.item-input span {
-    display: flex;
+    -webkit-box-align: center;
     align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    line-height: 3;
 }
-.item-input span i {
+.order-list-item-information p {
+    margin: 8px 0px 24px;
+    font-size: 16px;
+    color: rgb(181, 181, 181);
+    text-align: center;
+}
+.order-list-item-information p::before {
+    display: block;
+    margin: 0px auto 8px;
+    width: 68px;
+    height: 68px;
+    background: url(../컬리이미지/기타/oderhistpry.svg) 0px 0px no-repeat;
+    content: "";
+}
+.order-list-item-information button {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 150px;
+    height: 44px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(95, 0, 128);
+    border: 0px none;
+}
+.go-best-page {
+    font-size: 14px;
     display: inline-block;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    top: 4px;
+    font-weight: 500;
 }
+
+
+

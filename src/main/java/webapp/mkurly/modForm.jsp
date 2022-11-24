@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script src="${contextPath}/js/jquery-3.6.0.min.js"></script>
+ <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <title>1:1문의하기</title>
 
@@ -20,10 +20,9 @@
 	   
 	   <form action="${contextPath}/good1/qnaModOk.do" method="post" name="writeForm">
 	      <table border="1">
-	         
 	         <tr>
 	            <td align="right">상품이미지</td>
-	            <td colspan="2"><img src="${contextPath}/컬리이미지/${gimg.goodsimgage}" ></td>
+	            <td colspan="2"><img src="${contextPath}/mkurly/컬리이미지/${gimg.goodsimage}" ></td>
 	         </tr>
 	         	      
 	         <tr>

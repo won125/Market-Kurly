@@ -18,7 +18,7 @@ public class PayVO {
 	private String shippingname;
 	private String shippingphone;
 	private String shippingaddress;
-	private String shippingdefaultaddress;
+	private String shippingdetailaddress;
 	private String name;
 	private String email;
 	private String phone;
@@ -29,7 +29,7 @@ public class PayVO {
 	
 	public PayVO(String id,String goodscode, String goodsname, String goodsinfo, String goodsdelivey, String goodsprice, 
 			String goodspackage, String goodsunit, String goodsweight, String goodsorigin, String goodsimage, String goodscount
-			,String shippingname, String shippingphone, String shippingaddress, String shippingdefaultaddress, String name, String email, String phone,
+			,String shippingname, String shippingphone, String shippingaddress, String shippingdetailaddress, String name, String email, String phone,
 			String address, String detailaddress,String totalprice) {
 			this.id=id;
 			this.goodscode=goodscode;
@@ -46,13 +46,23 @@ public class PayVO {
 			this.shippingname=shippingname;
 			this.shippingphone=shippingphone;
 			this.shippingaddress=shippingaddress;
-			this.shippingdefaultaddress=shippingdefaultaddress;
+			this.shippingdetailaddress=shippingdetailaddress;
 			this.name=name;
 			this.email=email;
 			this.phone=phone;
 			this.address=address;
 			this.detailaddress=detailaddress;
 			this.totalprice=totalprice;
+	}
+
+
+	public String getShippingdetailaddress() {
+		return shippingdetailaddress;
+	}
+
+
+	public void setShippingdetailaddress(String shippingdetailaddress) {
+		this.shippingdetailaddress = shippingdetailaddress;
 	}
 
 
@@ -288,14 +298,6 @@ public class PayVO {
 	}
 
 
-	public String getShippingdefaultaddress() {
-		return shippingdefaultaddress;
-	}
-
-
-	public void setShippingdefaultaddress(String shippingdefaultaddress) {
-		this.shippingdefaultaddress = shippingdefaultaddress;
-	}
 	
 	
 }

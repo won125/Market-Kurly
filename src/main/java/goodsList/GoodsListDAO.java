@@ -54,8 +54,6 @@ public class GoodsListDAO {
 				goodslistVO.setGoodscode(goodscode);
 				goodslistVO.setGoodsinfo(goodsinfo);
 				goodslistVO.setGoodstitle(goodstitle);
-				
-				
 				glist.add(goodslistVO);
 			}
 			

@@ -27,7 +27,7 @@
 	<c:when test="${msg == 'updateMember'}">
 		<script type="text/javascript">
 			alert("회원정보수정 완료");
-		</script>
+		</script>	
 	</c:when>
 	<c:when test="${msg == 'addMember'}">
 		<script type="text/javascript">
@@ -66,7 +66,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -89,7 +89,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -99,7 +99,7 @@
                                   <div class="login-user-low-menu"><a href="${contextPath}/member/logout.do">로그아웃</a></div>
                               </div>
                               <div> | </div>
-                              <a href="${contextPath}/service/servicecenter.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
+                              <a href="${contextPath}/help/helpList.do" id="serviceCenterHover">고객센터<i class="fa-solid fa-caret-down"></i></a>
                           </div>
                       </c:when>
                    </c:choose>
@@ -113,9 +113,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -139,7 +139,7 @@
                             <i class="fa-solid fa-bars"></i>카테고리
                         </div>                        
                         <ul class="menu-list">
-                            <a href="${contextPath}/good1"><li>신상품</li></a>
+                            <a href="${contextPath}/good1/goodslist.do"><li>신상품</li></a>
                             <li>베스트</li>
                             <li>알뜰쇼핑</li>
                             <li>특가/혜택</li>                        

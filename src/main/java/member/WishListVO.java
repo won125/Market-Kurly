@@ -14,6 +14,9 @@ public class WishListVO {
 		this.goodsimage = goodsimage;
 		this.goodsprice = goodsprice;
 	}
+	 public WishListVO() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public String getId() {
 		return id;

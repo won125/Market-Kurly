@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="gdetail" value="${gdetail}"/>
 <%
-	request.setCharacterEncoding("utf-8");
+   request.setCharacterEncoding("utf-8");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,26 +27,33 @@
     <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
     <script src="${contextPath}/mkurly/js/productDetailPage.js"></script>
 </head>
-<c:choose>
-	<c:when test="${result == 1}">
-		<script>
-			alert("장바구니에 추가하였습니다.");
-		</script>
-	</c:when>
-	<c:when test="${result == 0}">
-		<script>
-			alert("이미 담겨있는 상품입니다.");
-		</script>
-	</c:when>
+    <c:choose>
+   <c:when test="${result == 1}">
+      <script>
+         alert("장바구니에 추가하였습니다.");
+      </script>
+   </c:when>
+   <c:when test="${result == 0}">
+      <script>
+         alert("이미 담겨있는 상품입니다.");
+      </script>
+   </c:when>
 </c:choose>
 <body>
+    <header>
     <script type="text/javascript">
+    //질문 클릭
+    $(function(index){
+      $(document).on("click", ".user-inquiry-post", function(){
+         $(this).find(".answerarea").toggle();
+      });
+    });
     function rDelete(obj){
-    	obj.action="${contextPath}/good1/rDelete.do?id=${id}";
-    	obj.submit();
+       obj.action="${contextPath}/good1/rDelete.do?id=${id}";
+       obj.submit();
     }
     function rModify(obj){
-    	
+       
     }
     //질문 클릭
     $(function(index){
@@ -54,10 +61,12 @@
          $(this).find(".answerarea").toggle();
       });
     });    
-    
+      function loginchk() {
+            alert('로그인 후 이용 가능합니다.');
+         }
     </script>
-   <header>
-        <div class="top-ad">
+  
+            <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
         <!-- 헤더영역시작 -->
@@ -77,7 +86,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -100,7 +109,7 @@
                       </c:when>
                       <c:when test="${sessionID eq 'admin'}">
                          <div class="top-memberService2">
-                              <a href="${contextPath}/member/mypage.do" id="userNameHover">
+                              <a href="${contextPath}/member/adminpage.do" id="userNameHover">
                                   <span class="login-user-tier">관리자</span>
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -124,9 +133,9 @@
 
                     <div class="top-logo-search-icon-frame">
                         <div class="top-logo-search-icon">
-                            <a href="${contextPath}/member"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
-                            <a href="${contextPath}/member"><button class="first-market-button">마켓컬리</button></a>
-                            <a href="${contextPath}/member"><button class="second-market-button">뷰티컬리</button></a>
+                            <a href="${contextPath}/member/"><img src="${contextPath}/mkurly/컬리이미지/kulry-logo/asd-removebg-preview-removebg-preview.png" alt="메인로고" class="main-logo"></a>
+                            <a href="${contextPath}/member/"><button class="first-market-button">마켓컬리</button></a>
+                            <a href="${contextPath}/member/"><button class="second-market-button">뷰티컬리</button></a>
                             <div class="top-search-frame">
                                 <input class="top-search" type="text" placeholder="검색어를 입력해주세요"></input>
                                 <div class="search-icon">
@@ -161,11 +170,11 @@
                     </div>
                     <div class="category-low-menu-frame">
                         <div class="category-low-menu">
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
-                            <a href="#"><li><img src="${contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
+                            <a href="#"><li><img src="{contextPath}/mkurly/컬리이미지/채소/D2tq9D88GPQCRZd2FC04ct0BI0xId0Z1wTFWb7Wu.webp" alt="채소">채소</li></a>
+                            <a href="#"><li><img src="{contextPath}/mkurly/컬리이미지/정육/EOMHR0scDTojmp9yxY6ZK6U01fkqUEg19nPMyQFG.webp" alt="정육">정육</li></a>
+                            <a href="#"><li><img src="{contextPath}/mkurly/컬리이미지/반찬/TmOAqHrU3DaZ9GtkfircoZQmd0xGaplSNoXw2q8V.webp" alt="반찬">반찬</li></a>
+                            <a href="#"><li><img src="{contextPath}/mkurly/컬리이미지/유제품/PsTvzGzTKzgmANHetZ1XDCBoIvHj874L9goGSKXx.webp" alt="유제품품">유제품</li></a>
+                            <a href="#"><li><img src="{contextPath}/mkurly/컬리이미지/주류/xtK9aF5n9OfmNfWuLMmyHzxUaj7Y9pVx2MPetIex.webp" alt="주류">주류</li></a>
                         </div>
                     </div>
                 </div>
@@ -174,32 +183,30 @@
     </header>
 
 
-
-    <!-- 프로젝트 작성 영역 start -->
+   <!-- 프로젝트 작성 영역 start -->
 
 
 <!--상품상세정보 백엔드부분-->
     <main class="main-frame">
-
         <div class="main-area">
         <c:forEach var="gdetail" items="${gdetail}">
         <form method="get" name="goods" action="${contextPath}/cart/addCart.do">
             <article class="product-information-area">
-            <input type="hidden" name="id" value="${sessionID}">
+            <input type="hidden" name="goodscode" value="${gdetail.goodscode}">
                 <div class="left-img-area">
-                	<img src="${contextPath}/mkurly/컬리이미지/${gdetail.goodsimage}" alt="가지상세이미지">
-                </div><!--12.상품 메인이미지 goodsimgage-->
-                <input type="hidden" name="goodscode" value="${gdetail.goodscode}">   <!--1.상품코드-->                               
+                   <img src="${contextPath}/mkurly/컬리이미지/${gdetail.goodsimage}" alt="가지상세이미지">
+                </div><!--12.상품 메인이미지 goodsimage-->
+                   <!--1.상품코드-->                               
                 <div class="right-information-area">
                     <div>
                         <div class="title-sub-text">샛별배송</div>
                         <div class="title-area">
                             <div class="gaji-title">
-                                ${gdetail.goodsname}                 <!--2..상품이름 부분 goodsname -->
+                                <h2>${gdetail.goodsname}</h2>                 <!--2..상품이름 부분 goodsname -->
                                 <button class="share-img"></button>
                             </div>
                             <!--3.상품 문구goodsinfo-->
-                            ${gdetail.goodsinfo}
+                            <p>${gdetail.goodsinfo}</p>
                         </div>
                     </div>
 
@@ -221,7 +228,10 @@
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">배송</dt>
                             <dd class="sales-content-list-child2">
-                                ${gdetail.goodsdelivery}<!--6.배송타입-->
+                                
+                                <p class="sales-content-list-p">${gdetail.goodsdelivery}</p> <!--6.배송타입-->
+                                <p class="sales-content-list-p2">23시 전 주문 시 내일 아침 7시 전 도착 (대구·부산·울산 샛별배송 운영시간 별도 확인)</p><!--7.배송타입-->
+  
                                 
                             </dd>
                         </dl>
@@ -236,7 +246,10 @@
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">포장타입</dt>
                             <dd class="sales-content-list-child2">
-                                ${gdetail.goodspackage}<!--7.포장타입 goodspackage-->
+                                <!--7.포장타입 goodspackage-->
+                                <p class="sales-content-list-p">${gdetail.goodspackage}</p> <!--8.포장타입-->
+                                <p class="sales-content-list-p2">택배배송은 에코 포장이 스티로폼으로 대체됩니다.</p>
+                        
                                 
                             </dd>
                         </dl>
@@ -244,22 +257,28 @@
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">판매단위</dt>
                             <dd class="sales-content-list-child2">
-                                ${gdetail.goodsunit}<!--8.판매단위 goodsunit-->
+                                <!--8.판매단위 goodsunit-->
+                                  <p class="sales-content-list-p">${gdetail.goodsunit}</p> <!--9.판매단위-->
+            
                             </dd>
                         </dl>
 
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">중량/용량</dt>
                             <dd class="sales-content-list-child2">
-                                ${gdetail.goodsweight}<!--9.중량용량 goodsweight-->
+                                <!--9.중량용량 goodsweight-->
+                                   <!--9.판매단위-->
+                                  <p class="sales-content-list-p">${gdetail.goodsweight}</p>
+                                  
+            
                             </dd>
                         </dl>
 
                         <dl class="sales-content-list">
                             <dt class="sales-content-list-child">원산지</dt>
                             <dd class="sales-content-list-child2">
-                                ${gdetail.goodsorigin}<!--10. 원산지 goodsorigin-->
-                                <input type="hidden" name="goodsorigin" value="${gdetail.goodsorigin}">
+                                <!--10. 원산지 goodsorigin-->
+                                <p class="sales-content-list-p">${gdetail.goodsorigin}</p>
                             </dd>                         
                                       <!--11.상품찾는 이름? goodsselect-->
                             
@@ -272,31 +291,30 @@
       
                     
                     <div class="shopping-basket-area">
-							<div class="product-selection-frame">
-								<dl class="product-selection">
-									<dt class="sales-content-list-child">상품선택</dt>
-									<div class="product-selection-detail-page">
-										<div class="product-name">
-											<span>${goodstitle}</span>
-										</div>
-										<span>적립제외상품</span>
-										<div class="product-quantity-value">
-											<div class="product-quantity">
-											   <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                     <div class="product-selection-frame">
+                        <dl class="product-selection">
+                           <dt class="sales-content-list-child">상품선택</dt>
+                           <div class="product-selection-detail-page">
+                              <div class="product-name">
+                                 <span>${goodstitle}</span>
+                              </div>
+                              <span>적립제외상품</span>
+                              <div class="product-quantity-value">
+                                 <div class="product-quantity">
+                                         	<button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
                                             <div><input type="number" name="goodscount" id="gcount" value="1"></div>
                                             <button type="button"aria-label="수량올리기" class="product-quantity-up"></button>
-											</div>	
-											<div class="product-pay">
-												<span>${goodsprice}원</span>
-											</div>
-										</div>
-									</div>
-								</dl>
-							</div>
+                                 </div>
+                                 <div class="product-pay">
+                                    <span>${goodsprice}원</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </dl>
+                     </div>
+              
 
-
-
-							<div class="total-product-amount">
+                     <div class="total-product-amount">
                             <div class="total-product-amount-area">
                                 <div class="total-pay">
                                     <span class="total-pay-title">총 상품금액 :</span>
@@ -313,25 +331,46 @@
                         
 
                         <div class="put-in-shopping-cart">
-                            <button type="button" class="heart-img">
-                                <span>
-                                    <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
-                                </span>
-                            </button>
+                                 <c:choose>
+                                <c:when test="${sessionID != null }">
+                                   <span>
+                                         <c:choose>
+                                            <c:when test="${wishResult == 1}">
+                                               <a class="heart-img" href="${contextPath}/member/removewish.do?id=${sessionID}&goodscode=${gdetail.goodscode}">
+                                                  <img src="${contextPath}/mkurly/컬리이미지/기타/heartCol.svg" alt="하트">
+                                               </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                               <a class="heart-img" href="${contextPath}/member/addwish.do?id=${sessionID}&goodscode=${gdetail.goodscode}">
+                                                  <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
+                                               </a>
+                                            </c:otherwise>
+                                         </c:choose>
+                                     </span>
+                                </c:when>
+                                <c:otherwise>
+                                   <button type="button" class="heart-img" onclick="loginchk()">
+                                         <span>
+                                             <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
+                                         </span>
+                                     </button>
+                                </c:otherwise>
+                             </c:choose>
                             <button type="button" class="bell-img">
                                 <span>
                                     <img src="${contextPath}/mkurly/컬리이미지/기타/bell.svg" alt="종">
                                 </span>
                             </button>
                             <div class="shopping-cart-btn">
-                            <input type="submit" class="input-cart-btn" value="장바구니 담기">
+                                <input type="submit" class="input-cart-btn" value="장바구니 담기">
                             </div>
                         </div>
                     </div>
-                    
+                 
                 </div>
             </article>
-
+            </form>
+          
             <nav class="product-information-sub-menu">
                 <nav class="product-information-sub-menu-frame">
                     <div class="sub-menu-1">
@@ -348,7 +387,6 @@
                     </div>
                 </nav>
             </nav>
-
        <div class="product-description-frame">
           <div class="gaji-description">
                     <div class="gaji-description-1">
@@ -463,7 +501,6 @@
                             </ul>
                         </div>
                     </div>
-                   
 
                     <div class="exchange-and-refund-information">
                         <strong class="exchange-and-refund-information-title">교환 및 환불 안내</strong>
@@ -582,7 +619,7 @@
                                 <button>금주의 베스트 후기 안내</button>
                             </div>
         <!-- 리뷰 시작 -->
-        	              <c:forEach var="ReviewList" items="${ReviewList}" >
+                         <c:forEach var="ReviewList" items="${ReviewList}" >
                             <div class="review-text-page-3div">
               
                                 <div class="review-user-frame">
@@ -592,51 +629,43 @@
                                         <span>이*희</span>
                                     </div>
                                 </div>
-               		
-										<article class="review-content-frame">
-								
-											<div class="review-content-area">
-												<div class="review-item-name">
-													
-											<input type="hidden" value="${ReviewList.id}"> 
-											<input type="hidden" value="${ReviewList.reviewnum}"> 
-											<input	type="hidden" value="${ReviewList.goodscode}"> 
-											
-											
-													${ReviewList.goodsname}
-												</div>
-												<p>${ReviewList.reviewcontents}</p>
-												<div class="review-item-image">
-													<img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}">
-													<button >
-													<img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}"></button>
-													
-												</div>
-												<div class="review-day-or-like">
-													<div class="review-day">
-														<span>${ReviewList.reviewdate}</span>
-													</div>
-													
-												
-													<button class="like-btn">
-														<span><i class="fa-regular fa-thumbs-up"></i></span> 
-														<span>도움돼요7</span>
-													</button>
-													<a href="${contextPath}/good1/rModify.do?reviewnum=${ReviewList.reviewnum}">수정</a>
-													<a href="${contextPath}/good1/rDelete.do?reviewnum=${ReviewList.reviewnum}&goodscode=${goodscode}">삭제</a>
-													
-													
-												</div>
-											</div>
-									                
-							</article>
-						
-
-							
-               
+                     
+                              <article class="review-content-frame">
+                        
+                                 <div class="review-content-area">
+                                    <div class="review-item-name">
+                                       
+                                 <input type="hidden" value="${ReviewList.id}"> 
+                                 <input type="hidden" value="${ReviewList.reviewnum}"> 
+                                 <input   type="hidden" value="${ReviewList.goodscode}"> 
+                                       ${ReviewList.goodsname}
+                                    </div>
+                                    <p>${ReviewList.reviewcontents}</p>
+                                    <div class="review-item-image">
+                                       <img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}">
+                                       <button >
+                                       <img alt="" src="${contextPath}/upload/${ReviewList.reviewnum}/${ReviewList.reviewimage}"></button>
+                                       
+                                    </div>
+                                    <div class="review-day-or-like">
+                                       <div class="review-day">
+                                          <span>${ReviewList.reviewdate}</span>
+                                       </div>
+                                       
+                                    
+                                       <button class="like-btn">
+                                          <span><i class="fa-regular fa-thumbs-up"></i></span> 
+                                          <span>도움돼요7</span>
+                                       </button>
+                                       <a href="${contextPath}/good1/rModify.do?reviewnum=${ReviewList.reviewnum}">수정</a>
+                                       <a href="${contextPath}/good1/rDelete.do?reviewnum=${ReviewList.reviewnum}&goodscode=${goodscode}">삭제</a>
+                                       
+                                    </div>
+                                 </div>  
+                              </article>
          <!-- 리뷰 끝나느부분-->                       
                             </div>
-        	</c:forEach> 
+                       </c:forEach> 
                             <div class="review-text-page-3div">
                                 <div class="review-user-frame">
                                     <div class="review-user-area">
@@ -680,51 +709,36 @@
                         </div>
                     </section>
                 </div>
-                 </c:forEach>               
+                             
 <!-- 상품문의 작성 -->
                 <div class="inquiry-form-frame">
                     <div class="inquiry-form-area">
                         <div class="contect-us-btn">
                             <span><a href="${contextPath}/good1/QnaAdd.do?goodscode=${goodscode}">문의하기</a></span>
                         </div>
-
                         <div class="user-inquiry">
                             <strong class="user-inquiry-title">상품 문의</strong>
                             <ul class="user-inquiry-guide">
                                 <li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
                                 <li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내<a href="#" class="oneVSone">1:1 문의</a>에 남겨주세요</li>
                             </ul>
+                            
                         </div>
+                  <div class="user-inquiry-post-frame">
+                            <table class="user-inquiry-post-area">
 
-					<div class="infospace">
-						<div width="70" class="infonumber">제목</div>
-						<div width="70" class="infotitle">작성자</div>
-						<div width="70" class="infotitle">작성일</div>
-						<div width="70" class="infotitle">답변상태</div>
-						<div width="70" class="infotitle">삭제</div>
-						<div width="70" class="infotitle">삭제</div>
-						<div class="write">제목</div>
-					</div>
-
-
-
-
-
-
-
-					<div class="user-inquiry-post-frame">
-                             <table class="user-inquiry-post">
                                 <thead class="user-inquiry-list-title-area">
                                     <tr>
                                         <th class="user-inquiry-title">제목</th>
                                         <th class="user-inquiry-auther">작성자</th>
                                         <th class="user-inquiry-created-date">작성일</th>
-                                        <th class="user-inquiry-status">답변상태</th>
-                                        <th class="user-inquiry-status">삭제</th>
                                         <th class="user-inquiry-status">수정</th>
+                                        <th class="user-inquiry-status">삭제</th>
                                     </tr>
                                 </thead>
+
                                 <tbody class="user-inquiry-post-list">
+
                                     <tr class="user-inquiry-post">
                                         <td class="user-inquiry-post-title">
                                             <span>공지</span>
@@ -734,38 +748,75 @@
                                         <td class="user-inquiry-post-created-date">2017.02.01</td>
                                         <td class="user-inquiry-post-status">-</td>
                                     </tr>
-                                    
-                                  <c:forEach var="Qlist" items="${Qlist}">
-                                  <div>  
-                                   	<tr class="user-inquiry-post">
-                                   		<div>	                       
-                                        <td class="user-inquiry-post-auther">${Qlist.qnatitle}</td>
-                                        <td class="user-inquiry-post-auther">${Qlist.name}</td>
-                                        <td class="user-inquiry-post-status">${Qlist.qnadate}</td>
-                                        <td class="user-inquiry-post-status"><a href="${contextPath}/good1/qnaMod.do?qnanum=${Qlist.qnanum}&goodscode=${goodscode}">수정하기</a></td>
-                                        <td class="user-inquiry-post-status"><a href="${contextPath}/good1/qndDel.do?qnanum=${Qlist.qnanum}">삭제하기</a></td>
-                                    	</div>
-                                    	<div class="answerarea">
-                                   		<tr class="user-inquiry-post">
-                                     	<td class="user-inquiry-post-created-date">${Qlist.qnacontents}</td>
-                                    	</tr>
-                                    	</div>
+
+                                    <tr class="user-inquiry-qna">
+                                        <td colspan="4">
+                                            <div class="user-inquiry-qnaA-frame">
+                                                <div class="user-inquiry-qnaA-area">                                                    
+                                                    <div class="user-inquiry-qnaA-text">
+                                                        <span>안녕하세요 컬리 입니다.<br></span>
+                                                        <span><br></span>
+                                                        <span><br></span>
+                                                        <span>아래와 같은 사유로 인해여 </span>
+                                                        <span><strong>판매(일시)중단</strong></span>
+                                                        <span> 되었음을 알려드립니다.<br></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="user-inquiry-qnaQ-frame">
+                                                <div class="user-inquiry-qnaQ-area">                                                    
+                                                    <div class="user-inquiry-qnaQ-text">
+                                                        <img class="stop-selling" src="${contextPath}/mkurly/컬리이미지/기타/공지사항.webp" alt="판매중단제품">
+                                                    </div>
+                                                </div>
+                                                <div class="user-inquiry-qna-date">
+                                                    2022.08.10
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
-                                   
-                                   
-                                    </div>		
-                                     		<input type="hidden" value="${Qlist.id}">
-                                            <input type="hidden" value="${Qlist.goodscode}">
-                                            <input type="hidden" value="${Qlist.qnalock}">
-                                            <input type="hidden" value="${Qlist.qnaanswer}">
-                                            <input type="hidden" value="${Qlist.name}">
-                                     
-                                           
-                                  </c:forEach>
+                                <c:forEach var="Qlist" items="${Qlist}">
+                                    <tr class="user-inquiry-post">
+                                        <td class="user-inquiry-post-title">
+                                            <div class="post-title">
+                                             ${Qlist.qnatitle}
+                                                <span class="lock"><!--back img--></span>
+                                            </div>
+                                        </td>
+                                        <td class="user-inquiry-post-auther">${Qlist.name}</td>
+                                        <td class="user-inquiry-post-created-date">${Qlist.qnadate}</td>
+                                        <td class="user-inquiry-post-status-clear"><a href="${contextPath}/good1/qnaMod.do?qnanum=${Qlist.qnanum}&goodscode=${goodscode}">수정하기</a></td>
+                                        <td class="user-inquiry-post-status-clear"><a href="${contextPath}/good1/qndDel.do?qnanum=${Qlist.qnanum}&goodscode=${goodscode}">삭제하기</a></td>
+                                    </tr>
+
+                                    <tr class="user-inquiry-qna">
+                                        <td colspan="4">
+                                            <div class="user-inquiry-qnaA-frame">
+                                            </div>
+                                            <div class="user-inquiry-qnaQ-frame">
+                                                <div class="user-inquiry-qnaQ-area">
+                                                    
+                                                    <div class="user-inquiry-qnaQ-text">
+                                                        <div><br>
+                                                            ${Qlist.qnacontents}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" value="${Qlist.id}">
+                                                <input type="hidden" value="${Qlist.goodscode}">
+                                                <input type="hidden" value="${Qlist.qnalock}">
+                                                <input type="hidden" value="${Qlist.qnaanswer}">
+                                                <input type="hidden" value="${Qlist.name}">
+                                      
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </c:forEach>
                                 </tbody>
+
                             </table>
                         </div>
-
                         <div  class="review-text-page-4div">
                             <button class="review-left"><i class="fa-solid fa-chevron-left"></i></button>
                             <button class="review-right"><i class="fa-solid fa-chevron-right"></i></button>
@@ -773,6 +824,7 @@
                     </div>
                 </div>
             </div>
+   
         </div>
     </main>
 
@@ -785,18 +837,17 @@
             
             <div class="item-quantity-information-one-frame">
                 <div class="item-quantity-information-one-area">
-                    <span class="item-quantity-information-name">
-                        <span class="item-quantity-information-title">${goodstitle}</span>
-                        <span class="item-point-guide">적립제외상품</span>
-                    </span>
                     <span class="item-count-btn-frame">
                         <div class="item-count-btn-area">
-                            <button type="button" class="item-count-btn-down"><!--back img--></button>
-                            <div class="item-count-btn-number">1</div>
-                            <button type="button" class="item-count-btn-up"><!--back img--></button>
+                             <!-- <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                            <div class="product-quantity-count">1</div>
+                            <button type="button" aria-label="수량올리기" class="product-quantity-up"></button> -->
+                            <button type="button" aria-label="수량내리기" class="product-quantity-down"></button>
+                            <div class="product-quantity-count"><input type="number" name="goodscount" id="gcountt" value="1"></div>
+                            <button type="button"aria-label="수량올리기" class="product-quantity-up"></button>
                         </div>
                         <span class="item-value-area">
-                            <span>${goodsprice}</span>
+                            <span>2,480</span>원
                         </span>
                     </span>
                 </div>
@@ -819,27 +870,47 @@
             <div class="item-quantity-information-three-frame">
                 <div class="item-input-shoppingback-frame">
                     <div class="item-input-shoppingback-area">
-                        <button type="button" class="heart-img iconImg">
-                            <span>
-                                <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
-                            </span>
-                        </button>
+                                   <c:choose>
+                                <c:when test="${sessionID != null }">
+                                   <span>
+                                         <c:choose>
+                                            <c:when test="${wishResult == 1}">
+                                               <a class="heart-img" href="${contextPath}/member/removewish.do?id=${sessionID}&goodscode=${gdetail.goodscode}">
+                                                  <img src="${contextPath}/mkurly/컬리이미지/기타/heartCol.svg" alt="하트">
+                                               </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                               <a class="heart-img" href="${contextPath}/member/addwish.do?id=${sessionID}&goodscode=${gdetail.goodscode}">
+                                                  <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
+                                               </a>
+                                            </c:otherwise>
+                                         </c:choose>
+                                     </span>
+                                </c:when>
+                                <c:otherwise>
+                                   <button type="button" class="heart-img" onclick="loginchk()">
+                                         <span>
+                                             <img src="${contextPath}/mkurly/컬리이미지/기타/heart.svg" alt="하트">
+                                         </span>
+                                     </button>
+                                </c:otherwise>
+                             </c:choose>
                         <button type="button" class="bell-img iconImg">
                             <span>
                                 <img src="${contextPath}/mkurly/컬리이미지/기타/bell.svg" alt="종">
                             </span>
                         </button>
                         <div class="shoppingback">
-                            <a href="${contextPath}/cart/addCart.do"><button class="item-input-shoppingback" type="button">
-			                                <span>장바구니 담기</span>
-			                            </button>
-                            </a>
+                            <input type="submit" class="item-input-shoppingback" value="장바구니담기" >
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+     </c:forEach>
+    </form>
+    
 
     
     <!-- 프로젝트 작성 영역 end -->

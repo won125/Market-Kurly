@@ -87,6 +87,31 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin : 0;
 }
+.pinput1 {
+    border: none;
+    background-color: #fff;
+    text-align: right;
+}
+#tprice {
+    border: none;    
+    margin: 0 5px;
+    width: 150px;
+}
+.tprice1 {
+    text-align: right;
+    border: none;    
+    width: 120px;
+}
+.total-price span {
+    display: inline;
+    font-size: 16px;
+}
+.wprice {
+    text-align: right;
+}
+.price span {
+    font-size: 16px;
+}
 #gcount{
 	border:none;
 	text-align:center;

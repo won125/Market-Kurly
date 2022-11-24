@@ -44,7 +44,7 @@ public class HelpController extends HttpServlet {
 
 	
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextPage="";
+		String nextPage=null;
 		PrintWriter pw;
 		HttpSession session; //부모에 대한 답글을 저장하기 위해 세션을 사용
 		request.setCharacterEncoding("utf-8");
@@ -92,7 +92,7 @@ public class HelpController extends HttpServlet {
 	            pw=response.getWriter();
 	            pw.print("<script>" + "alert('새 글을 추가했습니다');" +
 	            "location.href='" + request.getContextPath() +
-	            "/help/listHelp.do';" + "</script>"); //location.href: 브라우저 창 주소
+	            "/help/helpList.do';" + "</script>"); //location.href: 브라우저 창 주소
 	            return;
 			}else if(action.equals("/viewHelp.do")) {
 	        	   	String helpnum=request.getParameter("helpnum");
@@ -101,14 +101,23 @@ public class HelpController extends HttpServlet {
 		            request.setAttribute("help", helpVO);
 		            nextPage="/mkurly/servicecenterinfo.jsp";
 
-	         }else if (action.equals("/modHelp.do")){
+	         }else if(action.equals("/modHelpWirteForm.do")) {
+	        	 	String helpnum=request.getParameter("helpnum");
+	        	 	System.out.println(helpnum);
+	        	 	HelpVO helpVO = new HelpVO(); 
+	        	 	helpVO = helpService.viewHelp(Integer.parseInt(helpnum));
+	        	 	request.setAttribute("helpInfo",helpVO);
+	        	 	nextPage="/notice/modHelpWriteForm.jsp";
+	         }
+			else if (action.equals("/modHelp.do")){
 	        	 Map<String, String> helpMap = upload(request,response);
-	        	 int helpnum = Integer.parseInt(helpMap.get("helpnum"));
-	        	 helpVO.setHelpnum(helpnum);
+	        	 String helpnum=request.getParameter("helpnum");
+	        	 System.out.println(helpnum);
+	        	 helpVO.setHelpnum(Integer.parseInt(helpnum));
 	        	 String helptitle=helpMap.get("helptitle");
 	        	 String helpcontents = helpMap.get("helpcontents");
 	        	 String imageFileName=helpMap.get("imageFileName");
-	        	 helpVO.setHelpnum(helpnum);
+	        	 helpVO.setHelpnum(Integer.parseInt(helpnum));
 	        	 helpVO.setHelptitle(helptitle);
 	        	 helpVO.setImageFileName(imageFileName);
 	        	 helpVO.setAdmin("admin");
@@ -132,6 +141,7 @@ public class HelpController extends HttpServlet {
 	        	    return;
 	         }else if(action.equals("/removeHelp.do")) {
 	        	 int helpnum = Integer.parseInt(request.getParameter("helpnum"));
+	        	 System.out.println(helpnum);
 	        	 List<Integer> helpnumList = helpService.removeHelp(helpnum);//articleNo를 매개변수로 보내줘서 articleNoList를 받음
 	        	 //삭제된 글의 업로드된 이미지 삭제하는 작업
 	        	 for(int no: helpnumList) {
@@ -141,7 +151,7 @@ public class HelpController extends HttpServlet {
 	        		 }
 	        	 }
 	        	 pw=response.getWriter();
-	        	 pw.print("<script>" + "alert('글을 삭제했습니다.');"+"location.href='"+request.getContextPath() + "/help/listHelp.do';" + "</script>");
+	        	 pw.print("<script>" + "alert('글을 삭제했습니다.');"+"location.href='"+request.getContextPath() + "/help/helpList.do';" + "</script>");
 	        	 return;
 	         }
 
@@ -149,6 +159,7 @@ public class HelpController extends HttpServlet {
 	        dispatcher.forward(request, response);
 		}catch (Exception e) {
 			System.out.println("여기에러"+e.getMessage());
+			e.printStackTrace();	
 	}
 }
 	

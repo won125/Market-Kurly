@@ -1,32 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<%
-		request.setCharacterEncoding("utf-8");
-	%>
-	<!DOCTYPE html>
-<html lang="ko">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> <%-- 상대경로 현제 문서 위치를 기준으로 경로를 인식하는 방법--%>
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>고객센터공지사항</title>
-    <link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
-    <link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
-    <link rel="stylesheet" href="${contextPath}/mkurly/css/servicecenterinfo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <script src="${contextPath}/mkurly/js/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel="stylesheet" href="${contextPath}/mkurly/css/normalize.css">
+<link rel="stylesheet" href="${contextPath}/mkurly/css/commen.css">
+<link rel="stylesheet" href="${contextPath}/mkurly/css/userChangingInformation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<script type="text/javascript" src="${contextPath}/mkurly/js/confirm.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="${contextPath}/mkurly/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+function removeshipping(obj) { //회원 탈퇴 버튼 클릭시 액션
+	if(confirm("탈퇴하시겠습니까?")){
+		obj.action = "${contextPath}/member/deleteshipping.do?shippingindex=${shippingInfo.shippingindex}";
+		obj.submit();
+	}
+}
+function updateshipping(obj) { //회원정보수정 버튼 클릭시 액션
+	if(confirm("수정하시겠습니까?")){
+		obj.action = "${contextPath}/member/updateshipping.do";
+		method="post"
+		obj.submit();
+	}
+}
+</script>
+
 </head>
 <body>
-  <header>
-        <div class="top-ad">
+
+
+       <div class="top-ad">
             <p>지금 가입하고 인기상품 <strong>100원</strong>에 받아가세요!</p>
         </div>
         <!-- 헤더영역시작 -->
@@ -46,7 +61,7 @@
                       <c:when test="${sessionID ne null and sessionID ne 'admin'}">
                          <div class="top-memberService2" style="display: flex">
                             <a></a>
-                              <a href="${contextPath}/member/wishList.do" id="userNameHover">
+                               <a href="${contextPath}/member/wishList.do" id="userNameHover">
                                   <span class="login-user-tier">일반</span>${sessionID} 님
                                   <i class="fa-solid fa-caret-down"></i>
                               </a>
@@ -141,97 +156,183 @@
             </div>
         </div>
     </header>
-    <!-- 프로젝트 작성 영역 start -->
-    <!--고객센터공지사항 영역 시작-->
-    <div class="allserviceinfo"> 
-        <div class="marginserviceinfo">
-            <div class="serviceinfotext">공지사항</div>
-            <div class="serviceinfotexts">컬리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</div>
-        </div>    
-        <div class="serviceinfospace">
-            <div class="serviceinfoarea">
-                <div class="serviceinfotextarea">제목</div>
-                <div class="serviceinfotextareas">${help.helptitle}</div>
-            </div>
-            <div class="serviceinfoarea">
-                <div class="serviceinfotextarea">작성자</div>
-                <div class="serviceinfotextareas">${help.admin}</div>
-            </div>
-            <div class="serviceinfoarea">
-                <div class="serviceinfotextarea">작성일</div>
-                <div class="serviceinfotextareas">${help.helpwritedate}</div>
-            </div>
-            <div class="serviceimagearea">
-                <div>
-                    <div>
-                        <br>
+	
+	<main class="main-frame">
+        <div class="my-information-list-frame">
+            <div class="my-information-list-area">
+                <div class="my-information-list-area-no1">
+                    <div class="my-name-area">
+                        <div class="tier">웰컴</div>
+                        <div class="my-name">
+                            <strong>이익희님</strong>
+                        </div>
                     </div>
-                    <div>
-                        <br>
+
+                    <div class="tier-benefits">
+                        <p>적립 5%</p>
+                        <p>최초 1회 무료배송</p>
                     </div>
-                    <div>
-                        <pre>${help.helpcontents}
-                        <div class="helplist">
-                        <div class="helplist1">
-                        <c:if test="${not empty help.imageFileName && help.imageFileName !='null'}">
-							<input type="hidden" name="originalFileName" value="${help.imageFileName}">
-							<img src="${contextPath}/download.do?helpnum=${help.helpnum}&imageFileName=${help.imageFileName}" id="preview">
-						</c:if>
-						</div>
-                       </div>
-                        </pre>
+
+                    <div class="tier-list">
+                        <button>전체등급 보기</button>
+                        <button>다음 달 예상등급 보기</button>
                     </div>
-                    <div>
+                </div>
+
+                <div class="my-information-list-area-no2">
+                    <div class="reserves">
+                        <button class="my-information-btn">
+                            <div class="reserves-title">적립금 <i class="fa-solid fa-caret-right"></i></div>
+                            <div class="reserves-value">10,000 <span>원</span></div>
+                        </button>
                     </div>
-                    <div>
-                        <p>● 고객행복센터 : <a href="https://www.kurly.com/m2/introduce/customerSystem/customer_satisfaction.php">바로가기</a></p>
+
+                    <div class="coupon">
+                        <button class="my-information-btn">
+                            <div class="coupon-title">쿠폰 <i class="fa-solid fa-caret-right"></i></div>
+                            <div class="coupon-count">0 <span>개</span></div>
+                        </button>
                     </div>
-                    <div>
-                        <p>
-                            <br>
-                        </p>
+
+                    <div class="my-kurly-style">
+                        <button class="my-information-btn">
+                            <div class="my-kurly-style-title">나의 컬리 스타일 <img src="${contextPath}/mkurly/컬리이미지/kulry-logo/new.png" alt="새로운 소식"> <i class="fa-solid fa-caret-right"></i></div>
+                            <div class="registration">등록하기</div>
+                        </button>
                     </div>
-                    <div>
-                        <p>●&nbsp;컬리 이용약관 : <a href="https://www.kurly.com/shop/service/agreement.php">바로가기</a></p>
+                </div>
+                <div class="my-information-list-area-no2">
+                    <div class="learn-btn-area">
+                        <button class="learn-btn">
+                            <div class="learn-btn-title">컬리 피플 박스 <i class="fa-solid fa-caret-right"></i></div>
+                            <div class="learn-btn-learn">알아보기</div>
+                        </button>
                     </div>
-                    <div>
-                        <p>
-                            <br>
-                        </p>
-                    </div>
-                    <div>
-                        <span style="line-height: 107%;">
-                            <p>●&nbsp;소비자보호에 관한 법률 : <a href="https://www.law.go.kr/lsSc.do?section=&amp;menuId=1&amp;subMenuId=15&amp;tabMenuId=81&amp;eventGubun=060101&amp;query=%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98#liBgcolor0">바로가기</a></p>
-                        </span>
-                    </div>
-                    <div>
-                        <p>
-                            <br>
-                        </p>
-                    </div>
-                    <div>
-                        <span style="line-height: 107%;">
-                            <p>●&nbsp;소비자 분쟁해결 기준 : <a href="https://www.ccn.go.kr/board2/board.ccn?mode=list&amp;boardCode=372&amp;gSiteCode=2&amp;gMenuCode=5&amp;nMenuCode=63&amp;gSiteCode=2&amp;nMenuCode=63&amp;gMenuCode=5">바로가기</a></p>
-                        </span>
+                    <div class="learn-btn-area">
+                        <button class="learn-btn">
+                            <div class="learn-btn-title">컬리패스</div>
+                            <div class="learn-btn-learn">알아보기</div>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="listarea">
-	             <c:if test="${sessionID eq 'admin'}">                 	
-		            	<button class="listbutton">
-		                    <span class="listtext"><a href="${contextPath}/help/modHelpWirteForm.do?helpnum=${help.helpnum}">수정</a></span>
-		                </button>
-		         </c:if>      	
-                <button class="listbutton">
-                    <span class="listtext">목록</span>
-                </button>
-            </div>
+            <a href="#" class="my-information-list-ad"><img src="${contextPath}/mkurly/컬리이미지/wishlist_img/ad.jpg" alt="광고"></a>
         </div>
-    </div>
-    <!--고객센터공지사항 영역 종료-->
-     <!-- 프로젝트 작성 영역 end -->
-     
-     <footer>
+
+        <div class="wished-item-list-frame">
+            <div class="my-kurly-menu-list-frame">
+                <div class="my-kurly-menu-list-title">마이 컬리</div>
+                <ul class="my-kurly-menu-list">
+                    <li><a href="orderHistory.html">주문 내역<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="#">선물내역 <span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="wishList.html">찜한 상품<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="shippingAddressManagement.html">배송지 관리<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="#">상품 후기<span><i class="fa-solid fa-caret-right"></i></span></a></li>                    
+                    <li><a href="#">상품 문의<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="#">적립금<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="#">쿠폰<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="#">나의 컬리 스타일<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                    <li><a href="personalInformationCorrection.html">개인정보 수정<span><i class="fa-solid fa-caret-right"></i></span></a></li>
+                </ul>
+                <div class="help-frame">
+                    <div class="help-title">
+                        <span>도움이 필요하신가요?</span>
+                        <span>1:1 문의하기</span>
+                    </div>
+                    <span><i class="fa-solid fa-caret-right"></i></span>
+                </div>
+            </div>
+            
+            <form name="frmUpdateForm" class="userupdate">
+            <input type="hidden"  name="shippingindex" value="${shippingInfo.shippingindex}">
+            	<div class="wish-list-frame">
+	                <div class="wish-list-title">
+	                    <div class="wish-list-box">
+	                        <h2>배송지 정보 수정</h2>
+	                    </div>
+	                </div>
+	                
+					<div class="whitespace">
+				        <div class="wholecompartment">
+			                <div class="firstcompartment">
+			                    <label class="requiredinput">주소
+			                        <span class="essential">*</span>
+			                    </label>
+			                </div>
+			                <div class="actualinput" id="addressarea_after">
+							<div class="middleactualinput">
+		                        <div class="smallactualinput">						
+									<input type="text" id="roadAddress" name="address" class="inputhint" value="${shippingInfo.shippingaddress}" readonly>
+								</div>
+								<div class="smallactualinput">
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="detailaddress" name="detailaddress" class="inputhint" placeholder="상세주소를 입력해 주십시오." value="${shippingInfo.shippingdetailaddress}">
+								</div>
+							</div>
+						</div>
+			                <div class="alldoublecheck"></div>
+			            </div>
+	
+			            <div class="wholecompartment">
+		                <div class="firstcompartment">
+		                    <label class="requiredinput">받는 사람
+		                    </label>
+		                </div>
+		                <div class="actualinput">
+		                    <div class="middleactualinput">
+		                        <div class="smallactualinput">
+		                            <input data-testid="input-box" id="name" name="name" placeholder="받는 사람을 입력해 주십시오." type="text" class="inputhint" value="${shippingInfo.shippingname}">  
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="alldoublecheck">
+		                    <!--<button class="insidedoublecheck" type="button">
+		                        <span class="sentencedoublecheck">중복확인</span>
+		                    </button>-->
+		                </div>
+		            </div>
+		            <div class="wholecompartment">
+		                <div class="firstcompartment">
+		                    <label class="requiredinput">휴대폰
+		                    </label>
+		                </div>
+		                <div class="actualinput">
+		                    <div class="middleactualinput">
+		                        <div class="smallactualinput">
+		                            <input data-testid="input-box" id="phone" name="phone" placeholder="숫자만 입력해주세요." type="text" class="inputhint" value="${shippingInfo.shippingphone}">
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="alldoublecheck">
+		                    <!--<button class="insidedoublecheck" type="button" disabled>
+		                        <span class="sentencedoublecheck">인증번호 받기</span>
+		                    </button>-->
+		                </div>
+		            </div>
+	
+	                    <div class="joinspace">
+	                    <!--
+	                        <button class="ortherjoinbutton" type="button" width="240" height="56" radius="3" onclick="removeshipping(this.form);">
+	                            <span class="sentencedoublecheck">삭제하기</span>
+	                        </button>
+	                    -->
+	                    	<a class="ortherjoinbutton" type="button" width="240" height="56" radius="3" href="${contextPath}/member/deleteshipping.do?shippingindex=${shippingInfo.shippingindex}">
+	                            <span class="sentencedoublecheck">삭제하기</span>
+	                        </a>
+	                    	
+	                        <button class="joinbutton" type="button" width="240" height="56" radius="3" onclick="updateshipping(this.form);">
+	                            <span class="sentencedoublecheck">수정하기</span>
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+            </form>
+        </div>
+    </main>
+	    <!-- 회원가입 영역 종료 -->
+    <!-- 프로젝트 작성 영역 end -->
+    <!-- 푸터 영역 -->
+<footer>
         <div class="footer-top-frame">
             <div class="footer-serviceCenter-inquiry">
                 <div class="top-left-footer">
@@ -328,6 +429,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="kurly-precautions">
             <p>
                 마켓컬리에서 판매되는 상품 중에는 마켓컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.<br>
@@ -336,6 +438,8 @@
             <p>© KURLY CORP. ALL RIGHTS RESERVED</p>
         </div>
     </footer>
-    <script src="${contextPath}/mkurly/js/commen.js"></script>
+
+    <script type="text/javascript" src="${contextPath}/mkurly/js/commen.js"></script>
+    <script type="text/javascript" src="${contextPath}/mkurly/js/userChangingInformation.js"></script>
 </body>
-</html>         
+</html>

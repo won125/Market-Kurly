@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import member.WishListVO;
+
 public class GoodsDAO {
 	
 	private DataSource dataFactory;
@@ -103,7 +105,30 @@ try {
 		}
 		return findimg;
 	}
-	
+	   public WishListVO findgoods(String id, String goodscode) {
+		      WishListVO wishListVO = new WishListVO();
+		      try {
+		      conn = dataFactory.getConnection();
+		      String query = "select * from kurly_goods where goodscode=?";
+		      System.out.println(query);
+		      pstmt = conn.prepareStatement(query);
+		      pstmt.setString(1, goodscode);
+		      rs = pstmt.executeQuery();
+		      while(rs.next()) {
+		         String goodsimage = rs.getString("goodsimage");
+		           String goodsname = rs.getString("goodsname");
+		           int goodsprice = rs.getInt("goodsprice");
+		           wishListVO.setId(id);
+		           wishListVO.setGoodscode(goodscode);
+		           wishListVO.setGoodsname(goodsname);
+		           wishListVO.setGoodsimage(goodsimage);
+		           wishListVO.setGoodsprice(goodsprice);
+		      }
+		   } catch (Exception e) {
+		      System.out.println("상품정보 불러오기 에러!" + e.getMessage());
+		   }
+		      return wishListVO;
+		   }
 	
 
 }

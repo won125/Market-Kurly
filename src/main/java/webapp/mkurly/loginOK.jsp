@@ -13,8 +13,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	response.sendRedirect("${contextPath}/member/index.do");
-%>
+<script type="text/javascript">
+	location.href="${contextPath}/member/index.do";
+</script>
 </body>
 </html>
