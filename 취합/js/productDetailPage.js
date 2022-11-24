@@ -87,19 +87,36 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    let countNum=Number(document.querySelector(".product-quantity-count text"));
+    // let countNum=Number(document.querySelector(".product-quantity-count text"));
+    // $(".product-quantity-up").click(function(){
+    //     if (countNum<99) {
+    //         countNum+=1;
+    //     }
+    //     $(".product-quantity-count").text(countNum);
+    // });
+
+    // $(".product-quantity-down").click(function(){
+    //     if (countNum>1) {
+    //         countNum-=1;
+    //     }
+    //     $(".product-quantity-count").text(countNum);
+    // });
+
+    let priceNum=Number(document.getElementById('gcount').value);
     $(".product-quantity-up").click(function(){
-        if (countNum<99) {
-            countNum+=1;
+      alert(priceNum);
+        if (priceNum<99) {
+            priceNum+=1;
         }
-        $(".product-quantity-count").text(countNum);
+
+        $("#gcount").attr("value",priceNum);
     });
 
     $(".product-quantity-down").click(function(){
-        if (countNum>1) {
-            countNum-=1;
+        if (priceNum>1) {
+            priceNum-=1;
         }
-        $(".product-quantity-count").text(countNum);
+        $("#gcount").attr("value",priceNum);
     });
 
     $( ".user-inquiry-post").click(function() {

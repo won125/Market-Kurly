@@ -205,6 +205,9 @@ button {
 .shipping-address-text {
     flex: 1;
 }
+#borderr {
+    border: none;
+}
 .shipping-address-text>span {
     display: inline-block;
     height: 22px;
@@ -250,13 +253,14 @@ button {
 }
 .input-btn-frame {
     margin-top: 20px;
+    flex: 2.5;
 }
 .input-btn {
     display: block;
     padding: 0px 10px;
     text-align: center;
     overflow: hidden;
-    width: 60px;
+    width: 80px;
     height: 30px;
     border-radius: 3px;
     color: rgb(95, 0, 128);
